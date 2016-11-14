@@ -32,3 +32,5 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
         Toast.makeText(getContext(),"asdsa",Toast.LENGTH_SHORT).show();
     }
 }
+
+

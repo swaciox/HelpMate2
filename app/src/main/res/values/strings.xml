@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">HelpMate</string>
-    <string name="action_settings">Settings</string>
+    <string name="password">Hasło</string>
+    <string name="repeat_password">Powtórz hasło</string>
+    <string name="email">E-mail</string>
+    <string name="action_settings">Setting</string>
+    <string name="login">Zaloguj</string>
+    <string name="register">Zarejestruj</string>
 </resources>

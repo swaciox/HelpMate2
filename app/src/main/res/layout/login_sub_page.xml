@@ -25,7 +25,7 @@
             android:id="@+id/buttonSignIn"
 
             android:layout_width="160dp"
-            android:layout_below="@+id/editText2"
+            android:layout_below="@+id/registerPassword"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="39dp" />
 
@@ -33,7 +33,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
 
-            android:id="@+id/imageView"
+            android:id="@+id/imageMail"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="0dp"
             android:layout_alignParentTop="true"
@@ -41,10 +41,10 @@
 
         <ImageView
 
-            android:id="@+id/imageView2"
+            android:id="@+id/imageLock"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:layout_alignTop="@+id/editText2"
+            android:layout_alignTop="@+id/registerPassword"
             android:layout_alignParentStart="true" />
 
         <EditText
@@ -52,13 +52,13 @@
             android:layout_height="45dp"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/editText"
+            android:id="@+id/registerEmailAddress"
 
             android:fontFamily="sans-serif"
             android:textColor="@color/colorTextPrimary"
             android:layout_weight="1"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imageView2"
+            android:layout_toEndOf="@+id/imageLock"
             android:layout_marginStart="11dp" />
 
         <EditText
@@ -66,14 +66,14 @@
             android:layout_height="45dp"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText2"
+            android:id="@+id/registerPassword"
 
             android:fontFamily="sans-serif"
             android:textColor="@color/colorTextPrimary"
             android:layout_weight="1"
             android:layout_marginTop="0dp"
-            android:layout_below="@+id/editText"
-            android:layout_alignStart="@+id/editText" />
+            android:layout_below="@+id/registerEmailAddress"
+            android:layout_alignStart="@+id/registerEmailAddress" />
 
 
     </RelativeLayout>

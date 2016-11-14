@@ -18,13 +18,13 @@
             android:layout_height="45dp"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/editText"
-
+            android:id="@+id/registerEmailAddress"
+            android:hint="@string/email"
             android:fontFamily="sans-serif"
             android:textColor="@color/colorTextPrimary"
             android:layout_weight="1"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imageView2"
+            android:layout_toEndOf="@+id/imageLock"
             android:layout_marginStart="0dp" />
 
         <EditText
@@ -32,19 +32,19 @@
             android:layout_height="45dp"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText2"
-            android:hint="@string/action_settings"
+            android:id="@+id/registerPassword"
+            android:hint="@string/password"
             android:fontFamily="sans-serif"
             android:textColor="@color/colorTextPrimary"
             android:layout_weight="1"
             android:layout_marginTop="12dp"
-            android:layout_below="@+id/editText"
-            android:layout_alignStart="@+id/editText" />
+            android:layout_below="@+id/registerEmailAddress"
+            android:layout_alignStart="@+id/registerEmailAddress" />
 
         <ImageView
             android:layout_width="42dp"
-
-            android:id="@+id/imageView"
+            android:src="@drawable/ic_mail_outline"
+            android:id="@+id/imageMail"
             android:layout_marginLeft="-5dp"
             android:layout_height="42dp"
             android:layout_alignParentTop="true"
@@ -56,43 +56,45 @@
             android:layout_height="45dp"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText3"
-
+            android:hint="@string/repeat_password"
+            android:id="@+id/registerRepeatPassword"
             android:fontFamily="sans-serif"
             android:textColor="@color/colorTextPrimary"
             android:layout_weight="1"
-            android:layout_below="@+id/editText2"
+            android:layout_below="@+id/registerPassword"
             android:layout_marginTop="11dp"
-            android:layout_alignStart="@+id/editText2"
-            android:layout_alignEnd="@+id/editText2" />
+            android:layout_alignStart="@+id/registerPassword"
+            android:layout_alignEnd="@+id/registerPassword" />
 
         <ImageView
-
-            android:id="@+id/imageView2"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignTop="@+id/editText2"
+            android:src="@drawable/ic_lock_outline"
+            android:id="@+id/imageLock"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_alignTop="@+id/registerPassword"
             android:layout_alignParentStart="true" />
 
         <ImageView
             android:layout_width="42dp"
-
-            android:id="@+id/imageView3"
+            android:src="@drawable/ic_lock_outline"
+            android:id="@+id/imageLock2"
             android:layout_height="42dp"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/editText2"
-            android:layout_alignStart="@+id/imageView" />
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/registerPassword"
+            android:layout_alignStart="@+id/imageMail" />
 
         <Button
-
+            android:text="@string/register"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_rounded_corners"
             android:textColor="@color/colorTextIcons"
             android:textSize="20sp"
             android:fontFamily="sans-serif"
             android:layout_height="60dp"
             android:id="@+id/buttonSignUp"
-
             android:layout_width="160dp"
-            android:layout_below="@+id/editText3"
+            android:layout_below="@+id/registerRepeatPassword"
             android:layout_centerHorizontal="true" />
 
 

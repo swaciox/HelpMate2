@@ -22,7 +22,7 @@
             android:textSize="20sp"
             android:fontFamily="sans-serif"
             android:layout_height="60dp"
-            android:id="@+id/buttonZaloguj"
+            android:id="@+id/buttonSignIn"
 
             android:layout_width="160dp"
             android:layout_below="@+id/editText2"

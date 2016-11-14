@@ -14,7 +14,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.register_sub_page, container, false);
-        Button bt = (Button) rootView.findViewById(R.id.buttonZarejestruj);
+        Button bt = (Button) rootView.findViewById(R.id.buttonSignUp);
         bt.setOnClickListener(this);
         return rootView;
     }
@@ -22,7 +22,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.buttonZarejestruj:
+            case R.id.buttonSignUp:
                 test();
                 break;
         }

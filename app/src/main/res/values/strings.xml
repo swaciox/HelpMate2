@@ -6,4 +6,7 @@
     <string name="action_settings">Setting</string>
     <string name="login">Zaloguj</string>
     <string name="register">Zarejestruj</string>
+    <string name="sign_in">Zaloguj się</string>
+    <string name="sign_up">Utwórz konto</string>
+    <string name="remember_password">Nie pamiętasz hasła?</string>
 </resources>

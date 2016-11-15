@@ -12,47 +12,12 @@
     tools:context="com.example.verunex.helpmate.SplashScreenActivity"
     android:background="@drawable/background"
     >
-
-    <TextView
-        android:text="@string/app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logoDown"
-        android:layout_alignStart="@+id/logoDown"
-        android:layout_marginTop="14dp"
-        android:textSize="25dp"
-        android:id="@+id/title"
-        android:layout_alignEnd="@+id/logoDown"
-        android:gravity="center"/>
-
-    <TextView
-        android:text="@string/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textSize="18dp"
-        android:id="@+id/description"
-        android:gravity="center"
-        android:layout_below="@+id/title" />
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar2"
-        android:layout_below="@+id/description"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/logo_down"
-        android:layout_marginTop="31dp"
         android:id="@+id/logoDown"
-        android:layout_alignTop="@+id/logoUp"
+        android:layout_marginTop="22dp"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -60,7 +25,37 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/logo_up"
         android:id="@+id/logoUp"
-        android:layout_marginTop="42dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp"
+        android:layout_centerHorizontal="true" />
+
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="325dp" />
+
+    <TextView
+        android:text="@string/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="18dp"
+        android:id="@+id/description"
+        android:gravity="center"
+        android:layout_marginTop="225dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="@string/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:layout_marginTop="195dp"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

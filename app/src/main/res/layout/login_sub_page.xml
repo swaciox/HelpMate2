@@ -99,7 +99,7 @@
             android:textColor="@color/colorTextIcons"
             android:textSize="20sp"
             android:fontFamily="sans-serif"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/buttonSignIn"
             android:text="@string/login"
             android:layout_width="180dp"

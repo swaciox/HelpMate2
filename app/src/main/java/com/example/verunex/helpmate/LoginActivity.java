@@ -98,9 +98,9 @@ public class LoginActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Sign in";
+                    return "Zaloguj się";
                 case 1:
-                    return "Sign up";
+                    return "Utwórz konto";
             }
             return null;
         }

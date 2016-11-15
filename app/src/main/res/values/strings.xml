@@ -12,4 +12,5 @@
     <string name="description">Wszystkie usługi domowe w jednym miejscu</string>
     <string name="withoutLogin"><u>KONTYNUUJ BEZ LOGOWANIA</u></string>
     <string name="withoutLoginOr">LUB</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

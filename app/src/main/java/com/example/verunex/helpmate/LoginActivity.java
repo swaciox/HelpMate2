@@ -17,6 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,6 +33,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // animation
+        ImageView mImageView = (ImageView)findViewById(R.id.logoUp);
+        final Animation anim = AnimationUtils.loadAnimation(this, R.anim.move_up_down);
+        mImageView.startAnimation(anim);
+
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.

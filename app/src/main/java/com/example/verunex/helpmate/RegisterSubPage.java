@@ -39,6 +39,9 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
         //Firebase
         mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
 
 
@@ -81,16 +84,15 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
             Toast.makeText(getContext(),"Wypelnij pole powtorz haslo!",Toast.LENGTH_SHORT).show();
         }else {
             if(password.equals(password2)){
-                mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            String id_key = mFirebaseAuth.getCurrentUser().getUid();
 
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("message");
+                            DatabaseReference curent_user = mDatabaseReference.child(id_key);
 
-                            myRef.setValue("Hello, World!");
-
+                            curent_user.child("Email").setValue(email);
 
                             Toast.makeText(getContext(), "Zarejestrowano!", Toast.LENGTH_SHORT).show();
                         }

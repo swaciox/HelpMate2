@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
@@ -25,6 +27,10 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
 
     private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mDatabaseReference;
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,22 +39,24 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
         //Firebase
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+
+
+
         mEmail = (EditText) rootView.findViewById(R.id.registerEmailAddress);
         mPassword = (EditText) rootView.findViewById(R.id.registerPassword);
         mPassword2 = (EditText) rootView.findViewById(R.id.registerRepeatPassword);
 
 
 
+
         Button bt = (Button) rootView.findViewById(R.id.buttonSignUp);
         bt.setOnClickListener(this);
+
+
+
+
         return rootView;
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-
-
     }
 
     @Override
@@ -61,7 +69,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
     }
 
     public void startRegister(){
-        String email = mEmail.getText().toString().trim();
+        final String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
         String password2 = mPassword2.getText().toString().trim();
 
@@ -77,6 +85,12 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("message");
+
+                            myRef.setValue("Hello, World!");
+
 
                             Toast.makeText(getContext(), "Zarejestrowano!", Toast.LENGTH_SHORT).show();
                         }

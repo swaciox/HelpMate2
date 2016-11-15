@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,17 +64,20 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
         String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
 
-
-        mFirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    checkUser();
-                }else{
-                    Toast.makeText(getContext(), "Error Login", Toast.LENGTH_SHORT).show();
+        if(TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
+            mFirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        checkUser();
+                    }else{
+                        Toast.makeText(getContext(), "Problem z logowaniem", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            Toast.makeText(getContext(),"Uzupelnij wszystkie pola!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void checkUser(){
@@ -89,7 +93,7 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
                     startActivity(i);
                     Toast.makeText(getContext(), user_id , Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(getContext(), "Error Login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Taki użytkownik nie istnieje!", Toast.LENGTH_SHORT).show();
                 }
             }
 

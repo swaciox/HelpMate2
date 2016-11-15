@@ -34,12 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // animation
-        ImageView mImageView = (ImageView)findViewById(R.id.logoUp);
-        final Animation anim = AnimationUtils.loadAnimation(this, R.anim.move_up_down);
-        mImageView.startAnimation(anim);
-
-
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

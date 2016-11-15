@@ -36,7 +36,7 @@
             android:src="@drawable/person_outline"
             android:id="@+id/imageMail"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="10dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
 
@@ -52,6 +52,7 @@
         <EditText
             android:layout_width="310dp"
             android:layout_height="45dp"
+            android:layout_marginTop="10dp"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/registerEmailAddress"

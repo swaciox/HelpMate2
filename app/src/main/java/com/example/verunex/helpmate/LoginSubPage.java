@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -28,6 +29,8 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
     private EditText mEmail;
     private EditText mPassword;
 
+    private TextView mTextView;
+
     //Firebase
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
@@ -44,6 +47,9 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
         mEmail = (EditText) rootView.findViewById(R.id.registerEmailAddress);
         mPassword = (EditText) rootView.findViewById(R.id.registerPassword);
 
+        mTextView = (TextView) rootView.findViewById(R.id.textView);
+        mTextView.setOnClickListener(this);
+
         Button bt = (Button) rootView.findViewById(R.id.buttonSignIn);
         bt.setOnClickListener(this);
 
@@ -56,6 +62,10 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
             case R.id.buttonSignIn:
                     startLogin();
                 break;
+            case R.id.textView:
+                startActivity(new Intent(getContext(),ForgetPasswordPop.class));
+                break;
+
         }
     }
 

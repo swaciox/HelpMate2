@@ -1,5 +1,6 @@
 package com.example.verunex.helpmate;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -25,12 +26,10 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
     private EditText mPassword;
     private EditText mPassword2;
 
-
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
 
-
-
+    private ProgressDialog mProgressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,21 +42,14 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
-
-
+        mProgressDialog = new ProgressDialog(getContext());
 
         mEmail = (EditText) rootView.findViewById(R.id.registerEmailAddress);
         mPassword = (EditText) rootView.findViewById(R.id.registerPassword);
         mPassword2 = (EditText) rootView.findViewById(R.id.registerRepeatPassword);
 
-
-
-
         Button bt = (Button) rootView.findViewById(R.id.buttonSignUp);
         bt.setOnClickListener(this);
-
-
-
 
         return rootView;
     }
@@ -72,6 +64,9 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
     }
 
     public void startRegister(){
+
+
+
         final String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
         String password2 = mPassword2.getText().toString().trim();
@@ -84,6 +79,8 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
             Toast.makeText(getContext(),"Wypelnij pole powtorz haslo!",Toast.LENGTH_SHORT).show();
         }else {
             if(password.equals(password2)){
+                mProgressDialog.setMessage("Rejestruje...");
+                mProgressDialog.show();
                 mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -91,8 +88,9 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             String id_key = mFirebaseAuth.getCurrentUser().getUid();
 
                             DatabaseReference curent_user = mDatabaseReference.child(id_key);
-
                             curent_user.child("Email").setValue(email);
+
+                            mProgressDialog.dismiss();
 
                             Toast.makeText(getContext(), "Zarejestrowano!", Toast.LENGTH_SHORT).show();
                         }

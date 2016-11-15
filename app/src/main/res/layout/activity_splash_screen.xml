@@ -10,16 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.verunex.helpmate.SplashScreenActivity"
-    android:background="@drawable/background">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo_down"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="108dp"
-        android:id="@+id/logoDown" />
+    android:background="@color/colorTextIcons">
 
     <TextView
         android:text="@string/app_name"
@@ -45,14 +36,6 @@
         android:gravity="center"
         android:layout_below="@+id/title" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo_up"
-        android:id="@+id/logoUp"
-        android:layout_alignTop="@+id/logoDown"
-        android:layout_centerHorizontal="true" />
-
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
@@ -61,4 +44,22 @@
         android:layout_below="@+id/description"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo_down"
+        android:layout_marginTop="31dp"
+        android:id="@+id/logoDown"
+        android:layout_alignTop="@+id/logoUp"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo_up"
+        android:id="@+id/logoUp"
+        android:layout_marginTop="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

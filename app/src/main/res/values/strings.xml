@@ -13,4 +13,5 @@
     <string name="withoutLogin"><u>KONTYNUUJ BEZ LOGOWANIA</u></string>
     <string name="withoutLoginOr">LUB</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="orConnectWith">lub połącz z</string>
 </resources>

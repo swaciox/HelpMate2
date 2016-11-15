@@ -1,5 +1,6 @@
 package com.example.verunex.helpmate;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,6 +32,8 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
 
     private TextView mTextView;
 
+    private ProgressDialog mProgressDialog;
+
     //Firebase
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
@@ -39,6 +42,9 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.login_sub_page, container, false);
+
+        //Progress
+        mProgressDialog = new ProgressDialog(getContext());
 
         //FIrebase
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -71,21 +77,26 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
 
     public void startLogin(){
 
+        mProgressDialog.setMessage("Loguje...");
+        mProgressDialog.show();
+
         String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
 
-        if(TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
+        if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
             mFirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         checkUser();
                     }else{
+                        mProgressDialog.dismiss();
                         Toast.makeText(getContext(), "Problem z logowaniem", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }else{
+            mProgressDialog.dismiss();
             Toast.makeText(getContext(),"Uzupelnij wszystkie pola!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -101,9 +112,13 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
                     Intent i = new Intent(getContext(), MainActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
+
+                    mProgressDialog.dismiss();
+
                     Toast.makeText(getContext(), user_id , Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(), "Taki użytkownik nie istnieje!", Toast.LENGTH_SHORT).show();
+                    mProgressDialog.dismiss();
                 }
             }
 

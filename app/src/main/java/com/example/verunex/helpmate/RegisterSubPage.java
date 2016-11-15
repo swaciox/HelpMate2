@@ -93,6 +93,9 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             mProgressDialog.dismiss();
 
                             Toast.makeText(getContext(), "Zarejestrowano!", Toast.LENGTH_SHORT).show();
+                        }else{
+                            mProgressDialog.dismiss();
+                            Toast.makeText(getContext(), "Takie konto istnieje!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

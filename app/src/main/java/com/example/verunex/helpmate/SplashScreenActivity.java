@@ -1,6 +1,7 @@
 package com.example.verunex.helpmate;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.Animation;
@@ -19,8 +20,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         mImageView = (ImageView) findViewById(R.id.logoUp);
+        mImageView2 = (ImageView) findViewById(R.id.dot);
 
 
+        final Animation anim2 = AnimationUtils.loadAnimation(this, R.anim.scale_dot);
         final Animation anim = AnimationUtils.loadAnimation(this, R.anim.move_up_down);
 
         anim.setAnimationListener(new Animation.AnimationListener() {
@@ -41,7 +44,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             }
         });
-
+        mImageView2.startAnimation(anim2);
         mImageView.startAnimation(anim);
 
     }

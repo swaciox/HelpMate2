@@ -15,7 +15,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="65dp">
 
         <ImageView
         android:layout_width="wrap_content"
@@ -24,6 +24,14 @@
         android:id="@+id/logoDown"
         android:layout_marginTop="22dp"
         android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/dot"
+            android:src="@drawable/dot"
+            android:layout_alignBottom="@+id/logoDown"
+            android:layout_centerHorizontal="true" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -63,6 +71,10 @@
             android:gravity="center"
             android:layout_marginTop="195dp"
             android:layout_centerHorizontal="true" />
+
+
+
+
     </RelativeLayout>
 
 </RelativeLayout>

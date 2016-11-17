@@ -4,8 +4,8 @@ android:fillAfter="true">
 <translate
     android:duration="700"
     android:fromYDelta="0"
-    android:toYDelta="-45"
+    android:toYDelta="-20"
     android:repeatMode="reverse"
-    android:repeatCount="4"
+    android:repeatCount="infinite"
     />
 </set>

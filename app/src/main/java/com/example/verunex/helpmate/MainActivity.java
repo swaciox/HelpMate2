@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent singleuser = new Intent(MainActivity.this, SingleUser.class);
+                        Intent singleuser = new Intent(MainActivity.this, SingleUserTest.class);
                         //singleuser.putExtra("user_number", number);
                         singleuser.putExtra("user_name", name);
                         singleuser.putExtra("user_category", category);

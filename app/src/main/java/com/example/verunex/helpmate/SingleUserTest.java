@@ -116,9 +116,9 @@ public class SingleUserTest extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "O MNIE";
                 case 1:
-                    return "SECTION 2";
+                    return "OPINIE";
             }
             return null;
         }

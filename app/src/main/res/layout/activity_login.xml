@@ -86,7 +86,7 @@
 
             app:tabSelectedTextColor="@color/selectedColorText"
             app:tabIndicatorColor="@color/tabIndicatorColor"
-            app:tabIndicatorHeight="2dp"
+            app:tabIndicatorHeight="3dp"
 
 
             android:layout_above="@+id/container"

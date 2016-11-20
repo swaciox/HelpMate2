@@ -1,5 +1,6 @@
 package com.example.verunex.helpmate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,11 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,18 +54,21 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setName(model.getName());
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setNumber(model.getNumber());
+                viewHolder.setImage(getApplicationContext(), model.getImage());
 
                 final String number = viewHolder.setNumber(model.getNumber());
                 final String name = viewHolder.setName(model.getName());
                 final String category = viewHolder.setCategory(model.getCategory());
+                final String image = viewHolder.setImage(getApplicationContext(), model.getImage());
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent singleuser = new Intent(MainActivity.this, SingleUser.class);
-                        singleuser.putExtra("user_number", number);
+                        //singleuser.putExtra("user_number", number);
                         singleuser.putExtra("user_name", name);
                         singleuser.putExtra("user_category", category);
+                        singleuser.putExtra("user_image", image);
                         startActivity(singleuser);
 
                     }
@@ -103,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
             return name;
         }
         public String setNumber (String number){
-
             return number;
         }
         public String setCategory(String category){
@@ -112,9 +117,10 @@ public class MainActivity extends AppCompatActivity {
             return category;
         }
 
-       /* public void setImage(String image){
+        public String setImage(Context ctx, String image){
             ImageView user_img = (ImageView) mView.findViewById(R.id.image);
-            user_img.sets
-        }*/
+            Picasso.with(ctx).load(image).into(user_img);
+            return image;
+        }
     }
 }

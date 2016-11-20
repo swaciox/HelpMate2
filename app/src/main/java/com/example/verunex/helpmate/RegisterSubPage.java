@@ -96,13 +96,14 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             String random_name = mRandomValues.randomName();
                             String random_number = mRandomValues.randomNumber();
                             String random_category = mRandomValues.randomCategory();
+                            String random_image = mRandomValues.randomImage();
 
                             DatabaseReference curent_user = mDatabaseReference.child(id_key);
                             curent_user.child("email").setValue(email);
                             curent_user.child("name").setValue(random_name);
                             curent_user.child("category").setValue(random_category);
                             curent_user.child("number").setValue(random_number);
-                            curent_user.child("image").setValue("https://firebasestorage.googleapis.com/v0/b/helpmate-b2e14.appspot.com/o/image%2Ftest.jpg?alt=media&token=144faff8-3e55-455b-8c06-33553a008dd9");
+                            curent_user.child("image").setValue(random_image);
 
                             mProgressDialog.dismiss();
 

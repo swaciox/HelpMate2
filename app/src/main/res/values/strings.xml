@@ -23,4 +23,7 @@
     <string name="title_activity_single_user_test">SingleUserTest</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="description_user">Wykonuję wszelkiego rodzaju usługi z podanej kategorii.</string>
+    <string name="opinion1">Szybko, tanio i bezproblemowo. Z takimi ludźmi aż chce się robić interesy. Polecam!</string>
+    <string name="opinion2">Jakość i wykonanie usługi na najwyższym poziomie. Warto skorzystać z tej oferty!</string>
+    <string name="opinion3">Kontrahent godny zaufania. Wszystko zostało załatwione w bardzo profesjonalny sposób. Serdecznie polecam!</string>
 </resources>

@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -85,14 +86,14 @@ public class MainActivity extends AppCompatActivity {
 
         View mView;
 
-        Button btn;
+        ImageButton btn;
 
         public UserViewHolder(View itemView) {
             super(itemView);
 
             mView = itemView;
 
-            btn = (Button)mView.findViewById(R.id.TENBUTTON);
+            btn = (ImageButton)mView.findViewById(R.id.call);
 
         }
 
@@ -102,8 +103,7 @@ public class MainActivity extends AppCompatActivity {
             return name;
         }
         public String setNumber (String number){
-            TextView user_number = (TextView) mView.findViewById(R.id.number);
-            user_number.setText(number);
+
             return number;
         }
         public String setCategory(String category){

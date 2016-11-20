@@ -17,7 +17,7 @@ public class SingleUser extends AppCompatActivity {
         String user_number = getIntent().getExtras().getString("user_number");
 
         mUserName = (TextView)findViewById(R.id.user_name);
-        mUserNumber = (TextView)findViewById(R.id.user_number);
+     //   mUserNumber = (TextView)findViewById(R.id.user_number);
         mUserCategory = (TextView)findViewById(R.id.user_category);
 
         mUserName.setText(user_name);

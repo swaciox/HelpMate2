@@ -44,11 +44,11 @@ public class ForgetPasswordPop extends Activity{
             public void onClick(View v) {
                 final String emailAddress = mEmail.getText().toString().trim();
 
-                auth.sendPasswordResetEmail("2nuk4you@gmail.com").addOnCompleteListener(new OnCompleteListener<Void>() {
+                auth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(getBaseContext(),"Wyslano hasło na adres" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(),"Wyslano hasło na adres" + emailAddress , Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(getBaseContext(),"Error", Toast.LENGTH_SHORT).show();
 

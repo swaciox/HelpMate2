@@ -8,14 +8,15 @@
     <string name="register">Zarejestruj</string>
     <string name="sign_in">Zaloguj się</string>
     <string name="sign_up">Utwórz konto</string>
-    <string name="remember_password"><u>Nie pamiętasz hasła?</u></string>
+    <string name="remind_password"><u>Nie pamiętasz hasła?</u></string>
     <string name="description">Wszystkie usługi domowe w jednym miejscu</string>
     <string name="withoutLogin"><u>KONTYNUUJ BEZ LOGOWANIA</u></string>
     <string name="withoutLoginOr">LUB</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="orConnectWith">lub połącz z</string>
     <string name="title_activity_main2">Main2Activity</string>
-
+    <string name="remind_password_email">Wpisz swój adres e-mail, na który zostanie wysłane hasło:</string>
+    <string name="remind_password_confirm">Przypomnij hasło</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_test">Test</string>

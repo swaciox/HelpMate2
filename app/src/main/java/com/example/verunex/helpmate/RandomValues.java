@@ -46,6 +46,12 @@ public class RandomValues {
         return images[number_image];
     }
 
+    public String randomRating(){
+        int number_raiting = mRandom.nextInt(6);
+
+        String [] rates = {"2.0f", "1.0f", "2.5f", "4.3f", "4.8f", "3.5f", "3.0f"};
+        return rates[number_raiting];
+    }
 
 
 

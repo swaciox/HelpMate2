@@ -97,6 +97,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             String random_number = mRandomValues.randomNumber();
                             String random_category = mRandomValues.randomCategory();
                             String random_image = mRandomValues.randomImage();
+                            String random_rate = mRandomValues.randomRating();
 
                             DatabaseReference curent_user = mDatabaseReference.child(id_key);
                             curent_user.child("email").setValue(email);
@@ -104,6 +105,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             curent_user.child("category").setValue(random_category);
                             curent_user.child("number").setValue(random_number);
                             curent_user.child("image").setValue(random_image);
+                            curent_user.child("rate").setValue(random_rate);
 
                             mProgressDialog.dismiss();
 

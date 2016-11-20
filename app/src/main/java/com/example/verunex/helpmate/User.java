@@ -6,7 +6,11 @@ package com.example.verunex.helpmate;
 
 public class User {
 
-    private String category, image, name, number;
+    private String category;
+    private String image;
+    private String name;
+    private String number;
+    private String rate;
 
     public User(){
 
@@ -17,6 +21,15 @@ public class User {
         this.image = image;
         this.name = name;
         this.number = number;
+        this.rate = rate;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
     }
 
     public String getCategory() {

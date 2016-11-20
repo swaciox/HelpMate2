@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setNumber(model.getNumber());
                 viewHolder.setImage(getApplicationContext(), model.getImage());
+                viewHolder.setRate(model.getRate());
 
                 final String number = viewHolder.setNumber(model.getNumber());
                 final String name = viewHolder.setName(model.getName());
@@ -111,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         public String setNumber (String number){
             return number;
         }
+
         public String setCategory(String category){
             TextView user_category = (TextView) mView.findViewById(R.id.category);
             user_category.setText(category);
@@ -121,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
             ImageView user_img = (ImageView) mView.findViewById(R.id.image);
             Picasso.with(ctx).load(image).into(user_img);
             return image;
+        }
+        public String setRate(String rate){
+            RatingBar user_rate = (RatingBar) mView.findViewById(R.id.ratingBar);
+            user_rate.setRating(Float.parseFloat(rate));
+            return rate;
         }
     }
 }

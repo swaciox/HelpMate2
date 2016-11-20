@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Random;
+
 public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
     private EditText mEmail;
@@ -31,9 +33,16 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
     private ProgressDialog mProgressDialog;
 
+    //Random
+    RandomValues mRandomValues;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        mRandomValues = new RandomValues();
+
+
         View rootView = inflater.inflate(R.layout.register_sub_page, container, false);
 
         //Firebase
@@ -81,13 +90,19 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             String id_key = mFirebaseAuth.getCurrentUser().getUid();
+
+                            String random_name = mRandomValues.randomName();
+                            String random_number = mRandomValues.randomNumber();
+                            String random_category = mRandomValues.randomCategory();
 
                             DatabaseReference curent_user = mDatabaseReference.child(id_key);
                             curent_user.child("email").setValue(email);
-                            curent_user.child("name").setValue("Romanwwww");
-                            curent_user.child("category").setValue("Pani do towarzystwa");
-                            curent_user.child("number").setValue("0 700");
+                            curent_user.child("name").setValue(random_name);
+                            curent_user.child("category").setValue(random_category);
+                            curent_user.child("number").setValue(random_number);
+                            curent_user.child("image").setValue("https://firebasestorage.googleapis.com/v0/b/helpmate-b2e14.appspot.com/o/image%2Ftest.jpg?alt=media&token=144faff8-3e55-455b-8c06-33553a008dd9");
 
                             mProgressDialog.dismiss();
 
@@ -108,6 +123,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
         }
 
     }
+
 
 
 

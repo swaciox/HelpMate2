@@ -6,6 +6,6 @@ android:fillAfter="true">
     android:fromYDelta="0"
     android:toYDelta="-20"
     android:repeatMode="reverse"
-    android:repeatCount="infinite"
+    android:repeatCount="3"
     />
 </set>

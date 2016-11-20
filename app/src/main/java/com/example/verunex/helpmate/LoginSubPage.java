@@ -121,7 +121,6 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
                     mProgressDialog.dismiss();
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

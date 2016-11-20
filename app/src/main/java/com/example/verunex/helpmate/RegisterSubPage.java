@@ -38,7 +38,6 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
         //Firebase
         mFirebaseAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
@@ -64,9 +63,6 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
     }
 
     public void startRegister(){
-
-
-
         final String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
         String password2 = mPassword2.getText().toString().trim();
@@ -88,7 +84,10 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             String id_key = mFirebaseAuth.getCurrentUser().getUid();
 
                             DatabaseReference curent_user = mDatabaseReference.child(id_key);
-                            curent_user.child("Email").setValue(email);
+                            curent_user.child("email").setValue(email);
+                            curent_user.child("name").setValue("Romanwwww");
+                            curent_user.child("category").setValue("Pani do towarzystwa");
+                            curent_user.child("number").setValue("0 700");
 
                             mProgressDialog.dismiss();
 

@@ -29,7 +29,7 @@ public class SingleUserTest extends AppCompatActivity {
 
     private ViewPager mViewPager;
 
-    private TextView mUserName, mUserCategory, mUserNumber;
+    private TextView mUserName, mUserCategory, mUserNumber, mDescription;
     private ImageView mImageView;
 
     @Override
@@ -50,15 +50,21 @@ public class SingleUserTest extends AppCompatActivity {
         String user_category =getIntent().getExtras().getString("user_category");
         String user_number = getIntent().getExtras().getString("user_number");
         String image = getIntent().getExtras().getString("user_image");
+        //String user_description = getIntent().getExtras().getString("user_description");
+
+
 
         mUserName = (TextView)findViewById(R.id.user_name);
-        //mUserNumber = (TextView)findViewById(R.id.user_number);
+
         mUserCategory = (TextView)findViewById(R.id.user_category);
         mImageView = (ImageView)findViewById(R.id.user_image);
+        mDescription = (TextView)findViewById(R.id.description);
 
         Picasso.with(getBaseContext()).load(image).into(mImageView);
         mUserName.setText(user_name);
         mUserCategory.setText(user_category);
+        //mDescription.setText(user_description);
+        //mUserNumber.setText(user_number);
 
 
     }

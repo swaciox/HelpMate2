@@ -11,17 +11,27 @@ public class User {
     private String name;
     private String number;
     private String rate;
+    private String description;
 
     public User(){
 
     }
 
-    public User(String category, String image, String name, String number) {
+    public User(String category, String image, String name, String number, String rate, String description) {
         this.category = category;
         this.image = image;
         this.name = name;
         this.number = number;
         this.rate = rate;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getRate() {

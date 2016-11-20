@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -57,21 +58,28 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setNumber(model.getNumber());
                 viewHolder.setImage(getApplicationContext(), model.getImage());
                 viewHolder.setRate(model.getRate());
+                //viewHolder.setDescription(model.getDescription());
 
                 final String number = viewHolder.setNumber(model.getNumber());
                 final String name = viewHolder.setName(model.getName());
                 final String category = viewHolder.setCategory(model.getCategory());
                 final String image = viewHolder.setImage(getApplicationContext(), model.getImage());
+                //final String description = viewHolder.setDescription(model.getDescription());
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent singleuser = new Intent(MainActivity.this, SingleUserTest.class);
-                        //singleuser.putExtra("user_number", number);
                         singleuser.putExtra("user_name", name);
                         singleuser.putExtra("user_category", category);
                         singleuser.putExtra("user_image", image);
+                       //singleuser.putExtra("user_description", description);
                         startActivity(singleuser);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("user_number", number);
+                        FragmentSubPage1 fragobj = new FragmentSubPage1();
+                        fragobj.setArguments(bundle);
 
                     }
                 });
@@ -130,5 +138,8 @@ public class MainActivity extends AppCompatActivity {
             user_rate.setRating(Float.parseFloat(rate));
             return rate;
         }
+        //public String setDescription(String description){
+         //   return description;
+        //}
     }
 }

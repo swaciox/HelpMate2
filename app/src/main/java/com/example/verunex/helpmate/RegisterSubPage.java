@@ -106,6 +106,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             curent_user.child("number").setValue(random_number);
                             curent_user.child("image").setValue(random_image);
                             curent_user.child("rate").setValue(random_rate);
+                            curent_user.child("description").setValue("Oferuję pełen zakres usług");
 
                             mProgressDialog.dismiss();
 

@@ -11,26 +11,6 @@
     <FrameLayout
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="100dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:id="@+id/name"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginTop="25dp"
-            android:id="@+id/category"/>
-
-
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="150dp"
-        android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="100dp">
 
@@ -86,6 +66,26 @@
             android:id="@+id/checkBox"
             android:button="@android:drawable/btn_star_big_off"
             android:layout_marginLeft="80dp"/>
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="100dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/category"/>
+
 
 
     </FrameLayout>

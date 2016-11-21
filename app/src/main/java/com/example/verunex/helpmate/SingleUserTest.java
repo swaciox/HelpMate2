@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -50,9 +51,12 @@ public class SingleUserTest extends AppCompatActivity {
         String user_category =getIntent().getExtras().getString("user_category");
         String user_number = getIntent().getExtras().getString("user_number");
         String image = getIntent().getExtras().getString("user_image");
+        String rate = getIntent().getExtras().getString("user_rate");
         //String user_description = getIntent().getExtras().getString("user_description");
 
 
+        RatingBar user_rate = (RatingBar) findViewById(R.id.ratingBar);
+        user_rate.setRating(Float.parseFloat(rate));
 
         mUserName = (TextView)findViewById(R.id.user_name);
 

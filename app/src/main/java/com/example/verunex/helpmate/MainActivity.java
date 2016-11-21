@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 final String name = viewHolder.setName(model.getName());
                 final String category = viewHolder.setCategory(model.getCategory());
                 final String image = viewHolder.setImage(getApplicationContext(), model.getImage());
+                final String rate = viewHolder.setRate(model.getRate());
                 //final String description = viewHolder.setDescription(model.getDescription());
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         singleuser.putExtra("user_name", name);
                         singleuser.putExtra("user_category", category);
                         singleuser.putExtra("user_image", image);
+                        singleuser.putExtra("user_rate", rate);
                        //singleuser.putExtra("user_description", description);
                         startActivity(singleuser);
 

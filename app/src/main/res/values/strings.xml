@@ -27,5 +27,6 @@
     <string name="user_name">Imię i nazwisko lub nazwa firmy</string>
     <string name="user_adress">Twój adres</string>
     <string name="phone_number">Numer telefonu</string>
-    <string name="user_category">Kategorie</string>
+    <string name="user_category">Usługi, które oferujesz:</string>
+    <string name="user_category_all">Tutaj znajdują się Twoje wszystkie kategorie</string>
 </resources>

@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/userAddress"
-                android:hint="@string/user_adress"
+                android:hint="@string/user_address"
                 android:textAlignment="center"
                 android:textSize="18dp"
                 android:clickable="false" />

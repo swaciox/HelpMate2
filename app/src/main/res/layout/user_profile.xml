@@ -21,27 +21,100 @@
             android:background="@color/cardview_light_background"
             />
 
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/border"
+            android:id="@+id/linearName">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                app:srcCompat="@drawable/person_outline" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/userName"
+                android:hint="@string/user_name"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:clickable="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/border"
+            android:id="@+id/linearAddress">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                app:srcCompat="@drawable/ic_location" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/userAddress"
+                android:hint="@string/user_adress"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:clickable="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/border"
+            android:id="@+id/linearPhoneNumber">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                app:srcCompat="@android:drawable/ic_menu_call" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/userPhone"
+                android:hint="@string/phone_number"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:clickable="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/userName"
-            android:hint="@string/user_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:textAlignment="center"
-            android:background="@color/cardview_light_background"/>
+            android:background="@drawable/border"
+            android:id="@+id/linearServices"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/userAdress"
-            android:hint="@string/user_adress"
-            android:layout_marginBottom="10dp"
-            android:background="@color/cardview_light_background"
-            android:textAlignment="center"
-            />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
 
-
-
+        </LinearLayout>
 
     </LinearLayout>
 

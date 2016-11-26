@@ -12,18 +12,29 @@ public class User {
     private String number;
     private String rate;
     private String description;
+    private String user_id;
+
 
     public User(){
 
     }
 
-    public User(String category, String image, String name, String number, String rate, String description) {
+    public User(String category, String image, String name, String number, String rate, String description, String user_id) {
         this.category = category;
         this.image = image;
         this.name = name;
         this.number = number;
         this.rate = rate;
         this.description = description;
+        this.user_id = user_id;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getDescription() {

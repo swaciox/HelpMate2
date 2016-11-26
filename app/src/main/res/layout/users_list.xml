@@ -63,6 +63,7 @@
             android:layout_marginTop="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:id="@+id/checkBox"
             android:button="@android:drawable/btn_star_big_off"
             android:layout_marginLeft="80dp"/>

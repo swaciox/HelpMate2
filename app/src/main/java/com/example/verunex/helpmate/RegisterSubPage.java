@@ -100,6 +100,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             String random_rate = mRandomValues.randomRating();
 
                             DatabaseReference curent_user = mDatabaseReference.child(id_key);
+                            curent_user.child("user_id").setValue(id_key);
                             curent_user.child("email").setValue(email);
                             curent_user.child("name").setValue(random_name);
                             curent_user.child("category").setValue(random_category);

@@ -77,7 +77,7 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
 
     public void startLogin(){
 
-        mProgressDialog.setMessage("Loguje...");
+        mProgressDialog.setMessage("Logowanie...");
         mProgressDialog.show();
 
         String email = mEmail.getText().toString().trim();
@@ -97,7 +97,7 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
             });
         }else{
             mProgressDialog.dismiss();
-            Toast.makeText(getContext(),"Uzupelnij wszystkie pola!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Uzupełnij wszystkie pola!", Toast.LENGTH_SHORT).show();
         }
     }
 

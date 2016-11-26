@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity
                             Toast.makeText(getBaseContext(), "Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
                         }else{
                             favorite.child(user_from_list_id).removeValue();
-                            Toast.makeText(getBaseContext(), "Usunieto z ulubionych!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
                         }
 
                         /*favorite.child(user_from_list_id).addValueEventListener(new ValueEventListener() {

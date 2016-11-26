@@ -13,10 +13,10 @@
     <string name="withoutLogin"><u>KONTYNUUJ BEZ LOGOWANIA</u></string>
     <string name="withoutLoginOr">LUB</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="orConnectWith">lub połącz z</string>
+    <string name="orConnectWith">zaloguj się przez</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="remind_password_email">Wpisz swój adres e-mail:</string>
-    <string name="remind_password_confirm">Resetuj hasło</string>
+    <string name="remind_password_confirm">Zatwierdź</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_test">Test</string>
@@ -24,6 +24,6 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="description_user">Wykonuję wszelkiego rodzaju usługi z podanej kategorii.</string>
     <string name="opinion1">Szybko, tanio i bezproblemowo. Z takimi ludźmi aż chce się robić interesy. Polecam!</string>
-    <string name="opinion2">Jakość i wykonanie usługi na najwyższym poziomie. Warto skorzystać z tej oferty!</string>
-    <string name="opinion3">Kontrahent godny zaufania. Wszystko zostało załatwione w bardzo profesjonalny sposób. Serdecznie polecam!</string>
+    <string name="user_name">Imię i nazwisko lub nazwa firmy</string>
+    <string name="user_adress">Twój adres</string>
 </resources>

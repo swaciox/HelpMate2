@@ -77,14 +77,14 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
         String password2 = mPassword2.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)){
-            Toast.makeText(getContext(),"Wypelnij pole email!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Wypełnij pole e-mail!",Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(password)){
-            Toast.makeText(getContext(),"Wypelnij pole password!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Wypełnij pole hasło!",Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(password2)) {
-            Toast.makeText(getContext(),"Wypelnij pole powtorz haslo!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Wypełnij pole powtórz haslo!",Toast.LENGTH_SHORT).show();
         }else {
             if(password.equals(password2)){
-                mProgressDialog.setMessage("Rejestruje...");
+                mProgressDialog.setMessage("Rejestruję...");
                 mProgressDialog.show();
                 mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -114,7 +114,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             Toast.makeText(getContext(), "Zarejestrowano!", Toast.LENGTH_SHORT).show();
                         }else{
                             mProgressDialog.dismiss();
-                            Toast.makeText(getContext(), "Takie konto istnieje!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Podane konto juz istnieje!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

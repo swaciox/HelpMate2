@@ -128,7 +128,8 @@
 
         <TextView
             android:text="@string/orConnectWith"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
             android:layout_alignBottom="@+id/imageView10"

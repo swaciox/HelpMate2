@@ -51,10 +51,10 @@ public class FragmentSubPage1 extends Fragment{
 
                 if(checkBox.isChecked()==true) {
                     favorite.child(user_from_list_id).setValue(user_from_list_id);
-                    Toast.makeText(getContext(), "Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Dodano do ulubionych", Toast.LENGTH_SHORT).show();
                 }else{
                     favorite.child(user_from_list_id).removeValue();
-                    Toast.makeText(getContext(), "Usunieto z ulubionych!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

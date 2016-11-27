@@ -3,7 +3,6 @@ package com.example.verunex.helpmate;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,14 +20,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.concurrent.Delayed;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -123,22 +116,21 @@ public class MainActivity extends AppCompatActivity
                         startActivity(intent);
                     }
                 });
-                viewHolder.favoriteBox.setOnClickListener(new View.OnClickListener() {
+                viewHolder.favouriteBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         final String user_from_list_id = model.getUser_id();
 
-                        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UsersTest").child(cureent_user_id);
+                        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(cureent_user_id);
 
-                        final DatabaseReference favorite = mDatabaseReference.child("favorite");
+                        final DatabaseReference favourite = mDatabaseReference.child("favourite");
 
 
-
-                        if(viewHolder.favoriteBox.isChecked()==true) {
-                            favorite.child(user_from_list_id).setValue(user_from_list_id);
+                        if(viewHolder.favouriteBox.isChecked()==true) {
+                            favourite.child(user_from_list_id).setValue(user_from_list_id);
                             Toast.makeText(getBaseContext(), "Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
                         }else{
-                            favorite.child(user_from_list_id).removeValue();
+                            favourite.child(user_from_list_id).removeValue();
                             Toast.makeText(getBaseContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
                         }
 
@@ -213,7 +205,9 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this, UserProfileActivity.class);
             startActivity(i);
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.user_favorite) {
+            Intent i = new Intent(this, UserFavouriteActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_send) {
 

@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 public class UserProfileViewHolder extends RecyclerView.ViewHolder {
 
     View mView;
-    CheckBox favoriteBox;
+    CheckBox favouriteBox;
     ImageButton btn;
 
     public UserProfileViewHolder(View itemView) {
@@ -25,7 +25,7 @@ public class UserProfileViewHolder extends RecyclerView.ViewHolder {
         mView = itemView;
 
         btn = (ImageButton)mView.findViewById(R.id.call);
-        favoriteBox = (CheckBox)mView.findViewById(R.id.checkBox);
+        favouriteBox = (CheckBox)mView.findViewById(R.id.checkBox);
 
     }
 

@@ -48,7 +48,7 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
 
         //FIrebase
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile");
 
         mEmail = (EditText) rootView.findViewById(R.id.registerEmailAddress);
         mPassword = (EditText) rootView.findViewById(R.id.registerPassword);

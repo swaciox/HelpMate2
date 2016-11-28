@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,14 +21,23 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView mUsersList;
     private DatabaseReference mDatabaseReference;
+
+    private DatabaseReference liketest;
+
     private FirebaseAuth mFirebaseAuth;
     String cureent_user_id;
 
@@ -51,6 +61,7 @@ public class MainActivity extends AppCompatActivity
         mUsersList.setLayoutManager(new LinearLayoutManager(getBaseContext()));
 
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -59,11 +70,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         FirebaseRecyclerAdapter<User, UserProfileViewHolder> mFirebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User, UserProfileViewHolder>(
                 User.class,
@@ -77,7 +84,7 @@ public class MainActivity extends AppCompatActivity
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setNumber(model.getNumber());
                 viewHolder.setImage(getApplicationContext(), model.getImage());
-                viewHolder.setRate(model.getRate());
+//                viewHolder.setRate(model.getRate());
                 viewHolder.setUser_id(model.getUser_id());
                 //viewHolder.setDescription(model.getDescription());
 
@@ -87,6 +94,45 @@ public class MainActivity extends AppCompatActivity
                 final String image = model.getImage();
                 final String rate = model.getRate();
                 //final String description = viewHolder.setDescription(model.getDescription());
+
+                //sprawdzenie czy dany uzytkownik juz lubi
+
+                //like czy nie lista tablica
+
+                final String id_position = getRef(position).getKey();
+                Log.v ("Pozycja id_position", id_position);
+
+                liketest = FirebaseDatabase.getInstance().getReference().child("UserFavourite");
+
+                liketest.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child(cureent_user_id).hasChild(id_position)){
+                            viewHolder.favouriteBox.setChecked(true);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                liketest.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                       // String id = dataSnapshot.child("id").getValue(String.class);
+
+                        //Log.v ("komunikat", id);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -121,40 +167,19 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View v) {
                         final String user_from_list_id = model.getUser_id();
 
+                        String model1 = model.getUser_id();
+
                         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(cureent_user_id);
 
-                        final DatabaseReference favourite = mDatabaseReference.child("favourite");
-
+                        final DatabaseReference favourite = mDatabaseReference;
 
                         if(viewHolder.favouriteBox.isChecked()==true) {
-                            favourite.child(user_from_list_id).setValue(user_from_list_id);
+                            favourite.child(model1).setValue(model1);
                             Toast.makeText(getBaseContext(), "Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
                         }else{
-                            favourite.child(user_from_list_id).removeValue();
+                            favourite.child(model1).removeValue();
                             Toast.makeText(getBaseContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
                         }
-
-                        /*favorite.child(user_from_list_id).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.exists()) {
-                                    Toast.makeText(getBaseContext(), "Juz jest w ulubionych!", Toast.LENGTH_SHORT).show();
-                                    favorite.child(user_from_list_id).removeValue();
-                                }
-                                else{
-                                    favorite.child(user_from_list_id).setValue(user_from_list_id);
-                                    Toast.makeText(getBaseContext(),"Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });*/
-
-                        //viewHolder.favoriteBox.setVisibility(View.INVISIBLE);
-
-
 
                     }
                 });

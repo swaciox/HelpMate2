@@ -9,7 +9,7 @@
         <item
             android:id="@+id/user_favorite"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Ulubione!" />
+            android:title="Ulubione" />
     </group>
 
     <item android:title="Communicate">

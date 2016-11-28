@@ -34,4 +34,5 @@
     <string name="user_name_edit">Imię i nazwisko</string>
     <string name="user_phone_edit">Twój numer telefonu</string>
     <string name="user_category_edit">Wybierz usługi, które oferujesz:</string>
+    <string name="user_profile_edit">Zatwierdź zmiany</string>
 </resources>

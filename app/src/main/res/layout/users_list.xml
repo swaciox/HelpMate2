@@ -88,7 +88,7 @@
                 android:layout_marginTop="40dp"
                 android:checked="false"
                 android:id="@+id/checkBox"
-                android:button="@android:drawable/btn_star_big_off"
+                android:button="@drawable/ic_unlike"
                 android:layout_gravity="end"/>
 
         </LinearLayout>

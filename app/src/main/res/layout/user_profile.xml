@@ -35,16 +35,25 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical|center_horizontal"
                 app:srcCompat="@drawable/person_outline" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/userName"
+                    android:hint="@string/user_name"
+                    android:textAlignment="center"
+                    android:textSize="18dp"
+                    android:clickable="false" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/userName"
-                android:hint="@string/user_name"
-                android:textAlignment="center"
-                android:textSize="18dp"
-                android:clickable="false" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/user_name"
+                    android:layout_gravity="end"/>
 
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout

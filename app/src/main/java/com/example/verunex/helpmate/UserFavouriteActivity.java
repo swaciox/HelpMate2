@@ -88,8 +88,6 @@ public class UserFavouriteActivity extends AppCompatActivity {
                             if(user_favourite.isChecked()==false){
                                 mDatabaseReference.child(model).removeValue();
                                 Toast.makeText(getBaseContext(), "Usunieto z ulubionych!", Toast.LENGTH_SHORT).show();
-
-
                             }
                         }
                     });

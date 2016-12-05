@@ -156,7 +156,5 @@ public class UserProfileActivity222222 extends AppCompatActivity {
                 Exception error = result.getError();
             }
         }
-
-
     }
 }

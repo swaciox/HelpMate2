@@ -1,81 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_sub_page2">
 
-    <LinearLayout
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addComment"
+        android:text="Add"
+        android:layout_below="@+id/commentListView"
+        android:layout_centerHorizontal="true" />
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:background="@color/cardview_light_background">
-
-        <ImageView
-            android:layout_marginTop="0dp"
-            android:src="@drawable/person"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/commentPersonImage"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="0.65"
-            android:layout_marginLeft="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Joanna"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="bold"
-                    android:textSize="17dp"
-                    android:layout_weight="0.9"
-                    android:id="@+id/commentPersonName"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1">
-
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ratingBar"
-                        style="@style/Widget.AppCompat.RatingBar.Small"
-                        android:numStars="5"
-                        android:stepSize="0.5"
-                        android:rating="3.0"
-                        />
-
-                </LinearLayout>
+        android:layout_height="250dp"
+        android:id="@+id/commentListView"></ListView>
 
 
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="12.11.2016"
-                android:fontFamily="sans-serif"
-                android:textStyle="italic"
-                android:textSize="17dp"
-                android:id="@+id/commentDate"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/opinion1"
-                android:fontFamily="sans-serif"
-                android:textSize="17dp"
-                android:id="@+id/commentText"/>
-            </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

@@ -59,7 +59,7 @@ public class FragmentSubPage1 extends Fragment{
             }
         });
 
-        //final String user_number = getArguments().getString("user_number");
+       // final String user_number = getArguments().getString("user_number");
 
         /*mImageButton.setOnClickListener(new View.OnClickListener() {
             @Override

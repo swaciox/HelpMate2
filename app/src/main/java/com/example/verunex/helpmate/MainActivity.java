@@ -25,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(cureent_user_id).hasChild(id_position)){
                             viewHolder.favouriteBox.setChecked(true);
+                            viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
                         }
                     }
 
@@ -118,7 +120,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-                liketest.addValueEventListener(new ValueEventListener() {
+                /*liketest.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                        // String id = dataSnapshot.child("id").getValue(String.class);
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
-                });
+                });*/
 
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +144,7 @@ public class MainActivity extends AppCompatActivity
                         singleuser.putExtra("user_category", category);
                         singleuser.putExtra("user_image", image);
                         singleuser.putExtra("user_rate", rate);
+                        singleuser.putExtra("id_position", id_position);
                         //singleuser.putExtra("user_description", description);
                         startActivity(singleuser);
 
@@ -150,6 +153,13 @@ public class MainActivity extends AppCompatActivity
                         FragmentSubPage1 fragobj = new FragmentSubPage1();
                         fragobj.setArguments(bundle);
 
+
+
+                        /*Bundle bundle1 = new Bundle();
+                        bundle1.putString("id_position", id_position);
+                        FragmentSubPage2 objSubPage2 = new FragmentSubPage2();
+                        objSubPage2.setArguments(bundle1);
+*/
                     }
                 });
                 viewHolder.btn.setOnClickListener(new View.OnClickListener() {
@@ -174,9 +184,11 @@ public class MainActivity extends AppCompatActivity
                         final DatabaseReference favourite = mDatabaseReference;
 
                         if(viewHolder.favouriteBox.isChecked()==true) {
+                            viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
                             favourite.child(model1).setValue(model1);
                             Toast.makeText(getBaseContext(), "Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
                         }else{
+                            viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_unlike);
                             favourite.child(model1).removeValue();
                             Toast.makeText(getBaseContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
                         }

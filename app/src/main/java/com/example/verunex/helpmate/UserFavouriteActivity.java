@@ -50,27 +50,11 @@ public class UserFavouriteActivity extends AppCompatActivity {
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(id_key);
 
-        /*mDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                long s = dataSnapshot.getChildrenCount();
-                String id = dataSnapshot.child(id_key).toString();
-                String a = String.valueOf(id);
-                Log.v ("Komunikat ", id);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
-
         mFirebaseListAdapter = new FirebaseListAdapter<String>(
                 this,
                 String.class,
                 R.layout.users_list,
                 mDatabaseReference
-
         ) {
 
             @Override
@@ -85,6 +69,7 @@ public class UserFavouriteActivity extends AppCompatActivity {
                 final CheckBox user_favourite = (CheckBox)v.findViewById(R.id.checkBox);
 
                 user_favourite.setChecked(true);
+                user_favourite.setButtonDrawable(R.drawable.ic_like);
 
                 UserDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(model);
 
@@ -103,13 +88,11 @@ public class UserFavouriteActivity extends AppCompatActivity {
                             if(user_favourite.isChecked()==false){
                                 mDatabaseReference.child(model).removeValue();
                                 Toast.makeText(getBaseContext(), "Usunieto z ulubionych!", Toast.LENGTH_SHORT).show();
+
+
                             }
                         }
                     });
-
-
-
-
 
                         //pole rate
                         String rate = dataSnapshot.child("rate").getValue(String.class);
@@ -164,44 +147,3 @@ public class UserFavouriteActivity extends AppCompatActivity {
     mListView.setAdapter(mFirebaseListAdapter);}
 }
 
-
-
-
-                    /*datareferenceeee = FirebaseDatabase.getInstance().getReference().child("UserFavourite");
-
-                    datareferenceeee.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            String name = dataSnapshot.child(id_key).getValue(String.class);
-                            textView.setText(name);
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-
-                //final String s = textView.getText().toString().trim();
-
-                /*v.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent (getBaseContext(), sialala.class);
-                        i.putExtra("s",s);
-                        startActivity(i);
-                    }
-                });*/
-            //}
-        //};
-
-       /* mListView.setAdapter(mFirebaseListAdapter);
-    }
-
-   /* @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mFirebaseListAdapter.cleanup();
-    }*/
-//}

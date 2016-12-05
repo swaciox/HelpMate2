@@ -27,6 +27,8 @@ public class SingleUserActivity extends AppCompatActivity {
     private TextView mUserName, mUserCategory, mUserNumber, mDescription;
     private ImageView mImageView;
 
+    String id_position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,9 @@ public class SingleUserActivity extends AppCompatActivity {
         String user_number = getIntent().getExtras().getString("user_number");
         String image = getIntent().getExtras().getString("user_image");
         String rate = getIntent().getExtras().getString("user_rate");
+        id_position = getIntent().getExtras().getString("id_position");
         //String user_description = getIntent().getExtras().getString("user_description");
+
 
 
         RatingBar user_rate = (RatingBar) findViewById(R.id.ratingBar);
@@ -104,6 +108,10 @@ public class SingleUserActivity extends AppCompatActivity {
                     return fragmentSubPage1;
                 case 1:
                     FragmentSubPage2 fragmentSubPage2 = new FragmentSubPage2();
+                    //send data
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id_position", id_position);
+                    fragmentSubPage2.setArguments(bundle);
                     return fragmentSubPage2;
                 default:
                     return null;

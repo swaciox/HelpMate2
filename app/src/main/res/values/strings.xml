@@ -35,4 +35,7 @@
     <string name="user_phone_edit">Twój numer telefonu</string>
     <string name="user_category_edit">Wybierz usługi, które oferujesz:</string>
     <string name="user_profile_edit">Zatwierdź zmiany</string>
+    <string name="add_comment_confirm">Wyślij</string>
+    <string name="add_comment">Wpisz swoją opinię...</string>
+    <string name="add_comment_button">Dodaj opinię</string>
 </resources>

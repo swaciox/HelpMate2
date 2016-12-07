@@ -1,28 +1,18 @@
 package com.example.verunex.helpmate;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -33,41 +23,39 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 
 public class FragmentSubPage2 extends Fragment {
 
-    private TextView user_comment;
+    /*private TextView user_comment;
     private ImageView user_image;
     private RatingBar user_rate;
-
-    private Button addComment;
+    */
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
 
     private FirebaseListAdapter mFirebaseListAdapter;
 
-    private ListView mListView;
+    private RecyclerView mCommentList;
+    private Button addComment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_sub_page2, container, false);
+        final View view = inflater.inflate(R.layout.fragment_sub_page2, container, false);
 
-        user_comment = (TextView)view.findViewById(R.id.comment);
-        user_image = (ImageView)view.findViewById(R.id.imageComment);
-        user_rate = (RatingBar)view.findViewById(R.id.ratingBar);
+        mCommentList = (RecyclerView) view.findViewById(R.id.comment_list);
+        mCommentList.setHasFixedSize(true);
+        //lub get activity
+        mCommentList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
 
         addComment = (Button)view.findViewById(R.id.addComment);
 
-
-        mListView = (ListView) view.findViewById(R.id.commentListView);
-
         mFirebaseAuth = FirebaseAuth.getInstance();
-
 
         final String id_key = mFirebaseAuth.getCurrentUser().getUid();
 
@@ -86,68 +74,48 @@ public class FragmentSubPage2 extends Fragment {
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(id_position);
 
-        mFirebaseListAdapter = new FirebaseListAdapter<String>(
-                getActivity(),
-                String.class,
-                R.layout.user_comment_row,
+        FirebaseRecyclerAdapter<Comment, CommentViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(
+                Comment.class,
+                R.layout.comment_row,
+                CommentViewHolder.class,
                 mDatabaseReference
+
         ) {
             @Override
-            protected void populateView(View v, final String model, int position) {
-                //String id_user_comment = v;
-                mDatabaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //String a = dataSnapshot.child(model);
-                        //Log.v(" ",a);
-                    }
+            protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, final int position) {
+                viewHolder.setName(model.getName());
+                viewHolder.setDesc(model.getDesc());
+                viewHolder.setUserImage(getActivity(),model.getUser_image());
+                viewHolder.setRate(model.getRate());
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                String comment_id = model.getUser_id();
+
+                if (comment_id.equals(id_key)){
+                    addComment.setVisibility(View.INVISIBLE);
+                    viewHolder.mImageButton.setVisibility(View.VISIBLE);
+                    viewHolder.mImageButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DatabaseReference key = getRef(position);
+                            key.removeValue();
+                        }
+                    });
+                }else{
+                    addComment.setVisibility(View.VISIBLE);
+                }
+
 
             }
         };
 
-
-        mListView.setAdapter(mFirebaseListAdapter);
+        mCommentList.setAdapter(firebaseRecyclerAdapter);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
 
-    }
-
-    public static class CommentViewHolder extends RecyclerView.ViewHolder {
-
-        View mView;
-
-        public CommentViewHolder(View itemView) {
-            super(itemView);
-
-            mView = itemView;
-
-        }
-
-        public void setDesc(String desc){
-            TextView comment = (TextView) mView.findViewById(R.id.comment);
-            comment.setText(desc);
-        }
-
-       /* public void setImage(Context ctx, String image){
-            ImageView user_image = (ImageView) mView.findViewById(R.id.imageComment);
-            Picasso.with(ctx).load(image).into(user_image);
-        }*/
-        // public void setRate(String rate){
-        //     RatingBar user_rate = (RatingBar) mView.findViewById(R.id.ratingBar);
-        //    user_rate.setRating(Float.parseFloat(rate));
-        // }
-        //public String setDescription(String description){
-        //   return description;
-        //}
     }
 
 }

@@ -38,7 +38,7 @@ public class FragmentSubPage1 extends Fragment{
 
         View rootView = inflater.inflate(R.layout.fragment_sub_page1, container, false);
 
-        checkBox = (CheckBox)rootView.findViewById(R.id.checkBox2);
+       /* checkBox = (CheckBox)rootView.findViewById(R.id.checkBox2);
 
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +58,7 @@ public class FragmentSubPage1 extends Fragment{
                 }
             }
         });
+        */
 
        // final String user_number = getArguments().getString("user_number");
 

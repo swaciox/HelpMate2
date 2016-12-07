@@ -1,7 +1,6 @@
 package com.example.verunex.helpmate;
 
 import android.content.Context;
-import android.support.design.widget.NavigationView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
@@ -51,10 +50,10 @@ public class UserProfileViewHolder extends RecyclerView.ViewHolder {
         ImageView user_img = (ImageView) mView.findViewById(R.id.image);
         Picasso.with(ctx).load(image).into(user_img);
     }
-   // public void setRate(String rate){
-   //     RatingBar user_rate = (RatingBar) mView.findViewById(R.id.ratingBar);
-    //    user_rate.setRating(Float.parseFloat(rate));
-   // }
+    public void setRate(String rate){
+        RatingBar user_rate = (RatingBar) mView.findViewById(R.id.commentRatingBar);
+        user_rate.setRating(Float.parseFloat(rate));
+    }
     //public String setDescription(String description){
     //   return description;
     //}

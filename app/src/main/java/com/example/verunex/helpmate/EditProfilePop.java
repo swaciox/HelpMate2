@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,6 +59,16 @@ public class EditProfilePop extends Activity {
 
         getWindow().setLayout((int) (width * .8), (int) (height * .8));
 
+        // categories listView
+        String[] categories = {"Hydraulik", "Pomoc domowa", "Ogrodnik", "Malarz", "Elektryk"};
+
+        /*ListView mListView= (ListView) findViewById(R.id.categoriesListView);
+        ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);
+        mListView.setAdapter(listAdapter);
+        */
+
+
+
         user_image = (ImageView) findViewById(R.id.userImage);
         user_name = (EditText) findViewById(R.id.userNameEdit);
         user_number = (EditText) findViewById(R.id.userPhoneEdit);
@@ -83,10 +96,7 @@ public class EditProfilePop extends Activity {
                 }else{
                     Picasso.with(getBaseContext()).load(user_image_uri).into(user_image);
                 }
-
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -106,7 +116,6 @@ public class EditProfilePop extends Activity {
                 startActivityForResult(gallery_intent, GALLERY_REQUEST);
             }
         });
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

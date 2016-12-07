@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -65,7 +64,7 @@ public class UserFavouriteActivity extends AppCompatActivity {
                 final ImageButton user_number = (ImageButton)v.findViewById(R.id.call);
                 final ImageView user_image = (ImageView)v.findViewById(R.id.image);
 
-                final RatingBar user_rate = (RatingBar)v.findViewById(R.id.ratingBar);
+                final RatingBar user_rate = (RatingBar)v.findViewById(R.id.commentRatingBar);
                 final CheckBox user_favourite = (CheckBox)v.findViewById(R.id.checkBox);
 
                 user_favourite.setChecked(true);

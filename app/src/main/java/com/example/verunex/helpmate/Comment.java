@@ -1,33 +1,32 @@
 package com.example.verunex.helpmate;
 
-/**
- * Created by Verunex on 2016-11-30.
- */
-
 public class Comment {
 
-    private String image;
     private String desc;
     private String name;
+    private String user_image;
     private String rate;
+    private String user_id;
 
     public Comment (){
 
+
     }
 
-    public Comment(String image, String desc, String name, String rate) {
-        this.image = image;
+    public Comment(String desc, String name, String user_image, String rate, String user_id) {
         this.desc = desc;
         this.name = name;
+        this.user_image = user_image;
         this.rate = rate;
+        this.user_id = user_id;
     }
 
-    public String getImage() {
-        return image;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getDesc() {
@@ -46,6 +45,14 @@ public class Comment {
         this.name = name;
     }
 
+    public String getUser_image() {
+        return user_image;
+    }
+
+    public void setUser_image(String user_image) {
+        this.user_image = user_image;
+    }
+
     public String getRate() {
         return rate;
     }
@@ -53,10 +60,4 @@ public class Comment {
     public void setRate(String rate) {
         this.rate = rate;
     }
-
-
-
-
-
-
 }

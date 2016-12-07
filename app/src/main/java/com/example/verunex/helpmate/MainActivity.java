@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setNumber(model.getNumber());
                 viewHolder.setImage(getApplicationContext(), model.getImage());
-//                viewHolder.setRate(model.getRate());
+                viewHolder.setRate(model.getRate());
                 viewHolder.setUser_id(model.getUser_id());
                 //viewHolder.setDescription(model.getDescription());
 
@@ -111,6 +111,9 @@ public class MainActivity extends AppCompatActivity
                         if(dataSnapshot.child(cureent_user_id).hasChild(id_position)){
                             viewHolder.favouriteBox.setChecked(true);
                             viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
+                        }else{
+                            viewHolder.favouriteBox.setChecked(false);
+                            viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_unlike);
                         }
                     }
 
@@ -119,22 +122,6 @@ public class MainActivity extends AppCompatActivity
 
                     }
                 });
-
-                /*liketest.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                       // String id = dataSnapshot.child("id").getValue(String.class);
-
-                        //Log.v ("komunikat", id);
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });*/
-
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override

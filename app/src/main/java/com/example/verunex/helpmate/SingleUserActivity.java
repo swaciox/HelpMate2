@@ -53,7 +53,7 @@ public class SingleUserActivity extends AppCompatActivity {
 
 
 
-        RatingBar user_rate = (RatingBar) findViewById(R.id.ratingBar);
+        RatingBar user_rate = (RatingBar) findViewById(R.id.commentRatingBar);
 //        user_rate.setRating(Float.parseFloat(rate));
 
         mUserName = (TextView)findViewById(R.id.user_name);

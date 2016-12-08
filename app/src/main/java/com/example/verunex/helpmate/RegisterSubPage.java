@@ -81,7 +81,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
         }else if (TextUtils.isEmpty(password)){
             Toast.makeText(getContext(),"Wypełnij pole hasło!",Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(password2)) {
-            Toast.makeText(getContext(),"Wypełnij pole powtórz haslo!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Wypełnij pole powtórz hasło!",Toast.LENGTH_SHORT).show();
         }else {
             if(password.equals(password2)){
                 mProgressDialog.setMessage("Rejestruję...");
@@ -118,12 +118,12 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             Toast.makeText(getContext(), "Zarejestrowano!", Toast.LENGTH_SHORT).show();
                         }else{
                             mProgressDialog.dismiss();
-                            Toast.makeText(getContext(), "Podane konto juz istnieje!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Podany użytkownik już istnieje!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }else{
-                Toast.makeText(getContext(),"Hasła roznia sie!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Podane hasła różnią się!",Toast.LENGTH_SHORT).show();
             }
 
         }

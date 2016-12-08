@@ -1,35 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginTop="5dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:weightSum="8">
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:weightSum="1">
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_weight="2"
+            android:weightSum="1"
+            android:orientation="vertical"
+            >
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:id="@+id/commentImage"
-                android:layout_weight="0.90" />
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/commentName"
+                android:text="Name or nickname"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_gravity="center" />
 
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="284dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:minHeight="112dp"
             android:orientation="vertical"
             android:paddingLeft="10dp"
-            android:layout_gravity="right"
+            android:layout_gravity="left"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            android:layout_weight="5"
+            android:layout_marginTop="5dp">
 
             <RatingBar
                 android:layout_width="wrap_content"
@@ -39,38 +56,40 @@
                 android:stepSize="0.5"
                 android:transformPivotX="0dp"
                 android:transformPivotY="0dp"
-                android:rating="3"
                 style="@style/RatingBar"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
+                />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textStyle="italic"
+                android:text="12.12.2016"
+                android:textColor="@color/colorGrey"
+                android:id="@+id/commentDate"
                 android:layout_below="@+id/commentRatingBar"
-                android:layout_alignParentStart="true"
-                android:id="@+id/commentDesc"
-                android:text="Desc" />
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/commentDesc"
-                android:id="@+id/commentName"
-                android:text="Name" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_exit"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/imageButtonExit"
-                android:visibility="invisible"/>
+                android:id="@+id/commentDesc"
+                android:text="Tutaj jest opis komentarza tra la la..."
+                android:layout_below="@+id/commentDate"/>
 
         </RelativeLayout>
 
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_delete_comment_color"
+            android:id="@+id/imageButtonExit"
+            android:visibility="invisible"
+            android:background="@color/cardview_light_background"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

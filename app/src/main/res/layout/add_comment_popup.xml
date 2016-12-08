@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RatingBar
@@ -16,27 +16,34 @@
             android:layout_height="wrap_content"
             android:id="@+id/ratingBar2"
             android:numStars="5"
-            android:stepSize="0.5"
-            android:transformPivotX="0dp"
-            android:transformPivotY="0dp"
-            android:rating="3"
-            style="@style/RatingBar"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
+            android:stepSize="1"
             android:layout_gravity="center"
-            android:layout_margin="5dp"/>
-
-        <EditText
             android:layout_margin="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/add_comment"
-            android:id="@+id/commentEditText"
-            android:layout_gravity="center_horizontal|center_vertical"/>
+            android:layout_marginTop="15dp"/>
+
+        <ScrollView
+            android:layout_width="220dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center">
+            <EditText
+                android:layout_margin="5dp"
+                android:layout_width="220dp"
+                android:layout_height="180dp"
+                android:minWidth="200dp"
+                android:minHeight="180dp"
+                android:hint="@string/add_comment"
+                android:id="@+id/commentEditText"
+                android:textSize="20dp"
+                android:fontFamily="sans-serif"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+
+        </ScrollView>
+
 
         <Button
             android:layout_width="180dp"
             android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/addCommentPopup"
             android:text="@string/add_comment_confirm"
             android:layout_centerHorizontal="true"

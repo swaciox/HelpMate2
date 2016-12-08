@@ -49,7 +49,7 @@ public class AddCommentPop extends Activity {
         int width = mDisplayMetrics.widthPixels;
         int height = mDisplayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width * .8), (int) (height * .3));
+        getWindow().setLayout((int) (width * .8), (int) (height * .5));
 
         mEditText = (EditText)findViewById(R.id.commentEditText);
         mButton = (Button)findViewById(R.id.addCommentPopup);
@@ -104,7 +104,7 @@ public class AddCommentPop extends Activity {
                         }
                     });
                 }else{
-                    Toast.makeText(getBaseContext(),"Pusty EDITTEXT!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),"Wypełnij pole komentarza!", Toast.LENGTH_SHORT).show();
                 }
 
             }

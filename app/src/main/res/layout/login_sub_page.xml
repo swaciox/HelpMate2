@@ -96,7 +96,7 @@
 
         <Button
             android:background="@drawable/button_rounded_corners"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:textColor="@color/colorTextIcons"
             android:textSize="20sp"
             android:fontFamily="sans-serif"
@@ -136,7 +136,6 @@
             android:layout_alignBottom="@+id/imageView10"
             android:layout_alignStart="@+id/textView"
             />
-
 
     </RelativeLayout>
 

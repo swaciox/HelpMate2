@@ -54,7 +54,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/user_name"
                     android:gravity="center_horizontal|bottom"
-                    android:textSize="12dp"
+                    android:textSize="11dp"
                     />
 
             </RelativeLayout>
@@ -91,7 +91,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/user_address"
                     android:gravity="center_horizontal|bottom"
-                    android:textSize="10dp"
+                    android:textSize="11dp"
                     />
 
         </RelativeLayout>
@@ -129,7 +129,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/phone_number"
                     android:gravity="center_horizontal|bottom"
-                    android:textSize="10dp"
+                    android:textSize="11dp"
                     />
 
         </RelativeLayout>

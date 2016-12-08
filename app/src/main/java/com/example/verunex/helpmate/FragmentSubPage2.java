@@ -46,7 +46,7 @@ public class FragmentSubPage2 extends Fragment {
 
         final View view = inflater.inflate(R.layout.fragment_sub_page2, container, false);
 
-        mCommentList = (RecyclerView) view.findViewById(R.id.comment_list);
+        mCommentList = (RecyclerView) view.findViewById(R.id.comment_view);
         mCommentList.setHasFixedSize(true);
         //lub get activity
         mCommentList.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -9,28 +9,29 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:weightSum="10">
 
         <LinearLayout
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="100dp"
-            android:paddingLeft="10dp">
+            android:layout_weight="3">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/image"/>
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:paddingLeft="10dp"
+                android:id="@+id/image" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="0.8"
+            android:layout_weight="5"
             android:paddingLeft="10dp">
 
             <TextView
@@ -49,15 +50,17 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:srcCompat="@android:drawable/stat_sys_phone_call"
-                    android:id="@+id/call" />
+                    android:src="@drawable/ic_call_color"
+                    android:id="@+id/call"
+                    android:background="@color/cardview_light_background"/>
 
                 <ImageButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:srcCompat="@android:drawable/sym_action_email"
+                    android:src="@drawable/ic_mail_color"
+                    android:background="@color/cardview_light_background"
                     android:id="@+id/message" />
 
             </LinearLayout>
@@ -65,11 +68,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:layout_gravity="right">
+            android:layout_gravity="right"
+            android:layout_weight="2"
+            android:layout_marginRight="10dp">
 
             <RatingBar
                 android:layout_width="wrap_content"

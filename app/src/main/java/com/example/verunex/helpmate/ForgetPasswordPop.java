@@ -48,9 +48,9 @@ public class ForgetPasswordPop extends Activity{
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(getBaseContext(),"Wysłano hasło na adres" + emailAddress , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(),"Wysłano hasło na podany adres e-mail: " + emailAddress , Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(getBaseContext(),"Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(),"Błąd, spróbuj ponownie!", Toast.LENGTH_SHORT).show();
 
                         }
                     }

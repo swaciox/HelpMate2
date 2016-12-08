@@ -10,5 +10,6 @@
     <color name="colorTextIcons">#FFFFFF</color>
     <color name="colorTextPrimary">#212121</color>
     <color name="colorLines">#ee5050</color>
+    <color name="colorGrey">#a8a8a8</color>
 
 </resources>

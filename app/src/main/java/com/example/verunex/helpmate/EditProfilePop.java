@@ -60,7 +60,7 @@ public class EditProfilePop extends Activity {
         getWindow().setLayout((int) (width * .8), (int) (height * .8));
 
         // categories listView
-        String[] categories = {"Hydraulik", "Pomoc domowa", "Ogrodnik", "Malarz", "Elektryk"};
+        String[] categories = {"Hydraulika", "Pomoc domowa", "Ogrodnictwo", "Remonty", "Elektryka"};
 
         /*ListView mListView= (ListView) findViewById(R.id.categoriesListView);
         ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);

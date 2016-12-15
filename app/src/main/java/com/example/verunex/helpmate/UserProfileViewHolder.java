@@ -1,6 +1,7 @@
 package com.example.verunex.helpmate;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
@@ -17,12 +18,16 @@ public class UserProfileViewHolder extends RecyclerView.ViewHolder {
     View mView;
     CheckBox favouriteBox;
     ImageButton btn;
+    ImageButton btn2;
+    ImageButton btn3;
 
     public UserProfileViewHolder(View itemView) {
         super(itemView);
 
         mView = itemView;
 
+        btn3 = (ImageButton)mView.findViewById(R.id.email);
+        btn2 = (ImageButton)mView.findViewById(R.id.message);
         btn = (ImageButton)mView.findViewById(R.id.call);
         favouriteBox = (CheckBox)mView.findViewById(R.id.checkBox);
 
@@ -40,6 +45,8 @@ public class UserProfileViewHolder extends RecyclerView.ViewHolder {
     public String setNumber (String number){
         return number;
     }
+
+    public String setEmail (String email) {return email;}
 
     public void setCategory(String category){
             TextView user_category = (TextView) mView.findViewById(R.id.category);

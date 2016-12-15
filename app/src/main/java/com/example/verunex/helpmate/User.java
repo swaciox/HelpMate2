@@ -13,13 +13,14 @@ public class User {
     private String rate;
     private String description;
     private String user_id;
+    private String email;
 
 
     public User(){
 
     }
 
-    public User(String category, String image, String name, String number, String rate, String description, String user_id) {
+    public User(String category, String image, String name, String number, String rate, String description, String user_id, String email) {
         this.category = category;
         this.image = image;
         this.name = name;
@@ -27,7 +28,14 @@ public class User {
         this.rate = rate;
         this.description = description;
         this.user_id = user_id;
+        this.email = email;
     }
+
+    public String getEmail() {return email;}
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 
     public String getUser_id() {
         return user_id;

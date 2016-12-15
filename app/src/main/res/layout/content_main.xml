@@ -2,23 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_main2"
+    android:id="@+id/content_main3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.verunex.helpmate.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_activity_main">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hydraulik"
+        android:id="@+id/H"
+        />
 
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/users_row"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-    </android.support.v7.widget.RecyclerView>
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pomoc domowa"
+        android:id="@+id/Pm"
+        android:layout_below="@+id/H"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
 
 
 </RelativeLayout>

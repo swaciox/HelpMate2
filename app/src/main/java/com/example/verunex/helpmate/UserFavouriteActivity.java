@@ -70,7 +70,7 @@ public class UserFavouriteActivity extends AppCompatActivity {
                 user_favourite.setChecked(true);
                 user_favourite.setButtonDrawable(R.drawable.ic_like);
 
-                UserDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(model);
+                UserDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(model); // child model1
 
                 UserDataReference.addValueEventListener(new ValueEventListener() {
                     @Override

@@ -22,10 +22,11 @@
                 android:src="@drawable/ic_exit"
                 android:layout_alignParentEnd="true"
                 />
-            <ImageView
+            <ImageButton
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/person"
+                android:scaleType="fitXY"
                 android:id="@+id/userImage"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
@@ -93,7 +94,8 @@
                 android:layout_height="30dp"
                 android:src="@android:drawable/ic_menu_edit"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"/>
+                android:layout_weight="0.1"
+                android:id="@+id/addrImageView" />
 
         </LinearLayout>
 
@@ -143,7 +145,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="134dp"
             android:layout_marginLeft="10dp"
@@ -154,16 +156,23 @@
             android:background="@drawable/border"
             android:weightSum="1">
 
-            <ListView
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/user_category_edit"
-                android:layout_marginTop="10dp"
-                android:textAlignment="center"
-                android:textSize="18dp"
-                android:id="@+id/categoriesListView"/>
+                android:layout_height="90dp"
+                android:id="@+id/userChoiceCat"
+                android:layout_weight="1"
+                android:layout_alignParentEnd="true" />
 
-        </LinearLayout>
+            <Button
+                android:text="Button"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoriesChoiceButton"
+                android:layout_weight="1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
 
         <Button
 
@@ -178,8 +187,6 @@
             />
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

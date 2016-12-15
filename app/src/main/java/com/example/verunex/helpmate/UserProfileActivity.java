@@ -46,11 +46,10 @@ public class UserProfileActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), EditProfilePop.class);
+                Intent i = new Intent(getBaseContext(), EditUserProfile.class);
                 startActivity(i);
             }
         });
-
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -61,7 +60,6 @@ public class UserProfileActivity extends AppCompatActivity {
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 //nazwa z firebase
                 String name = dataSnapshot.child("name").getValue(String.class);
                 if(name.isEmpty()){
@@ -84,8 +82,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 }else{
                     user_number.setText(number);
                 }
-
-
                 // image z firebase
                 String user_image_uri = dataSnapshot.child("user_image").getValue(String.class);
                 if(user_image_uri.isEmpty()){
@@ -93,8 +89,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 }else{
                     Picasso.with(getBaseContext()).load(user_image_uri).into(user_image);
                 }
-
-
             }
 
             @Override

@@ -15,8 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ratingBar2"
+
             android:numStars="5"
-            android:stepSize="1"
+            android:stepSize="0.5"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_marginTop="15dp"/>
@@ -32,6 +33,7 @@
                 android:minWidth="200dp"
                 android:minHeight="180dp"
                 android:hint="@string/add_comment"
+                android:gravity="top"
                 android:id="@+id/commentEditText"
                 android:textSize="20dp"
                 android:fontFamily="sans-serif"

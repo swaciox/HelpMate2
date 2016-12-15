@@ -25,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private DatabaseReference mDatabaseReference;
 
     private DatabaseReference liketest;
+    private Query mQuery;
 
     private FirebaseAuth mFirebaseAuth;
     String cureent_user_id;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity
         //Firebase
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        mQuery = mDatabaseReference.orderByChild("category").equalTo("Opieka do dzieci");
         //List
         mUsersList = (RecyclerView) findViewById(R.id.users_row);
         mUsersList.setHasFixedSize(true);
@@ -77,24 +80,30 @@ public class MainActivity extends AppCompatActivity
                 User.class,
                 R.layout.users_list,
                 UserProfileViewHolder.class,
-                mDatabaseReference
+                mQuery
         ) {
             @Override
-            protected void populateViewHolder(final UserProfileViewHolder viewHolder, final User model, int position) {
-                viewHolder.setName(model.getName());
-                viewHolder.setCategory(model.getCategory());
-                viewHolder.setNumber(model.getNumber());
-                viewHolder.setImage(getApplicationContext(), model.getImage());
-                viewHolder.setRate(model.getRate());
-                viewHolder.setUser_id(model.getUser_id());
-                //viewHolder.setDescription(model.getDescription());
+            protected void populateViewHolder(final UserProfileViewHolder viewHolder, final User model, final int position) {
+                final String category = model.getCategory();
+
+
+                    viewHolder.setName(model.getName());
+                    viewHolder.setCategory(model.getCategory());
+                    viewHolder.setNumber(model.getNumber());
+                    viewHolder.setImage(getApplicationContext(), model.getImage());
+                    viewHolder.setRate(model.getRate());
+                    viewHolder.setUser_id(model.getUser_id());
+                    //viewHolder.setDescription(model.getDescription());
+
+
 
                 final String number = model.getNumber();
                 final String name = model.getName();
-                final String category = model.getCategory();
+                //final String category = model.getCategory();
                 final String image = model.getImage();
                 final String rate = model.getRate();
                 //final String description = viewHolder.setDescription(model.getDescription());
+                final String user_id = model.getUser_id();
 
                 //sprawdzenie czy dany uzytkownik juz lubi
 
@@ -103,12 +112,14 @@ public class MainActivity extends AppCompatActivity
                 final String id_position = getRef(position).getKey();
                 Log.v ("Pozycja id_position", id_position);
 
+                final String key = getRef(position).getKey();
+
                 liketest = FirebaseDatabase.getInstance().getReference().child("UserFavourite");
 
                 liketest.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(cureent_user_id).hasChild(id_position)){
+                        if(dataSnapshot.child(cureent_user_id).hasChild(key)){
                             viewHolder.favouriteBox.setChecked(true);
                             viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
                         }else{
@@ -163,6 +174,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         final String user_from_list_id = model.getUser_id();
+                        final String key = getRef(position).getKey();
 
                         String model1 = model.getUser_id();
 
@@ -172,11 +184,11 @@ public class MainActivity extends AppCompatActivity
 
                         if(viewHolder.favouriteBox.isChecked()==true) {
                             viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
-                            favourite.child(model1).setValue(model1);
+                            favourite.child(key).setValue(key);
                             Toast.makeText(getBaseContext(), "Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
                         }else{
                             viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_unlike);
-                            favourite.child(model1).removeValue();
+                            favourite.child(key).removeValue();
                             Toast.makeText(getBaseContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
                         }
 

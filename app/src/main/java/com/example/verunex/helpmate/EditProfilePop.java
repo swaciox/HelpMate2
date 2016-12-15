@@ -35,6 +35,7 @@ public class EditProfilePop extends Activity {
     private ImageView user_image;
     private EditText user_name, user_number;
     private Button save, imageEdit;
+    private Button categoriesChoiceButton;
 
     private Uri mImageUri = null;
 
@@ -74,6 +75,15 @@ public class EditProfilePop extends Activity {
         user_number = (EditText) findViewById(R.id.userPhoneEdit);
         save = (Button) findViewById(R.id.save);
         imageEdit = (Button) findViewById(R.id.userImageEdit);
+
+        categoriesChoiceButton = (Button) findViewById(R.id.categoriesChoiceButton);
+        categoriesChoiceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), CategoriesChoice.class);
+                startActivity(i);
+            }
+        });
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 

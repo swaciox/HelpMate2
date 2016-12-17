@@ -14,19 +14,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private Button bH, bPm;
+    private ImageButton bH, bPm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bH = (Button)findViewById(R.id.H);
-        bPm = (Button)findViewById(R.id.Pm);
+        bH = (ImageButton)findViewById(R.id.H);
+        bPm = (ImageButton)findViewById(R.id.Pm);
         bH.setOnClickListener(this);
         bPm.setOnClickListener(this);
 

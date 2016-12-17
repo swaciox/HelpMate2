@@ -39,4 +39,15 @@
     <string name="add_comment">Wpisz swoją opinię...</string>
     <string name="add_comment_button">Dodaj opinię</string>
     <string name="title_activity_maps">Map</string>
+    <string name="services_plumber">Hydraulika</string>
+    <string name="services_electricity">Elektryka</string>
+    <string name="services_cleaning">Pomoc \ndomowa</string>
+    <string name="services_caring">Opieka</string>
+    <string name="services_learning">Pomoc \nnaukowa</string>
+    <string name="services_repairs">Naprawa \nurządzeń</string>
+    <string name="services_painting">Remonty</string>
+    <string name="services_other">Inne</string>
+    <string name="services_gardening">Ogrodnictwo</string>
+    <string name="category_text">Szukaj według kategorii</string>
+
 </resources>

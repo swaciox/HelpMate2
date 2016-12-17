@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -17,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,12 +31,10 @@ import com.squareup.picasso.Picasso;
 
 public class UserFavouriteActivity extends AppCompatActivity {
 
-    private ListView mListView;
+    private RecyclerView mListView;
 
     private DatabaseReference mDatabaseReference;
     private DatabaseReference UserDataReference;
-
-    private FirebaseListAdapter mFirebaseListAdapter;
 
     private FirebaseAuth mFirebaseAuth;
 
@@ -41,7 +43,9 @@ public class UserFavouriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_favourite);
 
-        mListView = (ListView) findViewById(R.id.testlist);
+        mListView = (RecyclerView) findViewById(R.id.RecyclerFavouriteList);
+        mListView.setHasFixedSize(true);
+        mListView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -49,28 +53,115 @@ public class UserFavouriteActivity extends AppCompatActivity {
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(id_key);
 
-        mFirebaseListAdapter = new FirebaseListAdapter<String>(
-                this,
-                String.class,
+        FirebaseRecyclerAdapter<User, UserProfileViewHolder> mFirebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User, UserProfileViewHolder>(
+                User.class,
                 R.layout.users_list,
+                UserProfileViewHolder.class,
                 mDatabaseReference
         ) {
-
             @Override
-            protected void populateView(final View v, final String model, final int position) {
+            protected void populateViewHolder(final UserProfileViewHolder viewHolder, final User model, int position) {
+                viewHolder.setCategory(model.getCategory());
+                viewHolder.setName(model.getName());
+                viewHolder.setNumber(model.getNumber());
+                viewHolder.setImage(getApplicationContext(), model.getImage());
+                viewHolder.setRate(model.getRate());
+                viewHolder.setUser_id(model.getUser_id());
+                viewHolder.setEmail(model.getEmail());
 
-                final TextView user_name = (TextView) v.findViewById(R.id.name);
-                final TextView user_category = (TextView)v.findViewById(R.id.category);
-                final ImageButton user_number = (ImageButton)v.findViewById(R.id.call);
-                final ImageView user_image = (ImageView)v.findViewById(R.id.image);
+                final String email = model.getEmail();
+                final String number = model.getNumber();
+                final String name = model.getName();
+                final String category = model.getCategory();
+                final String image = model.getImage();
+                final String rate = model.getRate();
+                //final String description = viewHolder.setDescription(model.getDescription());
+                final String user_id = model.getUser_id();
 
-                final RatingBar user_rate = (RatingBar)v.findViewById(R.id.commentRatingBar);
-                final CheckBox user_favourite = (CheckBox)v.findViewById(R.id.checkBox);
 
-                user_favourite.setChecked(true);
-                user_favourite.setButtonDrawable(R.drawable.ic_like);
+                final String id_position = getRef(position).getKey();
 
-                UserDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(model); // child model1
+                final TextView user_name = (TextView) findViewById(R.id.name);
+                final TextView user_category = (TextView)findViewById(R.id.category);
+                final ImageButton user_number = (ImageButton)findViewById(R.id.call);
+                final ImageView user_image = (ImageView)findViewById(R.id.image);
+                final RatingBar user_rate = (RatingBar)findViewById(R.id.commentRatingBar);
+                final CheckBox user_favourite = (CheckBox)findViewById(R.id.checkBox);
+
+                viewHolder.favouriteBox.setChecked(true);
+                viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
+
+                final String key = getRef(position).getKey();
+
+                viewHolder.favouriteBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(viewHolder.favouriteBox.isChecked()==false){
+                            mDatabaseReference.child(key).removeValue();
+                            Toast.makeText(getBaseContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent singleuser = new Intent(getBaseContext(), SingleUserActivity.class);
+                        singleuser.putExtra("user_name", name);
+                        singleuser.putExtra("user_category", category);
+                        singleuser.putExtra("user_image", image);
+                        singleuser.putExtra("user_rate", rate);
+                        singleuser.putExtra("id_position", id_position);
+                        //singleuser.putExtra("user_description", description);
+                        startActivity(singleuser);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("user_number", number);
+                        FragmentSubPage1 fragobj = new FragmentSubPage1();
+                        fragobj.setArguments(bundle);
+
+                        /*Bundle bundle1 = new Bundle();
+                        bundle1.putString("id_position", id_position);
+                        FragmentSubPage2 objSubPage2 = new FragmentSubPage2();
+                        objSubPage2.setArguments(bundle1);
+*/
+                    }
+                });
+                viewHolder.btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+                        if (ActivityCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        startActivity(intent);
+                    }
+                });
+
+                viewHolder.btn2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+                        smsIntent.setType("vnd.android-dir/mms-sms");
+                        smsIntent.putExtra("address", number);
+                        smsIntent.putExtra("sms_body","Witam pisze z serwisu HelpMate!\n");
+                        startActivity(smsIntent);
+                    }
+                });
+
+                viewHolder.btn3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("plain/text");
+                        intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email });
+                        intent.putExtra(Intent.EXTRA_SUBJECT, "Zapytanie HelpMate");
+                        intent.putExtra(Intent.EXTRA_TEXT, "Witam pisze z portalu HelpMate");
+                        startActivity(Intent.createChooser(intent, ""));
+                    }
+                });
+
+               /* UserDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(category).child(key); // child model1
 
                 UserDataReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -81,15 +172,15 @@ public class UserFavouriteActivity extends AppCompatActivity {
 
                         //checkbox favourite
 
-                    user_favourite.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(user_favourite.isChecked()==false){
-                                mDatabaseReference.child(model).removeValue();
-                                Toast.makeText(getBaseContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
+                        user_favourite.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if(user_favourite.isChecked()==false){
+                                    mDatabaseReference.child(key).removeValue();
+                                    Toast.makeText(getBaseContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
+                        });
 
                         //pole rate
                         String rate = dataSnapshot.child("rate").getValue(String.class);
@@ -123,24 +214,9 @@ public class UserFavouriteActivity extends AppCompatActivity {
 
                     }
                 });
-
-                /*mDatabaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child(model).hasChild(id_key)) {
-                            String name = "asdasd";
-                            textView.setText(name);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });*/
-
+                */
             }
         };
-    mListView.setAdapter(mFirebaseListAdapter);}
+    mListView.setAdapter(mFirebaseRecyclerAdapter);}
 }
 

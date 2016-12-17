@@ -106,11 +106,11 @@ public class MainActivity extends AppCompatActivity
 
         switch (v.getId()) {
             case R.id.H:
-                i.putExtra("Selected", "Ogrodnik");
+                i.putExtra("Selected", "Hydraulik");
                 startActivity(i);
                 break;
             case R.id.Pm:
-                i.putExtra("Selected", "Malarz");
+                i.putExtra("Selected", "Opieka do dzieci");
                 startActivity(i);
                 break;
         }

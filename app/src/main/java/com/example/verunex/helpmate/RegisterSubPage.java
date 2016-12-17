@@ -48,7 +48,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
         //Firebase
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+       // mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         mProgressDialog = new ProgressDialog(getContext());
 
@@ -98,7 +98,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                             String random_category = mRandomValues.randomCategory();
                             String random_image = mRandomValues.randomImage();
                             String random_rate = mRandomValues.randomRating();
-
+                            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(random_category);
                             DatabaseReference curent_user = mDatabaseReference.push();
                             //curent_user.child("name").setValue("");
                             //curent_user.child("address").setValue("");

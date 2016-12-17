@@ -106,7 +106,7 @@ public class AddCommentPop extends Activity {
                 }else{
                     Toast.makeText(getBaseContext(),"Wypełnij pole komentarza!", Toast.LENGTH_SHORT).show();
                 }
-
+                finish();
             }
         });
     }

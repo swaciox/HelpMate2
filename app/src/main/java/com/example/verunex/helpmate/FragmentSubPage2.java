@@ -99,6 +99,7 @@ public class FragmentSubPage2 extends Fragment {
                         public void onClick(View v) {
                             DatabaseReference key = getRef(position);
                             key.removeValue();
+                            addComment.setVisibility(View.VISIBLE);
                         }
                     });
                 }else{

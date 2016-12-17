@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.internal.zzoe;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +37,7 @@ public class CategoryList extends AppCompatActivity
 
     private DatabaseReference liketest;
     private Query mQuery;
+    private Query mQuery2;
 
     private FirebaseAuth mFirebaseAuth;
     String cureent_user_id;
@@ -54,9 +56,10 @@ public class CategoryList extends AppCompatActivity
         cureent_user_id = mFirebaseAuth.getCurrentUser().getUid();
 
         //Firebase
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(selected);
+        //mQuery = mDatabaseReference.orderByChild("category").equalTo(selected);
 
-        mQuery = mDatabaseReference.orderByChild("category").equalTo(selected);
+
         //List
         mUsersList = (RecyclerView) findViewById(R.id.users_row);
         mUsersList.setHasFixedSize(true);
@@ -78,7 +81,7 @@ public class CategoryList extends AppCompatActivity
                 User.class,
                 R.layout.users_list,
                 UserProfileViewHolder.class,
-                mQuery
+                mDatabaseReference
         ) {
             @Override
             protected void populateViewHolder(final UserProfileViewHolder viewHolder, final User model, final int position) {
@@ -104,9 +107,6 @@ public class CategoryList extends AppCompatActivity
                 //final String description = viewHolder.setDescription(model.getDescription());
                 final String user_id = model.getUser_id();
 
-                //sprawdzenie czy dany uzytkownik juz lubi
-
-                //like czy nie lista tablica
 
                 final String id_position = getRef(position).getKey();
                 Log.v ("Pozycja id_position", id_position);
@@ -201,17 +201,25 @@ public class CategoryList extends AppCompatActivity
 
                         String model1 = model.getUser_id();
 
-                        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(cureent_user_id);
+                        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(cureent_user_id).child(key);
+
+                        Log.v ("key: ", key);
 
                         final DatabaseReference favourite = mDatabaseReference;
 
                         if(viewHolder.favouriteBox.isChecked()==true) {
                             viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
-                            favourite.child(key).setValue(key);
+                            favourite.child("category").setValue(category);
+                            favourite.child("image").setValue(image);
+                            favourite.child("rate").setValue(rate);
+                            favourite.child("email").setValue(email);
+                            favourite.child("name").setValue(name);
+                            favourite.child("number").setValue(number);
+                            favourite.child("user_id").setValue(user_id);
                             Toast.makeText(getBaseContext(), "Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
                         }else{
                             viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_unlike);
-                            favourite.child(key).removeValue();
+                            favourite.removeValue();
                             Toast.makeText(getBaseContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
                         }
 

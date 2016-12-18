@@ -40,6 +40,9 @@ public class FragmentSubPage2 extends Fragment {
     private RecyclerView mCommentList;
     private Button addComment;
 
+
+    float temp = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,6 +91,7 @@ public class FragmentSubPage2 extends Fragment {
                 viewHolder.setUserImage(getActivity(),model.getUser_image());
                 viewHolder.setRate(model.getRate());
 
+                String rate = model.getRate();
 
                 String comment_id = model.getUser_id();
 
@@ -105,6 +109,7 @@ public class FragmentSubPage2 extends Fragment {
                 }else{
                     addComment.setVisibility(View.VISIBLE);
                 }
+
 
 
             }

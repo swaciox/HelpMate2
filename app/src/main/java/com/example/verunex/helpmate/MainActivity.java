@@ -3,6 +3,7 @@ package com.example.verunex.helpmate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,18 +20,12 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private ImageButton bH, bPm;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bH = (ImageButton)findViewById(R.id.H);
-        bPm = (ImageButton)findViewById(R.id.Pm);
-        bH.setOnClickListener(this);
-        bPm.setOnClickListener(this);
-
+        initControl();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,6 +39,30 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+
+    public void initControl (){
+        ImageButton bHydraulika = (ImageButton) findViewById(R.id.hydraulika);
+        ImageButton bElektryka = (ImageButton) findViewById(R.id.elektryka);
+        ImageButton bNaprawaUrzadzen = (ImageButton) findViewById(R.id.naprawaUrzadzen);
+        ImageButton bPomocDomowa = (ImageButton) findViewById(R.id.pomocDomowa);
+        ImageButton bRemonty = (ImageButton) findViewById(R.id.remonty);
+        ImageButton bPomocNaukowa = (ImageButton) findViewById(R.id.pomocNaukowa);
+        ImageButton bOpieka = (ImageButton) findViewById(R.id.opieka);
+        ImageButton bInne = (ImageButton) findViewById(R.id.inne);
+        ImageButton bOgrodnictwo = (ImageButton)findViewById(R.id.ogrodnictwo);
+
+        bHydraulika.setOnClickListener(this);
+        bOgrodnictwo.setOnClickListener(this);
+        bElektryka.setOnClickListener(this);
+        bNaprawaUrzadzen.setOnClickListener(this);
+        bPomocDomowa.setOnClickListener(this);
+        bRemonty.setOnClickListener(this);
+        bPomocNaukowa.setOnClickListener(this);
+        bOpieka.setOnClickListener(this);
+        bInne.setOnClickListener(this);
+    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -106,12 +125,40 @@ public class MainActivity extends AppCompatActivity
         Intent i = new Intent(this, CategoryList.class);
 
         switch (v.getId()) {
-            case R.id.H:
+            case R.id.hydraulika:
                 i.putExtra("Selected", "Hydraulik");
                 startActivity(i);
                 break;
-            case R.id.Pm:
-                i.putExtra("Selected", "Opieka do dzieci");
+            case R.id.elektryka:
+                i.putExtra("Selected", "Elektryka");
+                startActivity(i);
+                break;
+            case R.id.opieka:
+                i.putExtra("Selected", "Opieka");
+                startActivity(i);
+                break;
+            case R.id.pomocDomowa:
+                i.putExtra("Selected", "Pomoc domowa");
+                startActivity(i);
+                break;
+            case R.id.ogrodnictwo:
+                i.putExtra("Selected", "Ogrodnictwo");
+                startActivity(i);
+                break;
+            case R.id.remonty:
+                i.putExtra("Selected", "Remonty");
+                startActivity(i);
+                break;
+            case R.id.pomocNaukowa:
+                i.putExtra("Selected", "Pomoc naukowa");
+                startActivity(i);
+                break;
+            case R.id.naprawaUrzadzen:
+                i.putExtra("Selected", "Naprawa urządzeń");
+                startActivity(i);
+                break;
+            case R.id.inne:
+                i.putExtra("Selected", "Inne");
                 startActivity(i);
                 break;
         }

@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -140,7 +141,16 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(FirebaseAuth.getInstance().getCurrentUser() == null){
+                Intent i = new Intent(this, BackPressPop.class);
+                i.putExtra("temp", 0);
+                startActivity(i);
+            }else{
+                Intent i = new Intent(this, BackPressPop.class);
+                i.putExtra("temp", 1);
+                startActivity(i);
+            }
+
         }
     }
 

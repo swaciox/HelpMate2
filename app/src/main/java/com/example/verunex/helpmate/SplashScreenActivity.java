@@ -22,6 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+
         mImageView = (ImageView) findViewById(R.id.logoUp);
         mImageView2 = (ImageView) findViewById(R.id.dot);
 
@@ -40,6 +41,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                 if(mFirebaseAuth.getInstance().getCurrentUser() == null){
                     Intent i = new Intent(getBaseContext(), LoginActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                     finish();
                 }else{

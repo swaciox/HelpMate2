@@ -58,6 +58,7 @@
                 android:transformPivotY="0dp"
                 style="@style/RatingBar"
                 android:layout_alignParentTop="true"
+
                 />
 
             <TextView

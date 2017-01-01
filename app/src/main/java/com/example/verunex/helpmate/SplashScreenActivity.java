@@ -9,9 +9,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     private ImageView mImageView, mImageView2;
+    private FirebaseAuth mFirebaseAuth;
     private ProgressBar mProgressBar;
 
     @Override
@@ -34,9 +37,17 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent i = new Intent(getBaseContext(), LoginActivity.class);
-                startActivity(i);
-                finish();
+
+                if(mFirebaseAuth.getInstance().getCurrentUser() == null){
+                    Intent i = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    Intent i = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+
             }
 
             @Override

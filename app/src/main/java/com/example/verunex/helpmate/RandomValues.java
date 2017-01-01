@@ -26,7 +26,7 @@ public class RandomValues {
 
     public String randomCategory(){
         int number_category = mRandom.nextInt(8);
-        String[] categories = {"Opieka","Ogrodnictwo", "Pomoc domowa","Hydraulika","Remonty","Elektryka","Pomoc naukowa","Naprawa urządzeń","Inne"};
+        String[] categories = {"Opieka","Ogrodnictwo", "Pomoc_domowa","Hydraulika","Remonty","Elektryka","Pomoc_naukowa","Naprawa_urzadzen","Inne"};
         return categories[number_category];
     }
     public String randomImage(){

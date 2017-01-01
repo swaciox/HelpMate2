@@ -50,4 +50,9 @@
     <string name="services_gardening">Ogrodnictwo</string>
     <string name="category_text">Szukaj według kategorii</string>
 
+    <string-array name="spinner_simple_array">
+        <item>Ocena</item>
+        <item>Nazwa</item>
+    </string-array>
+
 </resources>

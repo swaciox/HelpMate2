@@ -43,6 +43,8 @@ public class SingleUserActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+       // String Id_key = getIntent().getExtras().getString("Id_key");
+
         String user_name = getIntent().getExtras().getString("user_name");
         String user_category =getIntent().getExtras().getString("user_category");
         String user_number = getIntent().getExtras().getString("user_number");

@@ -57,7 +57,7 @@ public class EditUserProfile extends Activity {
     private EditText user_name, user_number;
     private EditText user_address;
     private Button save, imageEdit;
-    private ImageView addrImageView;
+    private ImageView addrImageView, exitImageView;
 
     private Uri mImageUri;
 
@@ -93,6 +93,16 @@ public class EditUserProfile extends Activity {
         user_number = (EditText) findViewById(R.id.userPhoneEdit);
         save = (Button) findViewById(R.id.save);
         imageEdit = (Button) findViewById(R.id.userImageEdit);
+
+        exitImageView = (ImageView) findViewById(R.id.exitImageView);
+        exitImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
+        });
 
         Button categoriesChoiceButton = (Button) findViewById(R.id.categoriesChoiceButton);
         categoriesChoiceButton.setOnClickListener(new View.OnClickListener() {

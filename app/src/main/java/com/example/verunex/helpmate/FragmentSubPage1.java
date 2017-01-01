@@ -34,7 +34,7 @@ public class FragmentSubPage1 extends Fragment{
                              Bundle savedInstanceState) {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        cureent_user_id = mFirebaseAuth.getCurrentUser().getUid();
+        //cureent_user_id = mFirebaseAuth.getCurrentUser().getUid();
 
         View rootView = inflater.inflate(R.layout.fragment_sub_page1, container, false);
 

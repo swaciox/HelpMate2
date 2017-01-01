@@ -11,14 +11,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+
+    private FirebaseAuth mFirebaseAuth;
+    private NavigationView mNavigationView;
+    private DatabaseReference mDatabaseReference;
+    private TextView mName;
+    private ImageView mImageView;
+    String id_cur = "";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,18 +46,68 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         initControl();
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            id_cur = "null";
+        }else {
+            id_cur = mFirebaseAuth.getCurrentUser().getUid();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        }
+        Log.v ("Id_MainActivity", id_cur);
 
+        if (!id_cur.equals("null")){
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
+
+            mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+            mNavigationView.setNavigationItemSelectedListener(this);
+
+            View header = mNavigationView.getHeaderView(0);
+
+            mName = (TextView)header.findViewById(R.id.nav_name);
+            mImageView = (ImageView)header.findViewById(R.id.imageuser);
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+
+        }else{
+            String id_key = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
+
+            mDatabaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String name = dataSnapshot.child("name").getValue().toString();
+
+                    mName.setText(name);
+
+                    String user_image_uri = dataSnapshot.child("user_image").getValue(String.class);
+                    if(user_image_uri.isEmpty()){
+
+                    }else{
+                        Picasso.with(getBaseContext()).load(user_image_uri).into(mImageView);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }
     }
 
     public void initControl (){
@@ -110,7 +180,11 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this, UserFavouriteActivity.class);
             startActivity(i);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
 
         }
 
@@ -123,10 +197,11 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v) {
 
         Intent i = new Intent(this, CategoryList.class);
+        //i.putExtra("Id_key", id_cur);
 
         switch (v.getId()) {
             case R.id.hydraulika:
-                i.putExtra("Selected", "Hydraulik");
+                i.putExtra("Selected", "Hydraulika");
                 startActivity(i);
                 break;
             case R.id.elektryka:
@@ -138,7 +213,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(i);
                 break;
             case R.id.pomocDomowa:
-                i.putExtra("Selected", "Pomoc domowa");
+                i.putExtra("Selected", "Pomoc_domowa");
                 startActivity(i);
                 break;
             case R.id.ogrodnictwo:
@@ -150,11 +225,11 @@ public class MainActivity extends AppCompatActivity
                 startActivity(i);
                 break;
             case R.id.pomocNaukowa:
-                i.putExtra("Selected", "Pomoc naukowa");
+                i.putExtra("Selected", "Pomoc_naukowa");
                 startActivity(i);
                 break;
             case R.id.naprawaUrzadzen:
-                i.putExtra("Selected", "Naprawa urządzeń");
+                i.putExtra("Selected", "Naprawa_urzadzen");
                 startActivity(i);
                 break;
             case R.id.inne:

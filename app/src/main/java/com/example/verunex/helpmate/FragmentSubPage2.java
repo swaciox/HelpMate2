@@ -40,6 +40,8 @@ public class FragmentSubPage2 extends Fragment {
     private RecyclerView mCommentList;
     private Button addComment;
 
+    String id_key;
+
 
     float temp = 0;
 
@@ -60,7 +62,12 @@ public class FragmentSubPage2 extends Fragment {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        final String id_key = mFirebaseAuth.getCurrentUser().getUid();
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            addComment.setVisibility(View.INVISIBLE);
+        }else {
+            id_key = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            addComment.setVisibility(View.VISIBLE);
+        }
 
         //retrieve data
         final String id_position = this.getArguments().getString("id_position");
@@ -92,7 +99,6 @@ public class FragmentSubPage2 extends Fragment {
                 viewHolder.setRate(model.getRate());
 
                 String rate = model.getRate();
-
                 String comment_id = model.getUser_id();
 
                 if (comment_id.equals(id_key)){
@@ -107,10 +113,10 @@ public class FragmentSubPage2 extends Fragment {
                         }
                     });
                 }else{
-                    addComment.setVisibility(View.VISIBLE);
+                    //addComment.setVisibility(View.VISIBLE);
                 }
-
-
+                temp = temp + Float.parseFloat(rate);
+                Log.v("temp ", String.valueOf(temp));
 
             }
         };

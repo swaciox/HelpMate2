@@ -47,7 +47,9 @@
             android:textColor="@color/colorTextPrimary"
             android:layout_weight="1"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imageLock" />
+            android:layout_toEndOf="@+id/imageLock"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
 
         <EditText
             android:layout_width="310dp"
@@ -66,7 +68,6 @@
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
-
             android:id="@+id/facebook"
             android:layout_marginStart="14dp"
             android:layout_below="@+id/registerPassword"
@@ -75,7 +76,6 @@
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
-
             android:id="@+id/google"
             android:layout_marginEnd="17dp"
             android:layout_below="@+id/registerPassword"

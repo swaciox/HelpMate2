@@ -1,16 +1,11 @@
 package com.example.verunex.helpmate;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class CategoriesChoice extends AppCompatActivity {
 
@@ -23,11 +18,11 @@ public class CategoriesChoice extends AppCompatActivity {
         setContentView(R.layout.activity_categories_choice);
 
         choice1 = (CheckBox)findViewById(R.id.choice1);
-        choice2 = (CheckBox)findViewById(R.id.choice2);
-        choice3 = (CheckBox)findViewById(R.id.choice3);
-        choice4 = (CheckBox)findViewById(R.id.choice4);
+        choice2 = (CheckBox)findViewById(R.id.naprawaWyciekow);
+        choice3 = (CheckBox)findViewById(R.id.wymianaArmatury);
+        choice4 = (CheckBox)findViewById(R.id.instalacjeElektryczne);
         choice5 = (CheckBox)findViewById(R.id.choice5);
-        choice6 = (CheckBox)findViewById(R.id.choice6);
+        choice6 = (CheckBox)findViewById(R.id.naprawaAwaryjna);
 
         final CheckBox[] checkBoxes = {choice1,choice2,choice3,choice4,choice5,choice6};
 

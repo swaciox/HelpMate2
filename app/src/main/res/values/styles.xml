@@ -26,7 +26,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="RatingBar" parent="android:style/Widget.Material.RatingBar.Small">
-        <item name="colorControlNormal">@color/colorLines</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
         <item name="colorControlActivated">@color/colorButtonBackground</item>
     </style>
 

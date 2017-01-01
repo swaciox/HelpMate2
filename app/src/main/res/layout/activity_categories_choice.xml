@@ -186,16 +186,17 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/opieka_zwierzęta"
-            android:id="@+id/opiekaZwierzeta"
+            android:text="@string/opieka_niepelnosprawni"
+            android:id="@+id/opiekaNiepelnosprawni"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
+
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/opieka_niepelnosprawni"
-            android:id="@+id/opiekaNiepelnosprawni"
+            android:text="@string/opieka_zwierzęta"
+            android:id="@+id/opiekaZwierzeta"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 

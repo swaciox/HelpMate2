@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity
         ImageButton bRemonty = (ImageButton) findViewById(R.id.remonty);
         ImageButton bPomocNaukowa = (ImageButton) findViewById(R.id.pomocNaukowa);
         ImageButton bOpieka = (ImageButton) findViewById(R.id.opieka);
-        ImageButton bInne = (ImageButton) findViewById(R.id.inne);
         ImageButton bOgrodnictwo = (ImageButton)findViewById(R.id.ogrodnictwo);
 
         bHydraulika.setOnClickListener(this);
@@ -129,7 +128,6 @@ public class MainActivity extends AppCompatActivity
         bRemonty.setOnClickListener(this);
         bPomocNaukowa.setOnClickListener(this);
         bOpieka.setOnClickListener(this);
-        bInne.setOnClickListener(this);
     }
 
 
@@ -230,10 +228,6 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.naprawaUrzadzen:
                 i.putExtra("Selected", "Naprawa_urzadzen");
-                startActivity(i);
-                break;
-            case R.id.inne:
-                i.putExtra("Selected", "Inne");
                 startActivity(i);
                 break;
         }

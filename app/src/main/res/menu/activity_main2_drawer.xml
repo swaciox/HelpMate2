@@ -10,19 +10,11 @@
             android:id="@+id/user_favorite"
             android:icon="@drawable/ic_like"
             android:title="Ulubione" />
-    </group>
 
-    <item android:title="Ustawienia">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Wyloguj" />
-        </menu>
-    </item>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Wyloguj się" />
+    </group>
 
 </menu>

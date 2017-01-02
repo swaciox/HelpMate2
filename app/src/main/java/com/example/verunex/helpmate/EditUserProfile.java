@@ -63,6 +63,7 @@ public class EditUserProfile extends Activity {
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
+    private DatabaseReference mCategoriesChoice;
     private StorageReference mStorageReference;
 
     private DatabaseReference mOldData;
@@ -72,6 +73,8 @@ public class EditUserProfile extends Activity {
     private RequestQueue mRequestQueue;
 
     private LocationManager locationManager;
+
+    String rText="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,11 @@ public class EditUserProfile extends Activity {
         ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);
         mListView.setAdapter(listAdapter);
         */
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
+        String id = mFirebaseAuth.getCurrentUser().getUid();
+
 
         userChoice = (TextView)findViewById(R.id.userChoiceCat);
 
@@ -109,9 +117,16 @@ public class EditUserProfile extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), CategoriesChoice.class);
-                startActivityForResult(i,3);
+                //startActivityForResult(i,3);
+                startActivity(i);
             }
         });
+
+        // pobranie wybranych kategorii
+
+        mCategoriesChoice = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id).child("categories");
+
+
         //
         user_address = (EditText)findViewById(R.id.userAddressEdit);
 
@@ -188,10 +203,6 @@ public class EditUserProfile extends Activity {
             }
         });
 
-
-        mFirebaseAuth = FirebaseAuth.getInstance();
-
-        String id = mFirebaseAuth.getCurrentUser().getUid();
 
         mOldData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id);
 
@@ -273,9 +284,9 @@ public class EditUserProfile extends Activity {
 
         Uri imageUri = data.getData();
 
-        String allChoice = "";
+        //String allChoice = "";
 
-        if (requestCode == 3) {
+        /*if (requestCode == 3) {
             if (resultCode == 2) {
                 String dataCheckboxTexts[] = data.getStringArrayExtra("dataCheckBoxTexts");
                 for(int i = 0; i<6; i++){
@@ -289,9 +300,7 @@ public class EditUserProfile extends Activity {
                 userChoice.setText(allChoice);
 
             }
-        }
-
-
+        }*/
             if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
             CropImage.activity(imageUri)
                     .setGuidelines(CropImageView.Guidelines.ON)
@@ -311,6 +320,50 @@ public class EditUserProfile extends Activity {
                 Exception error = result.getError();
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        rText = "";
+
+        mCategoriesChoice.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(int i = 0; i<23; i++){
+
+                    String temp = "sub"+(i+1);
+                    String state = dataSnapshot.child(temp).child("state").getValue().toString();
+                    if(state.equals("true")){
+                        String desc = dataSnapshot.child(temp).child("description").getValue().toString();
+                        rText =rText +" - " + desc+"\n";
+                        Log.v ("tekst na "+temp , rText);
+                    }else{
+                        String desc = " ";
+
+                    }
+                }
+                Log.v ("Tekst long" , rText);
+                userChoice.setText(rText);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
     }
 
     @Override

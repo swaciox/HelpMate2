@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class RegisterSubPage extends Fragment implements View.OnClickListener{
@@ -108,6 +109,16 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                                 curent_user.child("number").setValue("");
                                 curent_user.child("user_image").setValue("");
                                 curent_user.child("email").setValue(email);
+
+                                for (int i = 1; i <=23; i++){
+                                    String temp = "sub"+i;
+                                    curent_user.child("categories").child(temp).child("state").setValue("false");
+
+                                    String desc = mRandomValues.subcategoriesDes(i-1);
+                                    curent_user.child("categories").child(temp).child("description").setValue(desc);
+
+                                }
+
                                /*
                                 curent_user.child("user_id").setValue(id_key);
                                 curent_user.child("email").setValue(email);
@@ -136,7 +147,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
         }
 
-    }
+}
 
 
 

@@ -52,5 +52,36 @@ public class RandomValues {
         String [] rates = {"2.0f", "1.0f", "2.5f", "4.3f", "4.8f", "3.5f", "3.0f"};
         return rates[number_raiting];
     }
+
+    public String subcategoriesDes(int n){
+
+        String [] subCategories = {
+                "naprawa wycieków",
+                "wymiana armatury",
+                "instalacje elektryczne",
+                "naprawa awaryjna",
+                "sprzątanie",
+                "prasowanie",
+                "mycie okien",
+                "opieka do dzieci",
+                "opieka do osób starszych",
+                "opieka dzieci i osób niepełnosprawnych",
+                "wyprowadzanie zwierząt",
+                "korepetycje",
+                "koszenie trawy",
+                "prace porządkowe",
+                "pielęgnacja ogrodu",
+                "naprawa drobnego AGD",
+                "naprawa AGD",
+                "naprawa RTV",
+                "naprawa komputerów/laptopów",
+                "malowanie",
+                "tapetowanie",
+                "kładzenie kafelek",
+                "kładzenie paneli podłogowych"
+        };
+
+        return subCategories[n];
+    }
 }
 

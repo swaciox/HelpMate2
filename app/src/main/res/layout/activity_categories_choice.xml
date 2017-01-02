@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hydraulika_naprawa"
-            android:id="@+id/naprawaWyciekow"
+            android:id="@+id/sub1"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -44,19 +44,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hydraulika_wymiana"
-            android:id="@+id/wymianaArmatury"
+            android:id="@+id/sub2"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="choice1"
-            android:id="@+id/choice1"
-            android:button="@null"
-            android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
     </LinearLayout>
 
     <LinearLayout
@@ -81,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/elektryka_instalacje"
-            android:id="@+id/instalacjeElektryczne"
+            android:id="@+id/sub3"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -89,18 +80,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/elektryka_naprawa"
-            android:id="@+id/naprawaAwaryjna"
+            android:id="@+id/sub4"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="choice2"
-            android:id="@+id/choice5"
-            android:button="@null"
-            android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
-            android:layout_alignParentStart="true" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -125,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/domowe_sprzatanie"
-            android:id="@+id/sprzatanie"
+            android:id="@+id/sub5"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -133,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/domowe_prasowanie"
-            android:id="@+id/prasowanie"
+            android:id="@+id/sub6"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -141,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/domowe_mycie_okien"
-            android:id="@+id/mycieOkien"
+            android:id="@+id/sub7"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
             android:layout_alignParentStart="true" />
@@ -171,7 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/opieka_dzieci"
-            android:id="@+id/opiekaDzieci"
+            android:id="@+id/sub8"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple" />
 
@@ -179,7 +162,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/opieka_starsi"
-            android:id="@+id/opiekaStarsi"
+            android:id="@+id/sub9"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple" />
 
@@ -187,7 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/opieka_niepelnosprawni"
-            android:id="@+id/opiekaNiepelnosprawni"
+            android:id="@+id/sub10"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -196,7 +179,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/opieka_zwierzęta"
-            android:id="@+id/opiekaZwierzeta"
+            android:id="@+id/sub11"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -225,7 +208,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/naukowa_korepetycje"
-            android:id="@+id/naukowaKorepetycje"
+            android:id="@+id/sub12"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
             />
@@ -255,7 +238,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ogrodnictwo_koszenie"
-            android:id="@+id/ogrodnictwoKoszenie"
+            android:id="@+id/sub13"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
             />
@@ -263,7 +246,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ogrodnictwo_porzadkowe"
-            android:id="@+id/ogrodnictwoPorzadkowe"
+            android:id="@+id/sub14"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
             />
@@ -272,7 +255,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ogrodnictwo_pielegnacja"
-            android:id="@+id/ogrodnictwoPielegnacja"
+            android:id="@+id/sub15"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple" />
 
@@ -301,7 +284,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/naprawa_drobne_agd"
-            android:id="@+id/naprawaDrobne"
+            android:id="@+id/sub16"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -309,7 +292,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/naprawa_agd"
-            android:id="@+id/naprawaAGD"
+            android:id="@+id/sub17"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -317,7 +300,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/naprawa_rtv"
-            android:id="@+id/naprawaRTV"
+            android:id="@+id/sub18"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -325,7 +308,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/naprawa_komputerow"
-            android:id="@+id/naprawaKomputerow"
+            android:id="@+id/sub19"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -354,7 +337,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/remonty_malowanie"
-            android:id="@+id/remontyMalowanie"
+            android:id="@+id/sub20"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -362,7 +345,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/remonty_tapetowanie"
-            android:id="@+id/remontyTapetowanie"
+            android:id="@+id/sub21"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -370,7 +353,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/remonty_kafelki"
-            android:id="@+id/remontyKafelki"
+            android:id="@+id/sub22"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 
@@ -378,7 +361,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/remonty_panele"
-            android:id="@+id/remontyPanele"
+            android:id="@+id/sub23"
             android:button="@null"
             android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"/>
 

@@ -11,8 +11,9 @@
     <color name="colorTextPrimary">#212121</color>
     <color name="colorLines">#ee5050</color>
     <color name="colorGrey">#a8a8a8</color>
+    <color name="colorMediumGrey">#e5e5e5</color>
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="colorLightGrey">#e9e9e9</color>
+    <color name="reallyLightGrey">#FFF5F5F5</color>
     <color name="colorTransparency">#00000000</color>
-    <color name="lightGrey">#FFF5F5F5</color>
 </resources>

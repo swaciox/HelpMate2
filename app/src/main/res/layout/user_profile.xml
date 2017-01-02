@@ -2,161 +2,168 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:gravity="center|top"
-        android:background="@android:drawable/screen_background_light"
-        >
-
-        <ImageView
-            android:layout_marginTop="10dp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/person"
-            android:id="@+id/userImage"
-            android:layout_marginBottom="10dp"
-            android:background="@color/colorTransparent"
-            />
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@android:drawable/picture_frame"
-            android:id="@+id/linearName">
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:gravity="center|top"
+            android:background="@android:drawable/screen_background_light"
+            >
 
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/person"
+                android:id="@+id/userImage"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorTransparent"
+                />
 
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/userName"
-                    android:textAlignment="center"
-                    android:textSize="18dp"
-                    android:clickable="false"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/user_name"
-                    android:gravity="center_horizontal|bottom"
-                    android:textSize="11dp"
-                    />
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@android:drawable/picture_frame"
-            android:id="@+id/linearAddress">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/userAddress"
-                    android:textAlignment="center"
-                    android:textSize="18dp"
-                    android:clickable="false" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/user_address"
-                    android:gravity="center_horizontal|bottom"
-                    android:textSize="11dp"
-                    />
-
-        </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@android:drawable/picture_frame"
-            android:id="@+id/linearPhoneNumber">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/userPhone"
-                    android:textAlignment="center"
-                    android:textSize="18dp"
-                    android:clickable="false" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/phone_number"
-                    android:gravity="center_horizontal|bottom"
-                    android:textSize="11dp"
-                    />
-
-             </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@android:drawable/picture_frame"
-            android:id="@+id/linearServices"
-            android:orientation="horizontal">
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/user_category"
-                android:textAlignment="center"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:drawable/picture_frame"
+                android:id="@+id/linearName">
+
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/userName"
+                        android:textAlignment="center"
+                        android:textSize="18dp"
+                        android:clickable="false"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/user_name"
+                        android:gravity="center_horizontal|bottom"
+                        android:textSize="11dp"
+                        />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:drawable/picture_frame"
+                android:id="@+id/linearAddress">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/userAddress"
+                        android:textAlignment="center"
+                        android:textSize="18dp"
+                        android:clickable="false" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/user_address"
+                        android:gravity="center_horizontal|bottom"
+                        android:textSize="11dp"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:drawable/picture_frame"
+                android:id="@+id/linearPhoneNumber">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/userPhone"
+                        android:textAlignment="center"
+                        android:textSize="18dp"
+                        android:clickable="false" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/phone_number"
+                        android:gravity="center_horizontal|bottom"
+                        android:textSize="11dp"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:drawable/picture_frame"
+                android:id="@+id/linearServices"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_category"
+                    android:textAlignment="center"
+                    android:textSize="18dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/user_category_all"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonEdit"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/button_rounded_corners"
+                android:text="@string/user_edit_button"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/cardview_light_background"
                 android:textSize="18dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/user_category_all"
-                android:textAlignment="center" />
-
         </LinearLayout>
 
-        <Button
-            android:layout_width="160dp"
-            android:layout_height="40dp"
-            android:id="@+id/buttonEdit"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_rounded_corners"
-            android:text="@string/user_edit_button"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="18dp"/>
-   </LinearLayout>
+    </ScrollView>
+
 
 
 </LinearLayout>

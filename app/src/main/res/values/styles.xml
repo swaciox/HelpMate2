@@ -30,5 +30,5 @@
         <item name="colorControlActivated">@color/colorButtonBackground</item>
     </style>
 
-
+    <style name="ListView" parent="Base.Widget.AppCompat.ListView.DropDown"></style>
 </resources>

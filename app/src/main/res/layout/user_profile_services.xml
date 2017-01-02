@@ -93,7 +93,8 @@
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="2dip"
-                        android:background="@color/lightGrey" />
+                        android:background="@color/colorMediumGrey"
+                        android:layout_margin="1dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -129,7 +130,8 @@
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="2dip"
-                        android:background="@color/lightGrey" />
+                        android:background="@color/colorMediumGrey"
+                        android:layout_margin="1dp"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -216,7 +218,8 @@
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="2dip"
-                        android:background="@color/lightGrey" />
+                        android:background="@color/colorMediumGrey"
+                        android:layout_margin="1dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -253,7 +256,8 @@
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="2dip"
-                        android:background="@color/lightGrey" />
+                        android:background="@color/colorMediumGrey"
+                        android:layout_margin="1dp"/>
 
 
                     <Button
@@ -264,36 +268,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/terminsUser">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/termins"
-                        android:textStyle="bold"
-                        android:textAllCaps="true"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        />
-                    <View
-                        android:layout_width="fill_parent"
-                        android:layout_height="2dip"
-                        android:background="@color/lightGrey" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="tu będzie terminarz"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/user_image_edit"
-                        android:layout_gravity="end"/>
-
-                </LinearLayout>
             </LinearLayout>
 
 

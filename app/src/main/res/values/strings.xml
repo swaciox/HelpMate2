@@ -28,7 +28,7 @@
     <string name="user_address">Adres</string>
     <string name="phone_number">Numer telefonu</string>
     <string name="user_category">Usługi, które oferujesz:</string>
-    <string name="user_category_all">Kategorie usług</string>
+    <string name="user_category_all">Oferowane usługi</string>
     <string name="user_edit_button">Edytuj profil</string>
     <string name="user_image_edit">Edytuj</string>
     <string name="user_name_edit">Imię i nazwisko</string>
@@ -95,6 +95,53 @@
         <item>Ocena</item>
         <item>Nazwa</item>
     </string-array>
-
+    <string name="monday">Poniedziałek</string>
+    <string name="tueasday">Wtorek</string>
+    <string name="wednesday">Środa</string>
+    <string name="tuesday">Czwartek</string>
+    <string name="friday">Piątek</string>
+    <string name="saturday">Sobota</string>
+    <string name="sunday">Niedziela</string>
+    <string name="from">Od: </string>
+    <string name="to"> do: </string>
+    <string-array name="hydraulika">
+        <item>Naprawa wycieków</item>
+        <item>Wymiana armatury</item>
+    </string-array>
+    <string-array name="elektryka">
+        <item>Instalacje elektryczne</item>
+        <item>Naprawa awaryjna</item>
+    </string-array>
+    <string-array name="pomoc_domowa">
+        <item>Sprzątanie</item>
+        <item>Prasowanie</item>
+        <item>Mycie okien</item>
+    </string-array>
+    <string-array name="opieka">
+        <item>Opieka do dzieci</item>
+        <item>Opieka do osób starszych</item>
+        <item>Opieka dzieci i osób niepełnosprawnych</item>
+        <item>Wyprowadzanie zwierząt</item>
+    </string-array>
+    <string-array name="pomoc_naukowa">
+        <item>Korepetycje</item>
+    </string-array>
+    <string-array name="ogrodnictwo">
+        <item>Pielęgnacja ogrodu</item>
+        <item>Koszenie trawy</item>
+        <item>Prace porządkowe</item>
+    </string-array>
+    <string-array name="naprawa_urzadzen">
+        <item>Naprawa drobnego AGD</item>
+        <item>Naprawa AGD</item>
+        <item>Naprawa RTV</item>
+        <item>Naprawa komputerów/laptopów</item>
+    </string-array>
+    <string-array name="remonty">
+        <item>Malowanie</item>
+        <item>Tapetowanie</item>
+        <item>Kładzenie kafelek</item>
+        <item>Kładzenie paneli podłogowych</item>
+    </string-array>
 
 </resources>

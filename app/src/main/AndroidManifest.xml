@@ -14,14 +14,20 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:screenOrientation="portrait"
+        >
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
+            android:theme="@style/Base.Theme.AppCompat"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".SplashScreenActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,46 +37,66 @@
         <activity
             android:name=".LoginActivity"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".ForgetPasswordPop"
-            android:theme="@style/AppTheme.PopTheme" />
+            android:theme="@style/AppTheme.PopTheme"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".SingleUserActivity"
-            android:label="" />
+            android:label=""
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".MainActivity"
             android:label="Wybierz kategorię"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            >
+        </activity>
         <activity
             android:name=".CategoryList"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".UserProfileActivity"
-            android:label="Profil" />
+            android:label="Profil"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".EditProfilePop"
             android:label=""
-            android:theme="@style/AppTheme.PopTheme" />
-        <activity
-            android:name=".ServiceProviderPop"
+            android:theme="@style/AppTheme.PopTheme"
+            android:screenOrientation="portrait"
+
+            />
+        <activity android:name=".BackPressPop"
             android:label=""
-            android:theme="@style/AppTheme.PopTheme" />
-        <activity
-            android:name=".BackPressPop"
-            android:label=""
-            android:theme="@style/AppTheme.PopTheme" />
+            android:theme="@style/AppTheme.PopTheme"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".UserFavouriteActivity"
-            android:label="Polubieni usługodawcy" />
+            android:label="Polubieni usługodawcy"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".AddCommentPop"
             android:theme="@style/AppTheme.PopTheme"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
+
+            />
         <activity
             android:name=".EditUserProfile"
-            android:label="Edycja profilu" />
+            android:label="Edycja profilu"
+            android:screenOrientation="portrait"
+            />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -85,11 +111,25 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".CategoriesChoice"
-            android:label="Kategorie świadczonych usług"></activity>
-        <activity android:name=".ServiceUserProfile"></activity>
+            android:label="Kategorie świadczonych usług"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity android:name=".ServiceUserProfile"
+                android:label="Profil wykonawcy"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ServiceProviderPop"
+            android:theme="@style/AppTheme.PopTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
+            />
+
     </application>
+
 
 </manifest>

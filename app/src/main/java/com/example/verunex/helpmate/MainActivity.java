@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     public void initControl (){
         ImageButton bHydraulika = (ImageButton) findViewById(R.id.hydraulika);
         ImageButton bElektryka = (ImageButton) findViewById(R.id.elektryka);

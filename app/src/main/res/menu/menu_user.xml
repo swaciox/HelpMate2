@@ -16,12 +16,16 @@
             android:icon="@drawable/ic_logout"
             android:title="Wyloguj się" />
     </group>
-    <item android:title="Tutaj będzie tytuł">
+    <item android:title="Opcje wykonawcy">
         <menu>
             <item
                 android:id="@+id/userServices"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Zostań wykonawcą" />
+                android:title="Profil" />
+            <item
+                android:id="@+id/userComment"
+                android:icon="@drawable/ic_mail_outline"
+                android:title="Komentarze" />
         </menu>
     </item>
 

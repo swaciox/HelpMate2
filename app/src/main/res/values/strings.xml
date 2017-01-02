@@ -28,7 +28,7 @@
     <string name="user_address">Adres</string>
     <string name="phone_number">Numer telefonu</string>
     <string name="user_category">Usługi, które oferujesz:</string>
-    <string name="user_category_all">Tutaj znajdują się Twoje wszystkie kategorie</string>
+    <string name="user_category_all">Kategorie usług</string>
     <string name="user_edit_button">Edytuj profil</string>
     <string name="user_image_edit">Edytuj</string>
     <string name="user_name_edit">Imię i nazwisko</string>
@@ -85,10 +85,16 @@
     <string name="imie_nazwisko"></string>
     <string name="dodaj_usun_uslugi">Dodaj/usuń usługi</string>
     <string name="oferowane_uslugi">Oferowane usługi:</string>
-
+    <string name="sort">Sortuj według: </string>
+    <string name="about_me">O mnie</string>
+    <string name="contact">Kontakt</string>
+    <string name="user_decription">Opis</string>
+    <string name="location">Lokalizacja</string>
+    <string name="termins">Terminarz</string>
     <string-array name="spinner_simple_array">
         <item>Ocena</item>
         <item>Nazwa</item>
     </string-array>
+
 
 </resources>

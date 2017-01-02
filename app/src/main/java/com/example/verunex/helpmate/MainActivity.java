@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
 
-        Intent i = new Intent(this, CategoryList.class);
+        Intent i = new Intent(this, SubCategoryPop.class);
         //i.putExtra("Id_key", id_cur);
 
         switch (v.getId()) {

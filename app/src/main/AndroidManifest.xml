@@ -128,6 +128,11 @@
             android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".SubCategoryPop"
+            android:theme="@style/AppTheme.PopTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
+            />
 
     </application>
 

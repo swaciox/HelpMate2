@@ -85,12 +85,17 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
         mSpinner.setOnItemSelectedListener(this);
 
 
-        String selected = getIntent().getStringExtra("Selected");
-        Log.v("Selected", selected);
+        String category = getIntent().getStringExtra("Category");
+        String subcategory = getIntent().getStringExtra("Subcategory");
+        Log.v("Kategoria ", category);
+        Log.v("Sybkategori ", subcategory);
+
+        setTitle(subcategory);
+
         //
 
         //Firebase
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(selected);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(category);
         mQuery =  mDatabaseReference.orderByChild("rate").startAt("5.0f").endAt("1.0f");
 
 

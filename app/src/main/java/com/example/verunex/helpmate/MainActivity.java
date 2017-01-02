@@ -36,10 +36,11 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mFirebaseAuth;
     private NavigationView mNavigationView;
     private DatabaseReference mDatabaseReference;
+    private DatabaseReference checkserviceuser;
     private TextView mName;
     private ImageView mImageView;
     String id_cur = "";
-
+    String choice = "false";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,9 +54,12 @@ public class MainActivity extends AppCompatActivity
             id_cur = "null";
         }else {
             id_cur = mFirebaseAuth.getCurrentUser().getUid();
-
         }
         Log.v ("Id_MainActivity", id_cur);
+
+
+        String checkS = choice;
+        Log.v ("Wartosc check ", checkS);
 
         if (!id_cur.equals("null")){
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -67,6 +71,33 @@ public class MainActivity extends AppCompatActivity
             toggle.syncState();
 
             mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+
+            checkserviceuser = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_cur);
+
+            checkserviceuser.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    choice = (String) dataSnapshot.child("service_state").getValue().toString();
+
+                    Log.v ("Wartosc choice ", choice);
+
+                    if(choice.equals("true")){
+                        Log.v ("Tu moze ", "moze");
+                        mNavigationView.getMenu().findItem(R.id.nav_userServices).setVisible(false);
+                        mNavigationView.getMenu().findItem(R.id.group_item_profile_services).setVisible(true);
+                    }else{
+                        mNavigationView.getMenu().findItem(R.id.nav_userServices).setVisible(true);
+                        mNavigationView.getMenu().findItem(R.id.group_item_profile_services).setVisible(false);
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
             mNavigationView.setNavigationItemSelectedListener(this);
 
             View header = mNavigationView.getHeaderView(0);
@@ -74,12 +105,6 @@ public class MainActivity extends AppCompatActivity
             mName = (TextView)header.findViewById(R.id.nav_name);
             mImageView = (ImageView)header.findViewById(R.id.imageuser);
         }
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
 
@@ -109,6 +134,49 @@ public class MainActivity extends AppCompatActivity
             });
 
         }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+       /* checkserviceuser = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_cur);
+
+        checkserviceuser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                choice = (String) dataSnapshot.child("service_state").getValue().toString();
+
+                Log.v ("Wartosc choice ", choice);
+
+                if(choice.equals("true")){
+                    Log.v("Bylem tu ", "ol yaaa");
+                    mNavigationView.getMenu().findItem(R.id.nav_userServices).setVisible(false);
+                    mNavigationView.getMenu().findItem(R.id.group_item_profile_services).setVisible(true);
+                }else{
+                    mNavigationView.getMenu().findItem(R.id.nav_userServices).setVisible(true);
+                    mNavigationView.getMenu().findItem(R.id.group_item_profile_services).setVisible(false);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mNavigationView.setNavigationItemSelectedListener(this);
+*/
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
     }
 
     public void initControl (){
@@ -194,6 +262,12 @@ public class MainActivity extends AppCompatActivity
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
 
+        } else if (id == R.id.nav_userServices){
+            Intent intent = new Intent(getApplicationContext(), ServiceProviderPop.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_userProfileServices){
+            Intent intent = new Intent(getApplicationContext(), ServiceUserProfile.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

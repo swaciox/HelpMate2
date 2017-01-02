@@ -109,6 +109,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                                 curent_user.child("number").setValue("");
                                 curent_user.child("user_image").setValue("");
                                 curent_user.child("email").setValue(email);
+                                curent_user.child("service_state").setValue("false");
 
                                 for (int i = 1; i <=23; i++){
                                     String temp = "sub"+i;

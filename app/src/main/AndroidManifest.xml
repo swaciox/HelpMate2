@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.verunex.helpmate">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -59,7 +60,7 @@
         </activity>
         <activity
             android:name=".CategoryList"
-            android:label=""
+            android:label="Wybierz kategorię"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"
             />
@@ -129,10 +130,9 @@
             android:screenOrientation="portrait"
             />
         <activity android:name=".SubCategoryPop"
-            android:theme="@style/AppTheme.PopTheme"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
 
     </application>
 

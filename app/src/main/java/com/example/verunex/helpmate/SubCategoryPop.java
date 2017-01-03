@@ -82,7 +82,7 @@ public class SubCategoryPop extends Activity {
 
         mListView.setAdapter(new ArrayAdapter<String>(
                 getApplicationContext(),
-                android.R.layout.simple_list_item_1,
+                R.layout.single_listview,
                 categories));
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

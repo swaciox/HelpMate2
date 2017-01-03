@@ -57,14 +57,22 @@ public class SubCategoryPop extends Activity {
 
         String temp = "";
 
-        if (selected.equals("Naprawa_urzadzen")){
+        if (selected.equals("naprawa_urzadzen")){
             temp = "Naprawa urządzeń";
-        } else if (selected.equals("Pomoc_domowa")) {
+        } else if (selected.equals("pomoc_domowa")) {
             temp = "Pomoc domowa";
-        } else if (selected.equals("Pomoc_naukowa")){
+        } else if (selected.equals("pomoc_naukowa")){
             temp = "Pomoc naukowa";
-        } else {
-            temp = selected;
+        } else if (selected.equals("elektryka")){
+            temp = "Elektryka";
+        } else if (selected.equals("hydraulika")){
+            temp = "Hydraulika";
+        } else if (selected.equals("opieka")){
+            temp = "Opieka";
+        } else if (selected.equals("ogrodnictwo")){
+            temp = "Ogrodnictwo";
+        } else if (selected.equals("remonty")){
+            temp = "Remonty";
         }
 
         mListView = (ListView) findViewById(R.id.listOfSubcategory);
@@ -81,11 +89,60 @@ public class SubCategoryPop extends Activity {
             public void onItemClick(AdapterView<?> parent, View v, int pos,   long id) {
 
                 String item = (String) parent.getItemAtPosition(pos);
+                String temp = "";
 
-                Log.v ("Item" , item);
+                if (item.equals("Naprawa wycieków")){
+                    temp = "naprawa_wyciekow";
+                } else if (item.equals("Wymiana armatury")) {
+                    temp = "wymiana_armatury";
+                } else if (item.equals("Instalacje elektryczne")){
+                    temp = "instalacje_elektryczne";
+                } else if (item.equals("Naprawa awaryjna")){
+                    temp = "naprawa_awaryjna";
+                } else if (item.equals("Sprzątanie")){
+                    temp = "sprzatanie";
+                } else if (item.equals("Prasowanie")){
+                    temp = "prasowanie";
+                } else if (item.equals("Mycie okien")){
+                    temp = "mycie_okien";
+                } else if (item.equals("Opieka do dzieci")) {
+                    temp = "opieka_do_dzieci";
+                } else if (item.equals("Opieka do osób starszych")) {
+                    temp = "opieka_do_osob_starszych";
+                } else if (item.equals("Opieka dzieci i osób niepełnosprawnych")) {
+                    temp = "opieka_dzieci_i_osob_niepelnosprawnych";
+                } else if (item.equals("Wyprowadzanie zwierząt")) {
+                    temp = "wyprowadzanie_zwierzat";
+                } else if (item.equals("Korepetycje")) {
+                    temp = "korepetycje";
+                } else if (item.equals("Koszenie trawy")) {
+                    temp = "koszenie_trawy";
+                } else if (item.equals("Prace porządkowe")) {
+                    temp = "prace_porzadkowe";
+                } else if (item.equals("Pielęgnacja ogrodu")) {
+                    temp = "pielegnacja_ogrodu";
+                } else if (item.equals("Naprawa drobnego AGD")) {
+                    temp = "naprawa_drobnego_AGD";
+                } else if (item.equals("Naprawa AGD")) {
+                    temp = "naprawa_AGD";
+                } else if (item.equals("Naprawa RTV")) {
+                    temp = "naprawa_RTV";
+                } else if (item.equals("Naprawa komputerów/laptopów")) {
+                    temp = "naprawa_komputerow_laptopow";
+                } else if (item.equals("Malowanie")) {
+                    temp = "malowanie";
+                } else if (item.equals("Tapetowanie")) {
+                    temp = "tapetowanie";
+                } else if (item.equals("Kładzenie kafelek")) {
+                    temp = "kladzenie_kafelek";
+                } else if (item.equals("Kładzenie paneli podłogowych")) {
+                    temp = "kladzenie_paneli_podlogowych";
+                }
+
+                Log.v ("Item" , temp);
                     Intent i = new Intent(getApplicationContext(), CategoryList.class);
                     i.putExtra("Category", selected);
-                    i.putExtra("Subcategory", item);
+                    i.putExtra("Subcategory", temp);
                     startActivity(i);
             }
         });

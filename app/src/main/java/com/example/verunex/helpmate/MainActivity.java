@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
             checkserviceuser.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    choice = (String) dataSnapshot.child("service_state").getValue().toString();
+                    choice = dataSnapshot.child("service_state").getValue().toString();
 
                     Log.v ("Wartosc choice ", choice);
 
@@ -284,35 +284,35 @@ public class MainActivity extends AppCompatActivity
 
         switch (v.getId()) {
             case R.id.hydraulika:
-                i.putExtra("Selected", "Hydraulika");
+                i.putExtra("Selected", "hydraulika");
                 startActivity(i);
                 break;
             case R.id.elektryka:
-                i.putExtra("Selected", "Elektryka");
+                i.putExtra("Selected", "elektryka");
                 startActivity(i);
                 break;
             case R.id.opieka:
-                i.putExtra("Selected", "Opieka");
+                i.putExtra("Selected", "opieka");
                 startActivity(i);
                 break;
             case R.id.pomocDomowa:
-                i.putExtra("Selected", "Pomoc_domowa");
+                i.putExtra("Selected", "pomoc_domowa");
                 startActivity(i);
                 break;
             case R.id.ogrodnictwo:
-                i.putExtra("Selected", "Ogrodnictwo");
+                i.putExtra("Selected", "ogrodnictwo");
                 startActivity(i);
                 break;
             case R.id.remonty:
-                i.putExtra("Selected", "Remonty");
+                i.putExtra("Selected", "remonty");
                 startActivity(i);
                 break;
             case R.id.pomocNaukowa:
-                i.putExtra("Selected", "Pomoc_naukowa");
+                i.putExtra("Selected", "pomoc_naukowa");
                 startActivity(i);
                 break;
             case R.id.naprawaUrzadzen:
-                i.putExtra("Selected", "Naprawa_urzadzen");
+                i.putExtra("Selected", "naprawa_urzadzen");
                 startActivity(i);
                 break;
         }

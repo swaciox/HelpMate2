@@ -104,40 +104,40 @@
     <string name="sunday">Niedziela</string>
     <string name="from">Od: </string>
     <string name="to"> do: </string>
-    <string-array name="Hydraulika">
+    <string-array name="hydraulika">
         <item>Naprawa wycieków</item>
         <item>Wymiana armatury</item>
     </string-array>
-    <string-array name="Elektryka">
+    <string-array name="elektryka">
         <item>Instalacje elektryczne</item>
         <item>Naprawa awaryjna</item>
     </string-array>
-    <string-array name="Pomoc_domowa">
+    <string-array name="pomoc_domowa">
         <item>Sprzątanie</item>
         <item>Prasowanie</item>
         <item>Mycie okien</item>
     </string-array>
-    <string-array name="Opieka">
+    <string-array name="opieka">
         <item>Opieka do dzieci</item>
         <item>Opieka do osób starszych</item>
         <item>Opieka dzieci i osób niepełnosprawnych</item>
         <item>Wyprowadzanie zwierząt</item>
     </string-array>
-    <string-array name="Pomoc_naukowa">
+    <string-array name="pomoc_naukowa">
         <item>Korepetycje</item>
     </string-array>
-    <string-array name="Ogrodnictwo">
+    <string-array name="ogrodnictwo">
         <item>Pielęgnacja ogrodu</item>
         <item>Koszenie trawy</item>
         <item>Prace porządkowe</item>
     </string-array>
-    <string-array name="Naprawa_urzadzen">
+    <string-array name="naprawa_urzadzen">
         <item>Naprawa drobnego AGD</item>
         <item>Naprawa AGD</item>
         <item>Naprawa RTV</item>
         <item>Naprawa komputerów/laptopów</item>
     </string-array>
-    <string-array name="Remonty">
+    <string-array name="remonty">
         <item>Malowanie</item>
         <item>Tapetowanie</item>
         <item>Kładzenie kafelek</item>

@@ -39,7 +39,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
     private DatabaseReference liketest;
     private Query mQuery;
-    private Query mQuery2;
+
 
     private Spinner mSpinner;
 
@@ -90,12 +90,60 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
         Log.v("Kategoria ", category);
         Log.v("Sybkategori ", subcategory);
 
-        setTitle(subcategory);
+        String label = "";
+        if (subcategory.equals("naprawa_wyciekow")){
+            label = "Naprawa wycieków";
+        } else if (subcategory.equals("wymiana_armatury")) {
+            label = "Wymiana armatury";
+        } else if (subcategory.equals("instalacje_elektryczne")){
+            label = "Instalacje elektryczne";
+        } else if (subcategory.equals("naprawa_awaryjna")){
+            label = "Naprawa awaryjna";
+        } else if (subcategory.equals("sprzatanie")){
+            label = "Sprzątanie";
+        } else if (subcategory.equals("prasowanie")){
+            label = "Prasowanie";
+        } else if (subcategory.equals("mycie_okien")){
+            label = "Mycie okien";
+        } else if (subcategory.equals("opieka_do_dzieci")) {
+            label = "Opieka do dzieci";
+        } else if (subcategory.equals("opieka_do_osob_starszych")) {
+            label = "Opieka do osób starszych";
+        } else if (subcategory.equals("opieka_dzieci_i_osob_niepelnosprawnych")) {
+            label = "Opieka dzieci i osób niepełnosprawnych";
+        } else if (subcategory.equals("wyprowadzanie_zwierzat")) {
+            label = "Wyprowadzanie zwierząt";
+        } else if (subcategory.equals("korepetycje")) {
+            label = "Korepetycje";
+        } else if (subcategory.equals("koszenie_trawy")) {
+            label = "Koszenie trawy";
+        } else if (subcategory.equals("prace_porzadkowe")) {
+            label = "Prace porządkowe";
+        } else if (subcategory.equals("pielegnacja_ogrodu")) {
+            label = "Pielęgnacja ogrodu";
+        } else if (subcategory.equals("naprawa_drobnego_AGD")) {
+            label = "Naprawa drobnego AGD";
+        } else if (subcategory.equals("naprawa_AGD")) {
+            label = "Naprawa AGD";
+        } else if (subcategory.equals("naprawa_RTV")) {
+            label = "Naprawa RTV";
+        } else if (subcategory.equals("naprawa_komputerow_laptopow")) {
+            label = "Naprawa komputerów/laptopów";
+        } else if (subcategory.equals("malowanie")) {
+            label = "Malowanie";
+        } else if (subcategory.equals("tapetowanie")) {
+            label = "Tapetowanie";
+        } else if (subcategory.equals("kladzenie_kafelek")) {
+            label = "Kładzenie kafelek";
+        } else if (subcategory.equals("kladzenie_paneli_podlogowych")) {
+            label = "Kładzenie paneli podłogowych";
+        }
 
-        //
+        setTitle(label);
+
 
         //Firebase
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(category);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Offers").child(category).child(subcategory);
         mQuery =  mDatabaseReference.orderByChild("rate").startAt("5.0f").endAt("1.0f");
 
 

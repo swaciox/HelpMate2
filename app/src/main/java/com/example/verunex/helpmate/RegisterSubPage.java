@@ -99,7 +99,9 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                                 String random_image = mRandomValues.randomImage();
                                 String random_rate = mRandomValues.randomRating();
 
-                                //mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(random_category);
+
+                                String subCategory = randomC(random_category);
+                                //mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Offers").child(random_category).child(subCategory);
                                 //DatabaseReference curent_user = mDatabaseReference.push();
 
                                 mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
@@ -110,6 +112,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                                 curent_user.child("user_image").setValue("");
                                 curent_user.child("email").setValue(email);
                                 curent_user.child("service_state").setValue("false");
+                                curent_user.child("uid").setValue(id_key);
 
                                 for (int i = 1; i <=23; i++){
                                     String temp = "sub"+i;
@@ -120,7 +123,8 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
                                 }
 
-                               /*
+
+                                /*
                                 curent_user.child("user_id").setValue(id_key);
                                 curent_user.child("email").setValue(email);
                                 curent_user.child("name").setValue(random_name);
@@ -129,7 +133,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                                 curent_user.child("image").setValue(random_image);
                                 curent_user.child("rate").setValue(random_rate);
                                 curent_user.child("description").setValue("Oferuję pełen zakres usług");
-                                */
+*/
                             mProgressDialog.dismiss();
 
                             Toast.makeText(getContext(), "Zarejestrowano!", Toast.LENGTH_SHORT).show();
@@ -147,6 +151,57 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
 
         }
+
+    public String randomC(String s){
+        Random mRandom = new Random();
+        int number_category = mRandom.nextInt();
+        String[] tab = new String[0];
+
+        if(s.equals("hydraulika")){
+           number_category = mRandom.nextInt(1);
+            tab = new String[]{"naprawa_wyciekow",
+                    "wymiana_armatury",};
+        }else if (s.equals("opieka")){
+            number_category = mRandom.nextInt(3);
+            tab = new String[]{"opieka_do_dzieci",
+                    "opieka_do_osob_starszych",
+                    "opieka_dzieci_i_osob_niepelnosprawnych",
+                    "wyprowadzanie_zwierzat"};
+
+        }else if (s.equals("ogrodnictwo")){
+
+            number_category = mRandom.nextInt(2);
+            tab = new String[]{ "koszenie_trawy",
+                    "prace_porzadkowe",
+                    "pielegnacja_ogrodu"};
+        }else if (s.equals("pomoc_domowa")){
+            number_category = mRandom.nextInt(2);
+            tab = new String[]{"sprzatanie",
+                    "prasowanie",
+                    "mycie_okien"};
+        }else if (s.equals("remonty")){
+            number_category = mRandom.nextInt(3);
+            tab = new String[]{ "malowanie",
+                    "tapetowanie",
+                    "kladzenie_kafelek",
+                    "kladzenie_paneli_podlogowych"};
+        }else if (s.equals("elektryka")){
+            number_category = mRandom.nextInt(1);
+            tab = new String[]{ "instalacje_elektryczne",
+                    "naprawa_awaryjna"};
+        }else if (s.equals("pomoc_naukowa")){
+            number_category = 0;
+            tab = new String[]{  "korepetycje"};
+        }else if (s.equals("naprawa_urzadzen")){
+            number_category = mRandom.nextInt(3);
+            tab = new String[]{ "naprawa_drobnego_AGD",
+                    "naprawa_AGD",
+                    "naprawa_RTV",
+                    "naprawa_komputerow_laptopow"};
+        }
+
+        return tab[number_category];
+    }
 
 }
 

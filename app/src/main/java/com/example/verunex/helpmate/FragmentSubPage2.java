@@ -71,18 +71,20 @@ public class FragmentSubPage2 extends Fragment {
 
         //retrieve data
         final String id_position = this.getArguments().getString("id_position");
-        Log.v("frag2id_position",id_position);
+        final String user_id = this.getArguments().getString("user_id");
+        Log.v("frag2id_position",user_id);
 
         addComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), AddCommentPop.class);
+                i.putExtra("user_id", user_id);
                 i.putExtra("id_position", id_position);
                 startActivity(i);
             }
         });
 
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(id_position);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(user_id);
 
         FirebaseRecyclerAdapter<Comment, CommentViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(
                 Comment.class,

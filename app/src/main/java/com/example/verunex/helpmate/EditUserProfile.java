@@ -215,6 +215,11 @@ public class EditUserProfile extends Activity {
                 String number = dataSnapshot.child("number").getValue(String.class);
                 user_number.setText(number);
 
+                String addres = dataSnapshot.child("address").getValue(String.class);
+                user_address.setText(addres);
+
+                //String address = dataSnapshot.child("")
+
 
                 String user_image_uri = dataSnapshot.child("user_image").getValue(String.class);
                 if(user_image_uri.isEmpty()){
@@ -255,6 +260,8 @@ public class EditUserProfile extends Activity {
 
         final String name = user_name.getText().toString().trim();
         final String number = user_number.getText().toString().trim();
+        final String address = user_address.getText().toString().trim();
+
 
         final String user_id = mFirebaseAuth.getCurrentUser().getUid();
 
@@ -262,6 +269,7 @@ public class EditUserProfile extends Activity {
             user_image.setImageResource(R.drawable.person);
             mDatabaseReference.child(user_id).child("name").setValue(name);
             mDatabaseReference.child(user_id).child("number").setValue(number);
+            mDatabaseReference.child(user_id).child("address").setValue(address);
         } else {
             StorageReference filepath = mStorageReference.child(mImageUri.getLastPathSegment());
             filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -272,10 +280,13 @@ public class EditUserProfile extends Activity {
 
                     mDatabaseReference.child(user_id).child("name").setValue(name);
                     mDatabaseReference.child(user_id).child("number").setValue(number);
+                    mDatabaseReference.child(user_id).child("address").setValue(address);
                     mDatabaseReference.child(user_id).child("user_image").setValue(downloadUri);
                 }
             });
         }
+        // testowo
+        finish();
     }
 
     @Override

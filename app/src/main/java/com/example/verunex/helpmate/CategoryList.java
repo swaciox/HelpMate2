@@ -307,6 +307,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                         singleuser.putExtra("user_image", image);
                         singleuser.putExtra("user_rate", rate);
                         singleuser.putExtra("id_position", id_position);
+                        singleuser.putExtra("user_id", user_id);
                         //singleuser.putExtra("user_description", description);
                         startActivity(singleuser);
 

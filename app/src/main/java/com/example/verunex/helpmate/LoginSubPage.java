@@ -119,7 +119,7 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
 
                     mProgressDialog.dismiss();
 
-                    Toast.makeText(getContext(), user_id , Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), user_id , Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(), "Podany użytkownik nie istnieje!", Toast.LENGTH_SHORT).show();
                     mProgressDialog.dismiss();

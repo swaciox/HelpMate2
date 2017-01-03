@@ -38,6 +38,7 @@ public class AddCommentPop extends Activity {
         setContentView(R.layout.add_comment_popup);
 
         final String id_postion = getIntent().getExtras().getString("id_position");
+        final String user_id = getIntent().getExtras().getString("user_id");
         Log.v("id_postion", id_postion);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -71,7 +72,7 @@ public class AddCommentPop extends Activity {
 
                 String desc = mEditText.getText().toString();
 
-                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(id_postion).push();
+                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(user_id).push();
 
                 final DatabaseReference comment = mDatabaseReference;
                 if(!desc.isEmpty()){

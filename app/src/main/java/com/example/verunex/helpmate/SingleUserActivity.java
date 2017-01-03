@@ -28,6 +28,7 @@ public class SingleUserActivity extends AppCompatActivity {
     private ImageView mImageView;
 
     String id_position;
+    String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,8 @@ public class SingleUserActivity extends AppCompatActivity {
         String user_number = getIntent().getExtras().getString("user_number");
         String image = getIntent().getExtras().getString("user_image");
         String rate = getIntent().getExtras().getString("user_rate");
+
+        user_id = getIntent().getExtras().getString("user_id");
         id_position = getIntent().getExtras().getString("id_position");
         //String user_description = getIntent().getExtras().getString("user_description");
 
@@ -112,6 +115,7 @@ public class SingleUserActivity extends AppCompatActivity {
                     FragmentSubPage2 fragmentSubPage2 = new FragmentSubPage2();
                     //send data
                     Bundle bundle = new Bundle();
+                    bundle.putString("user_id", user_id);
                     bundle.putString("id_position", id_position);
                     fragmentSubPage2.setArguments(bundle);
                     return fragmentSubPage2;

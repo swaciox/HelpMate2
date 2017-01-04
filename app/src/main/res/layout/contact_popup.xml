@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/contactUser"
+        android:layout_margin="5dp"
+        android:background="@color/cardview_light_background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contact"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dip"
+            android:background="@color/colorMediumGrey"
+            android:layout_margin="1dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_call_color"
+                android:id="@+id/call"
+                android:background="@color/cardview_light_background"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="777888999"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:id="@+id/contactNumber"
+                android:hint="Numer telefonu"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:src="@drawable/ic_mail_color"
+                android:background="@color/cardview_light_background"
+                android:id="@+id/email"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:text="email@email.com"
+                android:id="@+id/contactEmail"
+                android:hint="Adres e-mail"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

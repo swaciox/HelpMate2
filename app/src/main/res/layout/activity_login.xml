@@ -28,28 +28,17 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/logo"
                 android:id="@+id/logoDown"
-                android:layout_above="@+id/withoutLogin"
+                android:layout_above="@+id/appNameLogo"
                 android:layout_centerHorizontal="true" />
 
-            <TextView
-                android:text="@string/withoutLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:id="@+id/withoutLogin"
-                android:clickable="true"
-                android:layout_centerHorizontal="true" />
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="36dp"
+                android:id="@+id/appNameLogo"
+                android:src="@drawable/app_name"
+                android:layout_above="@+id/withoutLogin"/>
 
         </LinearLayout>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="23dp"
-            android:layout_height="340dp" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
@@ -66,6 +55,25 @@
 
             android:layout_above="@+id/container"
             android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="@string/withoutLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:id="@+id/withoutLogin"
+            android:clickable="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="55dp"
+            android:layout_marginBottom="20dp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_height="320dp"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/withoutLogin" />
 
 
     </RelativeLayout>

@@ -66,7 +66,7 @@
             />
         <activity
             android:name=".UserProfileActivity"
-            android:label="Profil"
+            android:label="Podgląd profilu"
             android:screenOrientation="portrait"
             />
         <activity
@@ -74,11 +74,10 @@
             android:label=""
             android:theme="@style/AppTheme.PopTheme"
             android:screenOrientation="portrait"
-
             />
         <activity android:name=".BackPressPop"
             android:label=""
-            android:theme="@style/AppTheme.PopTheme"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
             android:screenOrientation="portrait"/>
 
         <activity
@@ -97,6 +96,7 @@
             android:name=".EditUserProfile"
             android:label="Edycja profilu"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.PopTheme"
             />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -122,12 +122,13 @@
             >
         </activity>
         <activity android:name=".ServiceUserProfile"
-                android:label="Profil wykonawcy"
-            android:screenOrientation="portrait"/>
+                 android:label="Profil wykonawcy"
+                android:screenOrientation="portrait"/>
+
         <activity android:name=".ServiceProviderPop"
-            android:theme="@style/AppTheme.PopTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.PopTheme"
+                android:windowSoftInputMode="stateAlwaysHidden"
+                android:screenOrientation="portrait"
             />
         <activity android:name=".SubCategoryPop"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"

@@ -41,7 +41,7 @@ public class BackPressPop extends Activity{
 
             getWindow().setLayout((int)(width*.8),(int)(height*.3));
             if(temp == 0 ) {
-                infoText.setText("Czy na pewno chcesz wrocic do glownego ekranu?");
+                infoText.setText("Czy na pewno chcesz wrócić do głównego ekranu?");
 
                 acceptButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -52,7 +52,7 @@ public class BackPressPop extends Activity{
                     }
                 });
             } else if(temp == 1 ){
-                infoText.setText("Czy na pewno chcesz sie wylogowac?");
+                infoText.setText("Czy na pewno chcesz się wylogować?");
 
                 acceptButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -65,7 +65,7 @@ public class BackPressPop extends Activity{
                 });
             }else if(temp == 3){
 
-                infoText.setText("Czy na pewno nie chcesz zapisac zmian?");
+                infoText.setText("Zmiany nie zostały zapisane, czy na pewno chcesz je odrzucić?");
 
                 acceptButton.setOnClickListener(new View.OnClickListener() {
                     @Override

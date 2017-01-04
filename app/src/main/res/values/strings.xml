@@ -143,5 +143,7 @@
         <item>Kładzenie kafelek</item>
         <item>Kładzenie paneli podłogowych</item>
     </string-array>
+    <string name="cancel">Anuluj</string>
+    <string name="confirm">Tak</string>
 
 </resources>

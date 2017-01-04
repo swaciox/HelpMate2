@@ -66,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,34 +77,37 @@
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
 
-            <Button
-                android:text="@string/remind_password_confirm"
-                android:textColor="@color/cardview_light_background"
-                android:textAllCaps="true"
-                android:textSize="17dp"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="5dp"
-                android:id="@+id/acceptChangesButton"
-                android:background="@drawable/button_rounded_corners"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
 
-            <Button
-                android:text="@string/cancel"
-                android:textColor="@color/cardview_light_background"
-                android:textAllCaps="true"
-                android:textSize="17dp"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="5dp"
-                android:id="@+id/cancelChangesButton"
-                android:background="@drawable/button_rounded_corners"/>
+        <Button
+            android:text="@string/save"
+            android:textColor="@color/cardview_light_background"
+            android:textAllCaps="true"
+            android:textSize="17dp"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+            android:id="@+id/acceptChangesButton"
+            android:background="@drawable/button_rounded_corners"/>
 
-        </LinearLayout>
+        <Button
+            android:text="@string/cancel"
+            android:textColor="@color/cardview_light_background"
+            android:textAllCaps="true"
+            android:textSize="17dp"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+            android:id="@+id/cancelChangesButton"
+            android:background="@drawable/button_rounded_corners"/>
+
+    </LinearLayout>
+
 </LinearLayout>

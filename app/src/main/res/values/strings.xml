@@ -145,5 +145,6 @@
     </string-array>
     <string name="cancel">Anuluj</string>
     <string name="confirm">Tak</string>
+    <string name="save">Zapisz</string>
 
 </resources>

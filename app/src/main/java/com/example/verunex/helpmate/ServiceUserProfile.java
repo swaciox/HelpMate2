@@ -1,12 +1,16 @@
 package com.example.verunex.helpmate;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +31,7 @@ public class ServiceUserProfile extends AppCompatActivity {
 
     private ImageView userImage;
     private TextView userName, userCategory;
+    private RatingBar user_rate;
 
     //Firebase
     private FirebaseAuth mFirebaseAuth;
@@ -57,6 +62,7 @@ public class ServiceUserProfile extends AppCompatActivity {
     }
 
     private void initControl(){
+
         //userOldData
         userImage = (ImageView) findViewById(R.id.user_image);
         userName = (TextView) findViewById(R.id.user_name);
@@ -142,7 +148,7 @@ public class ServiceUserProfile extends AppCompatActivity {
                     temp2 = dataSnapshot.child("categories").child(temp).child("state").getValue().toString();
                     if(temp2.equals("true")){
                         desc = dataSnapshot.child("categories").child(temp).child("description").getValue().toString();
-                        categories = categories + "\n-" + desc;
+                        categories = categories + "-" + desc+"\n";
 
                         if(temp.equals("sub1") || temp.equals("sub2")){
                             category.add("Hydraulika");

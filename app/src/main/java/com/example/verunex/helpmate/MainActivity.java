@@ -104,6 +104,9 @@ public class MainActivity extends AppCompatActivity
 
             mName = (TextView)header.findViewById(R.id.nav_name);
             mImageView = (ImageView)header.findViewById(R.id.imageuser);
+        }else{
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
         }
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {

@@ -2,15 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/contactUser"
-        android:layout_margin="5dp"
-        android:background="@color/cardview_light_background">
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:background="@color/cardview_light_background">
 
         <TextView
             android:layout_width="match_parent"
@@ -20,6 +14,7 @@
             android:textAllCaps="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             />
         <View
             android:layout_width="fill_parent"
@@ -28,27 +23,37 @@
             android:layout_margin="1dp"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/ic_call_color"
                 android:id="@+id/call"
                 android:background="@color/cardview_light_background"/>
-            <EditText
-                android:layout_width="wrap_content"
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputLayoutContact"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="777888999"
-                android:textSize="16dp"
                 android:layout_gravity="center"
-                android:id="@+id/contactNumber"
-                android:hint="Numer telefonu"/>
+                >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="777888999"
+                    android:textSize="16dp"
+                    android:id="@+id/contactNumber"
+                    android:hint="Numer telefonu"/>
+            </android.support.design.widget.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageButton
                 android:src="@drawable/ic_mail_color"
                 android:background="@color/cardview_light_background"
@@ -56,17 +61,49 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
 
-            <EditText
-                android:layout_width="wrap_content"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputLayoutEmail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:layout_gravity="center"
-                android:text="email@email.com"
-                android:id="@+id/contactEmail"
-                android:hint="Adres e-mail"/>
+                android:layout_gravity="center">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="email@email.com"
+                    android:id="@+id/contactEmail"
+                    android:hint="Adres e-mail"/>
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <Button
+                android:text="@string/remind_password_confirm"
+                android:textColor="@color/cardview_light_background"
+                android:textAllCaps="true"
+                android:textSize="17dp"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:id="@+id/acceptChangesButton"
+                android:background="@drawable/button_rounded_corners"/>
 
+            <Button
+                android:text="@string/cancel"
+                android:textColor="@color/cardview_light_background"
+                android:textAllCaps="true"
+                android:textSize="17dp"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:id="@+id/cancelChangesButton"
+                android:background="@drawable/button_rounded_corners"/>
+
+        </LinearLayout>
 </LinearLayout>

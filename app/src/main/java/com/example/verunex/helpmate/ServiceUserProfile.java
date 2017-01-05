@@ -57,9 +57,11 @@ public class ServiceUserProfile extends AppCompatActivity {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        initControl();
+        String id_key = mFirebaseAuth.getCurrentUser().getUid();
 
-        userOldData();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
+
+        initControl();
 
         userSubCategoriesChoice();
 
@@ -68,6 +70,13 @@ public class ServiceUserProfile extends AppCompatActivity {
         descEdit();
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        userOldData();
     }
 
     private void descEdit() {
@@ -117,10 +126,6 @@ public class ServiceUserProfile extends AppCompatActivity {
     }
 
     private void userOldData(){
-
-        String id_key = mFirebaseAuth.getCurrentUser().getUid();
-
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
 
         DatabaseReference userData = mDatabaseReference;
 

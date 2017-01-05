@@ -33,19 +33,12 @@
                 android:id="@+id/call"
                 android:background="@color/cardview_light_background"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputLayoutContact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                >
-                <EditText
+                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:id="@+id/contactNumber"
                     android:hint="Numer telefonu"/>
-            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -60,19 +53,13 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputLayoutEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:id="@+id/contactEmail"
-                    android:hint="Adres e-mail"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:hint="Adres e-mail"
+                    android:inputType="textEmailAddress"/>
 
         </LinearLayout>
 

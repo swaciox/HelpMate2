@@ -47,14 +47,12 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/userImageEdit"
                             android:text="@string/image_edit"
-
                             android:background="@android:drawable/editbox_dropdown_light_frame"
                             android:gravity="center_horizontal"
                             android:textSize="15dp"
                             android:textColor="@color/colorTextGrey"
                             android:textAlignment="center"
-                            android:elevation="5dp"
-                            android:layout_marginEnd="20dp"
+                            android:layout_marginEnd="30dp"
                             android:layout_alignParentTop="true"
                             android:layout_alignParentEnd="true"
                             android:layout_marginTop="21dp" />
@@ -149,7 +147,7 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -184,7 +182,7 @@
                     android:layout_centerInParent="true"
                     android:layout_weight="0.1"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
             <Button

@@ -48,7 +48,7 @@
 
         <activity
             android:name=".ForgetPasswordPop"
-            android:theme="@style/AppTheme.PopTheme"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
             android:screenOrientation="portrait"
             />
         <activity
@@ -126,17 +126,17 @@
                 android:screenOrientation="portrait"/>
 
         <activity android:name=".ServiceProviderPop"
-                android:theme="@style/AppTheme.PopTheme"
+                android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
                 android:windowSoftInputMode="stateAlwaysHidden"
                 android:screenOrientation="portrait"
             />
         <activity android:name=".SubCategoryPop"
-            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait" />
+                android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
+                android:windowSoftInputMode="stateAlwaysHidden"
+                android:screenOrientation="portrait" />
 
         <activity android:name=".ContactPop"
-                android:theme="@style/AppTheme.PopTheme"
+                android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
                 android:screenOrientation="portrait"
             />
 

@@ -43,17 +43,18 @@
                         android:layout_alignParentStart="true" >
 
                         <Button
-                            android:layout_width="70dp"
-                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:id="@+id/userImageEdit"
                             android:text="@string/image_edit"
+
                             android:background="@android:drawable/editbox_dropdown_light_frame"
                             android:gravity="center_horizontal"
                             android:textSize="15dp"
                             android:textColor="@color/colorTextGrey"
                             android:textAlignment="center"
                             android:elevation="5dp"
-                            android:layout_marginEnd="79dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_alignParentTop="true"
                             android:layout_alignParentEnd="true"
                             android:layout_marginTop="21dp" />

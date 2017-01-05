@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class BackPressPop extends Activity{
 
     private Button acceptButton, cancelButton;
+    private Button okButton;
     private TextView infoText;
     private int temp;
 
@@ -30,6 +31,8 @@ public class BackPressPop extends Activity{
 
             acceptButton = (Button) findViewById(R.id.acceptButton);
             cancelButton = (Button) findViewById(R.id.cancelButton);
+            okButton = (Button)findViewById(R.id.okButton);
+            okButton.setVisibility(View.INVISIBLE);
 
             infoText = (TextView)findViewById(R.id.infoText);
 
@@ -73,6 +76,18 @@ public class BackPressPop extends Activity{
                         Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                    }
+                });
+            }else if (temp == 4 ){
+                infoText.setText("Tu bedzie opis informacja do profilu wykonawcy");
+
+                cancelButton.setVisibility(View.INVISIBLE);
+                acceptButton.setVisibility(View.INVISIBLE);
+                okButton.setText("OK");
+                okButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
                     }
                 });
             }

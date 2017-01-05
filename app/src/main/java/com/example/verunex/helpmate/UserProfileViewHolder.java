@@ -58,7 +58,7 @@ public class UserProfileViewHolder extends RecyclerView.ViewHolder {
 
     public void setImage(Context ctx, String image){
         ImageView user_img = (ImageView) mView.findViewById(R.id.image);
-        Picasso.with(ctx).load(image).into(user_img);
+        Picasso.with(ctx).load(image).transform(new Circle()).into(user_img);
     }
     public void setRate(String rate){
         RatingBar user_rate = (RatingBar) mView.findViewById(R.id.commentRatingBar);

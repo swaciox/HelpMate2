@@ -3,17 +3,23 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/user_image"
+        android:src="@drawable/person"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/circular_image"
+        android:elevation="5dp"
+
+        />
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
 
     </ScrollView>
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:id="@+id/user_image"
-        android:layout_gravity="center_horizontal"/>
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -25,7 +31,8 @@
         android:transformPivotY="0dp"
         android:rating="3"
         android:layout_gravity="center_horizontal"
-        style="@style/RatingBar"/>
+        style="@style/RatingBar"
+        android:progressTint="@color/colorAccent"/>
 
     <TextView
         android:layout_width="match_parent"

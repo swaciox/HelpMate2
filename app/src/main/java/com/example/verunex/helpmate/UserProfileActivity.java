@@ -87,7 +87,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 if(user_image_uri.isEmpty()){
                     user_image.setImageResource(R.drawable.person);
                 }else{
-                    Picasso.with(getBaseContext()).load(user_image_uri).into(user_image);
+                    Picasso.with(getBaseContext()).load(user_image_uri).transform(new Circle()).into(user_image);
                 }
             }
 

@@ -8,7 +8,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.verunex.helpmate.UserProfileActivity222222">
+    tools:context="com.example.verunex.helpmate.UserProfileActivity">
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"
+        android:id="@+id/button3" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,9 +31,9 @@
             android:layout_height="100dp"
             android:scaleType="fitCenter"
             android:id="@+id/user_image"
-
+            android:background="@drawable/circular_image"
+            android:elevation="5dp"
             android:src="@drawable/person"
-            android:background="#00ffffff"
             android:adjustViewBounds="false" />
         <EditText
             android:layout_width="wrap_content"
@@ -41,15 +50,6 @@
 
 
     </LinearLayout>
-
-    <Button
-        android:text="Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:id="@+id/button3" />
 
 
 </RelativeLayout>

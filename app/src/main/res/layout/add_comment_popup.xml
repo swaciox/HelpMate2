@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relative"
-    android:background="@drawable/border_pop_up">
+    android:background="@color/cardview_light_background">
 
 
     <LinearLayout
@@ -15,12 +17,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ratingBar2"
-
+            android:theme="@style/RatingBar2"
             android:numStars="5"
             android:stepSize="0.5"
             android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:progressTint="@color/colorAccent"/>
 
         <ScrollView
             android:layout_width="220dp"

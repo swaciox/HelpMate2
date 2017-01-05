@@ -6,174 +6,199 @@
     android:layout_height="match_parent"
     android:background="@color/cardview_light_background">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:weightSum="1">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_exit"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/exitImageView" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
+                android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/person"
-                    android:scaleType="fitXY"
-                    android:background="@color/colorTransparent"
-                    android:id="@+id/userImage"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_alignParentStart="true">
 
-                <Button
-                    android:layout_width="60dp"
-                    android:layout_height="23dp"
-                    android:id="@+id/userImageEdit"
-                    android:text="@string/user_image_edit"
-                    android:background="@color/colorLightGrey"
-                    android:gravity="center_horizontal"
-                    android:textSize="15dp"
-                    android:textAlignment="center"
-                    android:layout_alignBottom="@+id/userImage"
-                    android:layout_alignEnd="@+id/userImage" />
+                    <ImageView
+                        android:id="@+id/headerCoverImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/background_2" />
+
+                    <RelativeLayout
+                        android:id="@+id/profile_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/gradient_background"
+                        android:paddingBottom="70dp"
+                        android:layout_below="@+id/headerCoverImage"
+                        android:layout_alignParentStart="true" >
+
+                        <Button
+                            android:layout_width="70dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/userImageEdit"
+                            android:text="@string/image_edit"
+                            android:background="@android:drawable/editbox_dropdown_light_frame"
+                            android:gravity="center_horizontal"
+                            android:textSize="15dp"
+                            android:textColor="@color/colorTextGrey"
+                            android:textAlignment="center"
+                            android:elevation="5dp"
+                            android:layout_marginEnd="79dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="21dp" />
+                    </RelativeLayout>
+
+                    <ImageButton
+                        android:id="@+id/userImage"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/circular_image"
+                        android:elevation="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/person"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"/>
+
                 </RelativeLayout>
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/layoutUserNameEdit"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true">
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <EditText
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="0.1"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layoutUserNameEdit"
                     android:layout_width="match_parent"
-                    android:layout_weight="0.9"
                     android:layout_height="wrap_content"
-                    android:id="@+id/userNameEdit"
-                    android:singleLine="true"
-                    android:hint="@string/user_name_edit" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@android:drawable/ic_menu_edit"
-                android:layout_gravity="center"
-                android:layout_alignParentEnd="true"
-                android:layout_weight="0.1"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_weight="0.9"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/userNameEdit"
+                        android:singleLine="true"
+                        android:hint="@string/user_name_edit" />
+                </android.support.design.widget.TextInputLayout>
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:background="@drawable/border"
-            android:weightSum="1">
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_weight="0.9"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/userPhoneEdit"
-                android:hint="@string/user_phone_edit" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@android:drawable/ic_menu_edit"
-                android:layout_gravity="center"
-                android:layout_weight="0.1"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="0.1"
+                    android:id="@+id/addrImageView" />
 
-        </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layoutUserAddressEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true">
 
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_weight="0.9"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/userAddressEdit"
+                        android:hint="@string/user_address" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:background="@drawable/border"
-            android:weightSum="1">
+                </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_weight="0.9"
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/userAddressEdit"
-                android:hint="@string/user_address" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@android:drawable/ic_menu_edit"
-                android:layout_gravity="center"
-                android:layout_weight="0.1"
-                android:id="@+id/addrImageView" />
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layoutUserPhoneEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_weight="0.9"
+                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/userPhoneEdit"
+                        android:hint="@string/user_phone_edit" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="0.1"/>
+
+            </LinearLayout>
+
+
+            <Button
+
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="@string/user_profile_edit"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/button_rounded_corners"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="16dp"
+                android:id="@+id/save"
+                />
 
         </LinearLayout>
-
-        <fragment
-            android:id="@+id/place_autocomplete_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-            />
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        </LinearLayout>
-
-        <Button
-
-            android:layout_width="160dp"
-            android:layout_marginTop="25dp"
-            android:layout_height="wrap_content"
-            android:text="@string/user_profile_edit"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_rounded_corners"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="16dp"
-            android:id="@+id/save"
-            />
-
-    </LinearLayout>
-
+    </ScrollView>
 
 </LinearLayout>

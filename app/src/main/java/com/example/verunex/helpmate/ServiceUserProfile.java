@@ -115,7 +115,7 @@ public class ServiceUserProfile extends AppCompatActivity {
                     userImage.setImageResource(R.drawable.person);
                 }else{
                     Log.v ("user_image uri",user_image_uri);
-                    Picasso.with(getBaseContext()).load(user_image_uri).into(userImage);
+                    Picasso.with(getBaseContext()).load(user_image_uri).transform(new Circle()).into(userImage);
                 }
 
                 //contact

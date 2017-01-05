@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
                     if(user_image_uri.isEmpty()){
 
                     }else{
-                        Picasso.with(getBaseContext()).load(user_image_uri).into(mImageView);
+                        Picasso.with(getBaseContext()).load(user_image_uri).transform(new Circle()).into(mImageView);
                     }
                 }
 

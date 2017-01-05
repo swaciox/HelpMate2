@@ -22,23 +22,27 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/commentImage"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:background="@drawable/circular_image"
+                android:elevation="5dp"
+                android:layout_marginTop="3dp"/>
 
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/commentName"
-                android:text="Name or nickname"
-                android:textSize="14dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorTextPrimary"
-                android:layout_gravity="center" />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/commentName"
+                    android:text="Name or nickname"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
 
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:minHeight="112dp"
             android:orientation="vertical"
             android:paddingLeft="10dp"
@@ -58,7 +62,7 @@
                 android:transformPivotY="0dp"
                 style="@style/RatingBar"
                 android:layout_alignParentTop="true"
-
+                android:progressTint="@color/colorAccent"
                 />
 
             <TextView
@@ -69,7 +73,7 @@
                 android:text="12.12.2016"
                 android:textColor="@color/colorGrey"
                 android:id="@+id/commentDate"
-                android:layout_below="@+id/commentRatingBar"
+                android:layout_below="@id/commentRatingBar"
                 />
 
             <TextView
@@ -77,18 +81,21 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/commentDesc"
                 android:text="Tutaj jest opis komentarza tra la la..."
-                android:layout_below="@+id/commentDate"/>
+                android:layout_below="@id/commentDate"
+                />
+
+
 
         </RelativeLayout>
 
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_delete_comment_color"
+            app:srcCompat="@drawable/ic_delete_light"
             android:id="@+id/imageButtonExit"
             android:visibility="invisible"
             android:background="@color/cardview_light_background"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="bottom|right"
             android:layout_weight="1"
             />
 

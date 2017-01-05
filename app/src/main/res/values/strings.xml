@@ -31,8 +31,9 @@
     <string name="user_category_all">Oferowane usługi</string>
     <string name="user_edit_button">Edytuj profil</string>
     <string name="user_image_edit">Edytuj</string>
+    <string name="image_edit">Edytuj\nzdjęcie</string>
     <string name="user_name_edit">Imię i nazwisko</string>
-    <string name="user_phone_edit">Twój numer telefonu</string>
+    <string name="user_phone_edit">Numer telefonu</string>
     <string name="user_category_edit">Wybierz usługi, które oferujesz:</string>
     <string name="user_profile_edit">Zatwierdź zmiany</string>
     <string name="add_comment_confirm">Wyślij</string>

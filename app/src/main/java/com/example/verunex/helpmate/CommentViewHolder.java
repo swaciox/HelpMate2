@@ -44,7 +44,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder{
 
     public void setUserImage(Context ctx, String user_image){
         ImageView user_img = (ImageView) mView.findViewById(R.id.commentImage);
-        Picasso.with(ctx).load(user_image).into(user_img);
+        Picasso.with(ctx).load(user_image).transform(new Circle()).into(user_img);
     }
 
     public void setRate (String rate){

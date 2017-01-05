@@ -67,7 +67,7 @@ public class SingleUserActivity extends AppCompatActivity {
         mImageView = (ImageView)findViewById(R.id.user_image);
         mDescription = (TextView)findViewById(R.id.description);
 
-        Picasso.with(getBaseContext()).load(image).into(mImageView);
+        Picasso.with(getBaseContext()).load(image).transform(new Circle()).into(mImageView);
         mUserName.setText(user_name);
         mUserCategory.setText(user_category);
         //mDescription.setText(user_description);

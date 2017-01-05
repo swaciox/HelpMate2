@@ -92,7 +92,7 @@ public class EditUserProfile extends Activity {
         mListView.setAdapter(listAdapter);
         */
 
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+       /* PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -108,7 +108,7 @@ public class EditUserProfile extends Activity {
                 Log.i(TAG, "An error occurred: " + status);
             }
         });
-
+*/
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         String id = mFirebaseAuth.getCurrentUser().getUid();
@@ -118,20 +118,6 @@ public class EditUserProfile extends Activity {
         user_number = (EditText) findViewById(R.id.userPhoneEdit);
         save = (Button) findViewById(R.id.save);
         imageEdit = (Button) findViewById(R.id.userImageEdit);
-
-        exitImageView = (ImageView) findViewById(R.id.exitImageView);
-        exitImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), BackPressPop.class);
-                i.putExtra("temp", 3);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-            }
-        });
-
-
-
 
         //
         user_address = (EditText)findViewById(R.id.userAddressEdit);
@@ -231,7 +217,7 @@ public class EditUserProfile extends Activity {
                 if(user_image_uri.isEmpty()){
 
                 }else{
-                    Picasso.with(getBaseContext()).load(user_image_uri).into(user_image);
+                    Picasso.with(getBaseContext()).load(user_image_uri).transform(new Circle()).into(user_image);
                 }
             }
             @Override
@@ -322,6 +308,7 @@ public class EditUserProfile extends Activity {
             CropImage.activity(imageUri)
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .setAspectRatio(1,1)
+                    .setCropShape(CropImageView.CropShape.OVAL)
                     .start(this);
         }
 
@@ -330,8 +317,8 @@ public class EditUserProfile extends Activity {
             if (resultCode == RESULT_OK) {
 
                 mImageUri= result.getUri();
-
                 user_image.setImageURI(mImageUri);
+
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();

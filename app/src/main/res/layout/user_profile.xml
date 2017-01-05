@@ -23,7 +23,8 @@
                 app:srcCompat="@drawable/person"
                 android:id="@+id/userImage"
                 android:layout_marginBottom="10dp"
-                android:background="@color/colorTransparent"
+                android:background="@drawable/circular_image"
+                android:elevation="5dp"
                 />
 
             <LinearLayout

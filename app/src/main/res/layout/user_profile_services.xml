@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background">
+    android:background="@color/cardview_light_background"
+    android:weightSum="7">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativeUserService">
+        android:id="@+id/relativeUserService"
+        android:layout_weight="1"
+        android:minHeight="179dp">
 
         <ImageView
             android:id="@+id/headerCoverImage"
@@ -31,76 +36,96 @@
             android:layout_centerHorizontal="true"
             />
 
+            <RelativeLayout
+                android:id="@+id/profileLayout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/gradient_background"
+                android:paddingBottom="20dp"
+                android:layout_below="@+id/headerCoverImage"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="-20dp">
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    app:srcCompat="@drawable/ic_info"
+                    android:id="@+id/imageButton"
+                    android:adjustViewBounds="false"
+                    android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackground"/>
+                </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/commentRatingBar"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:transformPivotX="0dp"
+            android:transformPivotY="0dp"
+            android:layout_marginTop="5dp"
+            android:rating="3"
+            android:layout_gravity="center_horizontal"
+            style="@style/RatingBar"
+            android:progressTint="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/user_name"
+            android:fontFamily="sans-serif"
+            android:text="Jan Kowalski"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_category"
+            android:fontFamily="sans-serif"
+            android:text="hydraulik"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorAccent"
+            android:text="@string/about_me"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="17dp"
+            android:textAllCaps="true"
+            android:gravity="center"
+            />
+
         <RelativeLayout
-            android:id="@+id/profileLayout"
+            android:id="@+id/profile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_background"
-            android:paddingBottom="40dp"
+            android:paddingBottom="20dp"
             android:layout_below="@+id/headerCoverImage"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"/>
+    </LinearLayout>
 
-</RelativeLayout>
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/commentRatingBar"
-        android:numStars="5"
-        android:stepSize="0.5"
-        android:transformPivotX="0dp"
-        android:transformPivotY="0dp"
-        android:layout_marginTop="5dp"
-        android:rating="3"
-        android:layout_gravity="center_horizontal"
-        style="@style/RatingBar"
-        android:progressTint="@color/colorAccent"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:id="@+id/user_name"
-        android:fontFamily="sans-serif"
-        android:text="Jan Kowalski"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/user_category"
-        android:fontFamily="sans-serif"
-        android:text="hydraulik"
-        android:textSize="15dp"
-        android:textStyle="italic"
-        android:textAlignment="center"
-        android:layout_marginBottom="10dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/colorAccent"
-        android:text="@string/about_me"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_light_background"
-        android:textSize="17dp"
-        android:textAllCaps="true"
-        android:gravity="center"
-        />
-
-    <RelativeLayout
-        android:id="@+id/profile_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/gradient_background"
-        android:paddingBottom="20dp"
-        android:layout_below="@+id/headerCoverImage"
-        android:layout_alignParentStart="true"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="4">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -318,9 +343,20 @@
 
             </LinearLayout>
 
-
         </RelativeLayout>
     </ScrollView>
 
+    <Button
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/add_me"
+        android:background="@drawable/button_rounded_corners"
+        android:textColor="@color/cardview_light_background"
+        android:layout_gravity="center"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:layout_weight="1"
+        android:id="@+id/addToDatabase"/>
 
 </LinearLayout>

@@ -58,6 +58,7 @@ public class DescriptionPopUp extends Activity {
             public void onClick(View v) {
                 String desc = mEditText.getText().toString();
                 mDatabaseReference.setValue(desc);
+                finish();
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {

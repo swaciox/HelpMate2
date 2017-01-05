@@ -71,8 +71,13 @@ public class ServiceUserProfile extends AppCompatActivity {
     }
 
     private void descEdit() {
-        Intent i = new Intent(getBaseContext(), DescriptionPopUp.class);
-        startActivity(i);
+        userDescChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), DescriptionPopUp.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void contactEdit() {

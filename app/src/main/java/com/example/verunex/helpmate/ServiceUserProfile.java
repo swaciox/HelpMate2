@@ -79,6 +79,13 @@ public class ServiceUserProfile extends AppCompatActivity {
         userOldData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        userOldData();
+    }
+
     private void descEdit() {
         userDescChange.setOnClickListener(new View.OnClickListener() {
             @Override

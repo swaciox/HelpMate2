@@ -41,6 +41,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".DescriptionPopUp"
+            android:theme="@style/AppTheme.PopTheme"
+            android:screenOrientation="portrait"
+            />
+
         <activity
             android:name=".ForgetPasswordPop"
             android:theme="@style/AppTheme.PopTheme"

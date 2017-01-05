@@ -239,13 +239,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="tu ma być opis od użytkownika"
-                        />
+                        android:id="@+id/userDesc" />
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/user_image_edit"
-                        android:layout_gravity="end"/>
+                        android:layout_gravity="end"
+                        android:id="@+id/editUserDesc" />
 
                 </LinearLayout>
 

@@ -45,6 +45,10 @@ public class ServiceUserProfile extends AppCompatActivity {
     private TextView userNumber, userNumberCell, userEmail;
     private Button editContact;
 
+    //description
+    private TextView userDesc;
+    private Button userDescChange;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +65,14 @@ public class ServiceUserProfile extends AppCompatActivity {
 
         contactEdit();
 
+        descEdit();
 
+
+    }
+
+    private void descEdit() {
+        Intent i = new Intent(getBaseContext(), DescriptionPopUp.class);
+        startActivity(i);
     }
 
     private void contactEdit() {
@@ -94,6 +105,10 @@ public class ServiceUserProfile extends AppCompatActivity {
         userEmail = (TextView)findViewById(R.id.userEmail);
         editContact = (Button)findViewById(R.id.editContactB);
 
+        //description
+        userDesc = (TextView)findViewById(R.id.userDesc);
+        userDescChange = (Button)findViewById(R.id.editUserDesc);
+
     }
 
     private void userOldData(){
@@ -125,6 +140,10 @@ public class ServiceUserProfile extends AppCompatActivity {
                 userNumberCell.setText(number);
                 userNumber.setText(number);
                 userEmail.setText(email);
+
+                //desc
+                String desc = dataSnapshot.child("desc").getValue().toString();
+                userDesc.setText(desc);
             }
 
             @Override

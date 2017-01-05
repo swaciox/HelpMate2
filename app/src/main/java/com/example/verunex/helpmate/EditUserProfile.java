@@ -278,7 +278,7 @@ public class EditUserProfile extends Activity {
             });
         }
         // testowo
-        finish();
+           finish();
     }
 
     @Override
@@ -317,12 +317,18 @@ public class EditUserProfile extends Activity {
             if (resultCode == RESULT_OK) {
 
                 mImageUri= result.getUri();
-                user_image.setImageURI(mImageUri);
+              //  user_image.setImageURI(mImageUri);
+
+                Picasso.with(getBaseContext()).load(mImageUri).transform(new Circle()).into(user_image);
+
+
 
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
             }
+
+
         }
     }
 
@@ -344,4 +350,5 @@ public class EditUserProfile extends Activity {
         i.putExtra("temp", 3);
         startActivity(i);
     }
+
 }

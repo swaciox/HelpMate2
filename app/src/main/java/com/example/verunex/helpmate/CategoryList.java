@@ -19,7 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -31,11 +33,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class CategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView mUsersList;
     private DatabaseReference mDatabaseReference;
+    private NavigationView mNavigationView;
+    private TextView mName;
+    private ImageView mImageView;
+    private DatabaseReference checkserviceuser;
 
     private DatabaseReference liketest;
     private Query mQuery;
@@ -45,6 +52,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
     private FirebaseAuth mFirebaseAuth;
     String cureent_user_id;
+    String choice = "false";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,8 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.list_category);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        String id_key = mFirebaseAuth.getCurrentUser().getUid();
         //cureent_user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //Log.v ("Id_KeyCategory", cureent_user_id);
         //cureent_user_id = getIntent().getStringExtra("Id_key");
@@ -59,8 +69,29 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
             cureent_user_id = "null";
         }else {
             cureent_user_id = mFirebaseAuth.getCurrentUser().getUid();
+            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
 
+            mDatabaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String name = dataSnapshot.child("name").getValue().toString();
+
+                    mName.setText(name);
+
+                    String user_image_uri = dataSnapshot.child("user_image").getValue(String.class);
+                    if(user_image_uri.isEmpty()){
+
+                    }else{
+                        Picasso.with(getBaseContext()).load(user_image_uri).transform(new Circle()).into(mImageView);
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
+
         if (!cureent_user_id.equals("null")) {
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -71,8 +102,44 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
             drawer.setDrawerListener(toggle);
             toggle.syncState();
 
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-            navigationView.setNavigationItemSelectedListener(this);
+            mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+
+            checkserviceuser = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
+
+            checkserviceuser.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    choice = dataSnapshot.child("service_state").getValue().toString();
+
+                    Log.v ("Wartosc choice ", choice);
+
+                    if(choice.equals("true")){
+                        Log.v ("Tu moze ", "moze");
+                        mNavigationView.getMenu().findItem(R.id.nav_userServices).setVisible(false);
+                        mNavigationView.getMenu().findItem(R.id.group_item_profile_services).setVisible(true);
+                    }else{
+                        mNavigationView.getMenu().findItem(R.id.nav_userServices).setVisible(true);
+                        mNavigationView.getMenu().findItem(R.id.group_item_profile_services).setVisible(false);
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            mNavigationView.setNavigationItemSelectedListener(this);
+
+            View header = mNavigationView.getHeaderView(0);
+
+            mName = (TextView)header.findViewById(R.id.nav_name);
+            mImageView = (ImageView)header.findViewById(R.id.imageuser);
+        }else{
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
         }
 
         mSpinner = (Spinner)findViewById(R.id.spinner);

@@ -104,18 +104,18 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="0.9"
                 android:layout_height="wrap_content"
-                android:id="@+id/userAddressEdit"
-                android:hint="@string/user_address" />
+                android:id="@+id/userPhoneEdit"
+                android:hint="@string/user_phone_edit" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@android:drawable/ic_menu_edit"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
-                android:id="@+id/addrImageView" />
+                android:layout_weight="0.1"/>
 
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,89 +132,38 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="0.9"
                 android:layout_height="wrap_content"
-                android:id="@+id/userPhoneEdit"
-                android:hint="@string/user_phone_edit" />
+                android:id="@+id/userAddressEdit"
+                android:hint="@string/user_address" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@android:drawable/ic_menu_edit"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"/>
+                android:layout_weight="0.1"
+                android:id="@+id/addrImageView" />
 
         </LinearLayout>
+
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chcę oferować usługi"
-                android:textSize="18dp"/>
-
         </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="134dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:background="@drawable/border"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:id="@+id/offerServices"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:textStyle="normal"
-                android:textSize="16dp"
-                android:textColor="@color/cardview_dark_background"
-                android:text="@string/oferowane_uslugi" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_below="@id/offerServices"
-                android:textColor="@color/cardview_dark_background"
-                android:layout_height="90dp"
-                android:id="@+id/userChoiceCat"
-                android:layout_weight="1"
-                android:layout_alignParentEnd="true"
-                android:layout_marginLeft="5dp"/>
-
-            <Button
-                android:text="@string/dodaj_usun_uslugi"
-                android:layout_gravity="bottom"
-                android:layout_width="160dp"
-                android:layout_height="30dp"
-                android:layout_margin="5dp"
-                android:id="@+id/categoriesChoiceButton"
-                android:layout_weight="1"
-                android:textColor="@color/cardview_light_background"
-                android:textSize="16dp"
-                android:textStyle="normal"
-                android:fontFamily="sans-serif"
-                android:background="@drawable/button_rounded_corners"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
 
         <Button
 
             android:layout_width="160dp"
+            android:layout_marginTop="25dp"
             android:layout_height="wrap_content"
             android:text="@string/user_profile_edit"
             android:layout_gravity="center_horizontal"

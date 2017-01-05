@@ -42,7 +42,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="777888999"
                     android:textSize="16dp"
                     android:id="@+id/contactNumber"
                     android:hint="Numer telefonu"/>
@@ -71,7 +70,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:text="email@email.com"
                     android:id="@+id/contactEmail"
                     android:hint="Adres e-mail"/>
             </android.support.design.widget.TextInputLayout>

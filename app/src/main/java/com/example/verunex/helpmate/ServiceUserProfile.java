@@ -43,6 +43,7 @@ public class ServiceUserProfile extends AppCompatActivity {
 
     //contact
     private TextView userNumber, userNumberCell, userEmail;
+    private Button editContact;
 
 
     @Override
@@ -57,6 +58,21 @@ public class ServiceUserProfile extends AppCompatActivity {
         userOldData();
 
         userSubCategoriesChoice();
+
+        contactEdit();
+
+
+    }
+
+    private void contactEdit() {
+
+        editContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), ContactPop.class);
+                startActivity(i);
+            }
+        });
 
 
     }
@@ -76,7 +92,7 @@ public class ServiceUserProfile extends AppCompatActivity {
         userNumber = (TextView)findViewById(R.id.number);
         userNumberCell = (TextView)findViewById(R.id.numberSms);
         userEmail = (TextView)findViewById(R.id.userEmail);
-
+        editContact = (Button)findViewById(R.id.editContactB);
 
     }
 
@@ -120,8 +136,6 @@ public class ServiceUserProfile extends AppCompatActivity {
 
     private void userSubCategoriesChoice()
     {
-
-
         editSubCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

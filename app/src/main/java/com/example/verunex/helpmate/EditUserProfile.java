@@ -28,7 +28,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appdatasearch.GetRecentContextCall;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -74,6 +78,8 @@ public class EditUserProfile extends Activity {
 
     private LocationManager locationManager;
 
+    private String TAG = "New ";
+
     String rText="";
 
     @Override
@@ -81,20 +87,31 @@ public class EditUserProfile extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pop_user_profile);
 
-        // categories listView
-        String[] categories = {"Hydraulika", "Pomoc domowa", "Ogrodnictwo", "Remonty", "Elektryka"};
-
         /*ListView mListView= (ListView) findViewById(R.id.categoriesListView);
         ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);
         mListView.setAdapter(listAdapter);
         */
 
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName());
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         String id = mFirebaseAuth.getCurrentUser().getUid();
-
-
-        userChoice = (TextView)findViewById(R.id.userChoiceCat);
 
         user_image = (ImageButton) findViewById(R.id.userImage);
         user_name = (EditText) findViewById(R.id.userNameEdit);
@@ -113,19 +130,7 @@ public class EditUserProfile extends Activity {
             }
         });
 
-        Button categoriesChoiceButton = (Button) findViewById(R.id.categoriesChoiceButton);
-        categoriesChoiceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), CategoriesChoice.class);
-                //startActivityForResult(i,3);
-                startActivity(i);
-            }
-        });
 
-        // pobranie wybranych kategorii
-
-        mCategoriesChoice = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id).child("categories");
 
 
         //
@@ -344,38 +349,6 @@ public class EditUserProfile extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        rText = "";
-
-        mCategoriesChoice.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(int i = 0; i<23; i++){
-
-                    String temp = "sub"+(i+1);
-                    String state = dataSnapshot.child(temp).child("state").getValue().toString();
-                    if(state.equals("true")){
-                        String desc = dataSnapshot.child(temp).child("description").getValue().toString();
-                        rText =rText +" - " + desc+"\n";
-                        Log.v ("tekst na "+temp , rText);
-                    }else{
-                        String desc = " ";
-
-                    }
-                }
-                Log.v ("Tekst long" , rText);
-                userChoice.setText(rText);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-
     }
 
     @Override

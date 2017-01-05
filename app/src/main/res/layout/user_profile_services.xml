@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_light_background"
-    android:weightSum="7">
+    android:weightSum="9">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/relativeUserService"
-        android:layout_weight="1"
-        android:minHeight="179dp">
+        android:layout_weight="2">
 
         <ImageView
             android:id="@+id/headerCoverImage"
@@ -45,15 +44,18 @@
                 android:layout_below="@+id/headerCoverImage"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="-20dp">
+
                 <ImageButton
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/ic_info"
-                    android:id="@+id/imageButton"
+                    android:id="@+id/infoButton"
                     android:adjustViewBounds="false"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:background="?attr/selectableItemBackground"/>
+
                 </RelativeLayout>
 
 
@@ -61,9 +63,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="1">
+        android:layout_weight="2">
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,8 +126,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="4">
+        android:layout_height="0dp"
+        android:layout_weight="4.2">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -346,17 +348,22 @@
         </RelativeLayout>
     </ScrollView>
 
-    <Button
-        android:layout_marginTop="3dp"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="@string/add_me"
-        android:background="@drawable/button_rounded_corners"
-        android:textColor="@color/cardview_light_background"
-        android:layout_gravity="center"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:layout_weight="1"
-        android:id="@+id/addToDatabase"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:layout_gravity="center">
+        <Button
+            android:layout_marginTop="3dp"
+            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:text="@string/add_me"
+            android:background="@drawable/button_rounded_corners"
+            android:textColor="@color/cardview_light_background"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:id="@+id/addToDatabase"/>
+    </LinearLayout>
+
 
 </LinearLayout>

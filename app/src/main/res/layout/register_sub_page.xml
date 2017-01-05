@@ -13,60 +13,88 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userEmailLabel"
             android:layout_width="310dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="5dp"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/registerEmailAddress"
-            android:hint="@string/email"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorTextPrimary"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imageLock"
-            android:layout_marginStart="0dp" />
+            android:layout_marginStart="0dp"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/registerEmailAddress"
+                android:hint="@string/email"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_weight="1"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/imageLock"
+                android:layout_marginStart="0dp" />
 
-        <EditText
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userPasswordLabel"
             android:layout_width="310dp"
-            android:layout_height="45dp"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/registerPassword"
-            android:hint="@string/password"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorTextPrimary"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_below="@+id/registerEmailAddress"
-            android:layout_alignStart="@+id/registerEmailAddress" />
+            android:layout_below="@+id/userEmailLabel"
+            android:layout_alignStart="@+id/userEmailLabel"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/registerPassword"
+                android:hint="@string/password"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_weight="1"
+                />
+
+        </android.support.design.widget.TextInputLayout>
 
         <ImageView
             android:layout_width="42dp"
             android:src="@drawable/ic_mail_outline"
             android:id="@+id/imageMail"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="-5dp"
             android:layout_height="42dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             tools:ignore="RtlHardcoded" />
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userPasswordRepeatLabel"
             android:layout_width="310dp"
-            android:layout_height="45dp"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:hint="@string/repeat_password"
-            android:id="@+id/registerRepeatPassword"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorTextPrimary"
-            android:layout_weight="1"
-            android:layout_below="@+id/registerPassword"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userPasswordLabel"
             android:layout_marginTop="11dp"
-            android:layout_alignStart="@+id/registerPassword"
-            android:layout_alignEnd="@+id/registerPassword" />
+            android:layout_alignStart="@+id/userPasswordLabel"
+            android:layout_alignEnd="@+id/userPasswordLabel"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:hint="@string/repeat_password"
+                android:id="@+id/registerRepeatPassword"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_weight="1"
+                />
+
+        </android.support.design.widget.TextInputLayout>
 
         <ImageView
             android:src="@drawable/ic_lock_outline"
@@ -74,7 +102,8 @@
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:layout_marginLeft="-5dp"
-            android:layout_alignTop="@+id/registerPassword"
+            android:layout_marginTop="10dp"
+            android:layout_alignTop="@+id/userPasswordLabel"
             android:layout_alignParentStart="true" />
 
         <ImageView
@@ -82,8 +111,8 @@
             android:src="@drawable/ic_lock_outline"
             android:id="@+id/imageLock2"
             android:layout_height="42dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/registerPassword"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/userPasswordLabel"
             android:layout_alignStart="@+id/imageMail" />
 
         <Button
@@ -96,7 +125,7 @@
             android:layout_height="40dp"
             android:id="@+id/buttonSignUp"
             android:layout_width="180dp"
-            android:layout_below="@+id/registerRepeatPassword"
+            android:layout_below="@+id/userPasswordRepeatLabel"
             android:layout_centerHorizontal="true" />
 
 

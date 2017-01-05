@@ -38,7 +38,7 @@ public class ContactPop extends Activity {
         int width = mDisplayMetrics.widthPixels;
         int height = mDisplayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width * .8), (int) (height * .4));
+        getWindow().setLayout((int) (width * .85), (int) (height * .35));
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 

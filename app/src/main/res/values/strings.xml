@@ -147,12 +147,7 @@
     <string name="cancel">Anuluj</string>
     <string name="confirm">Tak</string>
     <string name="save">Zapisz</string>
-
-
-
-
-
-
+    <string name="description_hint">Poniżej możesz zamieścić krótki opis na temat swoich usług</string>
     <string name="place_details">
     <![CDATA[
         <b>%1$s</b>

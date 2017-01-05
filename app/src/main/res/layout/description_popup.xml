@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
     android:background="@color/cardview_light_background">
 
         <TextView
@@ -22,32 +21,50 @@
             android:background="@color/colorMediumGrey"
             android:layout_margin="1dp"/>
 
-        <LinearLayout
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/description_hint"
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            />
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="100dp">
+            android:minHeight="150dp"
+            android:maxHeight="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputLayoutContact"
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                >
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:id="@+id/descriptionUser"
-                    android:hint="Wpisz kilka zdań o Tobie i Twoich usługach"/>
-            </android.support.design.widget.TextInputLayout>
+                android:minHeight="150dp"
+                android:maxHeight="200dp"
+                android:textSize="18dp"
+                android:id="@+id/descriptionUser"
+                android:hint="Wpisz swój opis..."
+                android:inputType="textMultiLine"
+                android:backgroundTint="@color/colorAccent"
+                />
+
 
         </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+
+        >
 
         <Button
             android:text="@string/save"
@@ -59,7 +76,8 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="5dp"
             android:id="@+id/acceptChangesButton"
-            android:background="@drawable/button_rounded_corners"/>
+            android:background="@drawable/button_rounded_corners"
+            android:layout_alignParentStart="true"/>
 
         <Button
             android:text="@string/cancel"
@@ -69,10 +87,11 @@
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:layout_margin="5dp"
             android:id="@+id/cancelChangesButton"
             android:background="@drawable/button_rounded_corners"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

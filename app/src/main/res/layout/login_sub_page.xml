@@ -16,61 +16,58 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
-        <ImageView
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:src="@drawable/person_outline"
-            android:id="@+id/imageMail"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
-
-        <ImageView
-
-            android:id="@+id/imageLock"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:src="@drawable/ic_lock_outline"
-            android:layout_alignTop="@+id/registerPassword"
-            android:layout_alignParentStart="true" />
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userEmail"
             android:layout_width="310dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="5dp"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/registerEmailAddress"
-            android:hint="@string/email"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorTextPrimary"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/imageLock"
-            android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            >
 
-        <EditText
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/registerEmailAddress"
+                android:hint="@string/email"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_weight="1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userEditPassword"
             android:layout_width="310dp"
-            android:layout_height="45dp"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/registerPassword"
-            android:hint="@string/password"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorTextPrimary"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/registerEmailAddress"
-            android:layout_alignStart="@+id/registerEmailAddress" />
+            android:layout_below="@+id/userEmail"
+            android:layout_alignStart="@+id/userEmail"
+            android:layout_weight="1"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/registerPassword"
+                android:hint="@string/password"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/colorTextPrimary"
+                />
+        </android.support.design.widget.TextInputLayout>
 
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:id="@+id/facebook"
             android:layout_marginStart="14dp"
-            android:layout_below="@+id/registerPassword"
+            android:layout_below="@+id/userEditPassword"
             android:layout_alignStart="@+id/buttonSignIn" />
 
         <ImageView
@@ -78,7 +75,7 @@
             android:layout_height="45dp"
             android:id="@+id/google"
             android:layout_marginEnd="17dp"
-            android:layout_below="@+id/registerPassword"
+            android:layout_below="@+id/userEditPassword"
             android:layout_alignEnd="@+id/buttonSignIn" />
 
         <TextView
@@ -103,7 +100,7 @@
             android:id="@+id/buttonSignIn"
             android:text="@string/login"
             android:layout_width="180dp"
-            android:layout_below="@+id/registerPassword"
+            android:layout_below="@+id/userEditPassword"
             android:layout_centerHorizontal="true" />
 
         <ImageView
@@ -136,6 +133,25 @@
             android:layout_alignBottom="@+id/imageView10"
             android:layout_alignStart="@+id/textView"
             />
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/person_outline"
+            android:id="@+id/imageMail"
+            android:layout_marginLeft="0dp"
+            android:layout_above="@+id/userEditPassword"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+
+            android:id="@+id/imageLock"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_lock_outline"
+
+            android:layout_alignBottom="@+id/userEditPassword"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 

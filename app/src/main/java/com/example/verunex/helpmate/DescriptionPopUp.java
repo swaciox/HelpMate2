@@ -32,6 +32,14 @@ public class DescriptionPopUp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.description_popup);
 
+        DisplayMetrics mDisplayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
+
+        int width = mDisplayMetrics.widthPixels;
+        int height = mDisplayMetrics.heightPixels;
+
+        getWindow().setLayout((int) (width * .8), (int) (height * .6));
+
 
         mEditText = (EditText)findViewById(R.id.descriptionUser);
         acceptButton = (Button)findViewById(R.id.acceptChangesButton);

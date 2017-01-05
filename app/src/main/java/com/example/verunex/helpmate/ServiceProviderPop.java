@@ -53,7 +53,7 @@ public class ServiceProviderPop extends Activity{
         String id_key = mFirebaseAuth.getCurrentUser().getUid();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
 
-        infoText.setText("Czy na pewno chcesz zostać wykonawcą? ");
+        infoText.setText("Czy na pewno chcesz zostać wykonawcą?");
 
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override

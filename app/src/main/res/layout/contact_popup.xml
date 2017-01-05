@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
     android:background="@color/cardview_light_background">
 
         <TextView
@@ -24,7 +23,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
 
             <ImageButton
                 android:layout_width="50dp"
@@ -38,13 +38,16 @@
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:id="@+id/contactNumber"
-                    android:hint="Numer telefonu"/>
+                    android:hint="Numer telefonu"
+                     android:backgroundTint="@color/colorAccent"
+                     android:inputType="phone"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
 
             <ImageButton
                 android:src="@drawable/ic_mail_color"
@@ -59,7 +62,9 @@
                     android:textSize="16dp"
                     android:id="@+id/contactEmail"
                     android:hint="Adres e-mail"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress"
+                    android:backgroundTint="@color/colorAccent"
+                    />
 
         </LinearLayout>
 

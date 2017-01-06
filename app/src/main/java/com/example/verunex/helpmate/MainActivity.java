@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity
                     Log.v ("Wartosc choice ", choice);
 
                     if(choice.equals("true")){
-                        Log.v ("Tu moze ", "moze");
                         mNavigationView.getMenu().findItem(R.id.nav_userServices).setVisible(false);
                         mNavigationView.getMenu().findItem(R.id.group_item_profile_services).setVisible(true);
                     }else{

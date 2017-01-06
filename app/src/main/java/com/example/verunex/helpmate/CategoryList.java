@@ -286,7 +286,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemSelected(AdapterView<?> parent, final View view, int position, long id) {
         String choice = mSpinner.getSelectedItem().toString();
 
         Log.v ("Choice", choice);
@@ -308,35 +308,39 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
             mQuery =  mDatabaseReference.orderByChild(choice);
         }
 
-        FirebaseRecyclerAdapter<User, UserProfileViewHolder> mFirebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User, UserProfileViewHolder>(
-                User.class,
+        FirebaseRecyclerAdapter<User2, User2ProfileViewHolder> mFirebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User2, User2ProfileViewHolder>(
+                User2.class,
                 R.layout.users_list,
-                UserProfileViewHolder.class,
+                User2ProfileViewHolder.class,
                 mQuery
         ) {
             @Override
-            protected void populateViewHolder(final UserProfileViewHolder viewHolder, final User model, final int position) {
+            protected void populateViewHolder(final User2ProfileViewHolder viewHolder, final User2 model, final int position) {
                 final String category = model.getCategory();
 
-
+                //viewHolder.setAddress(model.getAddress());
                 viewHolder.setName(model.getName());
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setNumber(model.getNumber());
-                viewHolder.setImage(getApplicationContext(), model.getImage());
+                //viewHolder.setImage(getApplicationContext(), model.getImage());
+                viewHolder.setImage(getApplicationContext(),model.getUser_image());
                 viewHolder.setRate(model.getRate());
-                viewHolder.setUser_id(model.getUser_id());
+                //viewHolder.setUser_id(model.getUser_id());
+                viewHolder.setUid(model.getUid());
                 viewHolder.setEmail(model.getEmail());
                 //viewHolder.setDescription(model.getDescription());
 
 
+                final String service_state = model.getService_state();
                 final String email = model.getEmail();
                 final String number = model.getNumber();
                 final String name = model.getName();
                 //final String category = model.getCategory();
-                final String image = model.getImage();
+                final String image = model.getUser_image();
                 final String rate = model.getRate();
-                //final String description = viewHolder.setDescription(model.getDescription());
-                final String user_id = model.getUser_id();
+                final String desc = model.getDesc();
+                final String user_id = model.getUid();
+                final String address = model.getAddress();
 
 
                 final String id_position = getRef(position).getKey();
@@ -349,7 +353,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                 liketest.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(cureent_user_id).hasChild(key)){
+                        if(dataSnapshot.child(cureent_user_id).hasChild(model.getUid())){
                             viewHolder.favouriteBox.setChecked(true);
                             viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
                         }else{
@@ -437,12 +441,13 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                     viewHolder.favouriteBox.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            final String user_from_list_id = model.getUser_id();
+                            //final String user_from_list_id = model.getUid();
                             final String key = getRef(position).getKey();
 
-                            String model1 = model.getUser_id();
 
-                            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(cureent_user_id).child(key);
+                            String model1 = model.getUid();
+
+                            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(cureent_user_id).child(model1);
 
                             Log.v ("key: ", key);
 
@@ -451,12 +456,15 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                             if(viewHolder.favouriteBox.isChecked()==true) {
                                 viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
                                 favourite.child("category").setValue(category);
-                                favourite.child("image").setValue(image);
+                                favourite.child("user_image").setValue(image);
                                 favourite.child("rate").setValue(rate);
                                 favourite.child("email").setValue(email);
                                 favourite.child("name").setValue(name);
                                 favourite.child("number").setValue(number);
-                                favourite.child("user_id").setValue(user_id);
+                                favourite.child("uid").setValue(user_id);
+                                favourite.child("address").setValue(address);
+                                favourite.child("service_state").setValue(service_state);
+                                favourite.child("desc").setValue(desc);
                                 Toast.makeText(getBaseContext(), "Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
                             }else{
                                 viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_unlike);

@@ -35,6 +35,8 @@ public class FragmentSubPage2 extends Fragment {
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
 
+    private DatabaseReference checkUser;
+
     private FirebaseListAdapter mFirebaseListAdapter;
 
     private RecyclerView mCommentList;
@@ -68,11 +70,16 @@ public class FragmentSubPage2 extends Fragment {
             id_key = FirebaseAuth.getInstance().getCurrentUser().getUid();
             addComment.setVisibility(View.VISIBLE);
         }
+        final String id_position = this.getArguments().getString("id_position");
+
+        if(id_position.equals(id_key)){
+            addComment.setVisibility(View.INVISIBLE);
+        }
 
         //retrieve data
-        final String id_position = this.getArguments().getString("id_position");
+
         final String user_id = this.getArguments().getString("user_id");
-        Log.v("frag2id_position",user_id);
+        Log.v("frag2id_position",id_position);
 
         addComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +91,7 @@ public class FragmentSubPage2 extends Fragment {
             }
         });
 
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(user_id);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(id_key);
 
         FirebaseRecyclerAdapter<Comment, CommentViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(
                 Comment.class,
@@ -114,8 +121,8 @@ public class FragmentSubPage2 extends Fragment {
                             addComment.setVisibility(View.VISIBLE);
                         }
                     });
-                }else{
-                    //addComment.setVisibility(View.VISIBLE);
+                }else if (comment_id.equals(user_id)){
+                    //addComment.setVisibility(View.INVISIBLE);
                 }
                 temp = temp + Float.parseFloat(rate);
                 Log.v("temp ", String.valueOf(temp));

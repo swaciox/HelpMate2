@@ -7,7 +7,7 @@ package com.example.verunex.helpmate;
 public class User {
 
     private String category;
-    private String image;
+    private String user_image;
     private String name;
     private String number;
     private String rate;
@@ -20,15 +20,16 @@ public class User {
 
     }
 
-    public User(String category, String image, String name, String number, String rate, String description, String user_id, String email) {
+    public User(String category, String user_image, String name, String number, String rate, String description, String user_id, String email) {
         this.category = category;
-        this.image = image;
+        this.user_image = user_image;
         this.name = name;
         this.number = number;
         this.rate = rate;
         this.description = description;
         this.user_id = user_id;
         this.email = email;
+
     }
 
     public String getEmail() {return email;}
@@ -36,14 +37,13 @@ public class User {
         this.email = email;
     }
 
-
     public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
+ //   public void setUser_id(String user_id) {
+   //     this.user_id = user_id;
+  //  }
 
     public String getDescription() {
         return description;
@@ -66,15 +66,16 @@ public class User {
     }
 
     public void setCategory(String category) {
-        this.category = category;
+       this.category = category;
     }
 
     public String getImage() {
-        return image;
+        return user_image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String user_image
+    ) {
+        this.user_image = user_image;
     }
 
     public String getName() {

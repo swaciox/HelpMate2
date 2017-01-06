@@ -53,30 +53,37 @@ public class UserFavouriteActivity extends AppCompatActivity {
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(id_key);
 
-        FirebaseRecyclerAdapter<User, UserProfileViewHolder> mFirebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User, UserProfileViewHolder>(
-                User.class,
+        FirebaseRecyclerAdapter<User2, User2ProfileViewHolder> mFirebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User2, User2ProfileViewHolder>(
+                User2.class,
                 R.layout.users_list,
-                UserProfileViewHolder.class,
+                User2ProfileViewHolder.class,
                 mDatabaseReference
         ) {
             @Override
-            protected void populateViewHolder(final UserProfileViewHolder viewHolder, final User model, int position) {
-                viewHolder.setCategory(model.getCategory());
-                viewHolder.setName(model.getName());
-                viewHolder.setNumber(model.getNumber());
-                viewHolder.setImage(getApplicationContext(), model.getImage());
-                viewHolder.setRate(model.getRate());
-                viewHolder.setUser_id(model.getUser_id());
-                viewHolder.setEmail(model.getEmail());
+            protected void populateViewHolder(final User2ProfileViewHolder viewHolder, final User2 model, int position) {
 
+                //viewHolder.setAddress(model.getAddress());
+                viewHolder.setName(model.getName());
+                viewHolder.setCategory(model.getCategory());
+                viewHolder.setNumber(model.getNumber());
+                //viewHolder.setImage(getApplicationContext(), model.getImage());
+                viewHolder.setImage(getApplicationContext(),model.getUser_image());
+                viewHolder.setRate(model.getRate());
+                //viewHolder.setUser_id(model.getUser_id());
+                viewHolder.setUid(model.getUid());
+                viewHolder.setEmail(model.getEmail());
+                //viewHolder.setDescription(model.getDescription());
+
+                final String service_state = model.getService_state();
                 final String email = model.getEmail();
                 final String number = model.getNumber();
                 final String name = model.getName();
                 final String category = model.getCategory();
-                final String image = model.getImage();
+                final String image = model.getUser_image();
                 final String rate = model.getRate();
-                //final String description = viewHolder.setDescription(model.getDescription());
-                final String user_id = model.getUser_id();
+                final String desc = model.getDesc();
+                final String user_id = model.getUid();
+                final String address = model.getAddress();
 
 
                 final String id_position = getRef(position).getKey();
@@ -112,7 +119,8 @@ public class UserFavouriteActivity extends AppCompatActivity {
                         singleuser.putExtra("user_image", image);
                         singleuser.putExtra("user_rate", rate);
                         singleuser.putExtra("id_position", id_position);
-                        //singleuser.putExtra("user_description", description);
+                        singleuser.putExtra("user_description", desc);
+                        singleuser.putExtra("user_id", user_id);
                         startActivity(singleuser);
 
                         Bundle bundle = new Bundle();
@@ -120,11 +128,12 @@ public class UserFavouriteActivity extends AppCompatActivity {
                         FragmentSubPage1 fragobj = new FragmentSubPage1();
                         fragobj.setArguments(bundle);
 
-                        /*Bundle bundle1 = new Bundle();
+                        Bundle bundle1 = new Bundle();
                         bundle1.putString("id_position", id_position);
+                        bundle1.putString("user_id",user_id);
                         FragmentSubPage2 objSubPage2 = new FragmentSubPage2();
                         objSubPage2.setArguments(bundle1);
-*/
+
                     }
                 });
                 viewHolder.btn.setOnClickListener(new View.OnClickListener() {

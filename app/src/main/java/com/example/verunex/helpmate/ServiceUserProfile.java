@@ -49,6 +49,13 @@ public class ServiceUserProfile extends AppCompatActivity {
     private TextView userDesc;
     private Button userDescChange;
 
+    //addToDatabase
+    private Button addToDatabase;
+    private DatabaseReference addUserToDatabaseReference;
+
+    //
+    String filterCategory = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +76,172 @@ public class ServiceUserProfile extends AppCompatActivity {
 
         descEdit();
 
+        addUserToDatabase();
 
+
+    }
+
+    private void addUserToDatabase() {
+
+        addUserToDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Offers");
+
+        addToDatabase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        //data
+                        String name = dataSnapshot.child("name").getValue().toString();
+                        String number = dataSnapshot.child("number").getValue().toString();
+                        String address = dataSnapshot.child("address").getValue().toString();
+                        String desc = dataSnapshot.child("desc").getValue().toString();
+                        String email = dataSnapshot.child("email").getValue().toString();
+                        String image = dataSnapshot.child("user_image").getValue().toString();
+                        String uid = dataSnapshot.child("uid").getValue().toString();
+                        String service_state = dataSnapshot.child("service_state").getValue().toString();
+
+                        String tempCategory = "";
+                        for(int i =1; i <=23; i++){
+                            String temp = "sub" + i ;
+
+                            String item = dataSnapshot.child("categories").child(temp).child("description").getValue().toString();
+
+                            String subcategory="";
+                            if (item.equals("naprawa wycieków")){
+                                subcategory = "naprawa_wyciekow";
+                            } else if (item.equals("wymiana armatury")) {
+                                subcategory = "wymiana_armatury";
+                            } else if (item.equals("instalacje elektryczne")){
+                                subcategory = "instalacje_elektryczne";
+                            } else if (item.equals("naprawa awaryjna")){
+                                subcategory = "naprawa_awaryjna";
+                            } else if (item.equals("sprzątanie")){
+                                subcategory = "sprzatanie";
+                            } else if (item.equals("prasowanie")){
+                                subcategory = "prasowanie";
+                            } else if (item.equals("mycie okien")){
+                                subcategory = "mycie_okien";
+                            } else if (item.equals("opieka do dzieci")) {
+                                subcategory = "opieka_do_dzieci";
+                            } else if (item.equals("opieka do osób starszych")) {
+                                subcategory = "opieka_do_osob_starszych";
+                            } else if (item.equals("opieka dzieci i osób niepełnosprawnych")) {
+                                subcategory = "opieka_dzieci_i_osob_niepelnosprawnych";
+                            } else if (item.equals("wyprowadzanie zwierząt")) {
+                                subcategory = "wyprowadzanie_zwierzat";
+                            } else if (item.equals("korepetycje")) {
+                                subcategory = "korepetycje";
+                            } else if (item.equals("koszenie trawy")) {
+                                subcategory = "koszenie_trawy";
+                            } else if (item.equals("prace porządkowe")) {
+                                subcategory = "prace_porzadkowe";
+                            } else if (item.equals("pielęgnacja ogrodu")) {
+                                subcategory = "pielegnacja_ogrodu";
+                            } else if (item.equals("naprawa drobnego AGD")) {
+                                subcategory = "naprawa_drobnego_AGD";
+                            } else if (item.equals("naprawa AGD")) {
+                                subcategory = "naprawa_AGD";
+                            } else if (item.equals("naprawa RTV")) {
+                                subcategory = "naprawa_RTV";
+                            } else if (item.equals("naprawa komputerów/laptopów")) {
+                                subcategory = "naprawa_komputerow_laptopow";
+                            } else if (item.equals("malowanie")) {
+                                subcategory = "malowanie";
+                            } else if (item.equals("tapetowanie")) {
+                                subcategory = "tapetowanie";
+                            } else if (item.equals("kładzenie kafelek")) {
+                                subcategory = "kladzenie_kafelek";
+                            } else if (item.equals("kładzenie paneli podłogowych")) {
+                                subcategory = "kladzenie_paneli_podlogowych";
+                            }
+
+
+                            if(dataSnapshot.child("categories").child(temp).child("state").getValue().toString()=="true"){
+                                Log.v ("Bylem tu", " Ld");
+
+                                String category = "";
+
+                                if(temp.equals("sub1") || temp.equals("sub2")){
+                                    category= "hydraulika";
+                                }else if (temp.equals("sub3") || temp.equals("sub4")){
+                                    category="elektryka";
+                                }else if (temp.equals("sub5") || temp.equals("sub6") || temp.equals("sub7")){
+                                    category="pomoc_domowa";
+                                } else if(temp.equals("sub8")|| temp.equals("sub9")|| temp.equals("sub10")|| temp.equals("sub11")){
+                                    category="opieka";
+                                } else if (temp.equals("sub12")){
+                                    category="korepetycje";
+                                } else if (temp.equals("sub13")|| temp.equals("sub14")|| temp.equals("sub15")){
+                                    category="ogrodnictwo";
+                                } else if (temp.equals("sub16")|| temp.equals("sub17")|| temp.equals("sub18")|| temp.equals("sub19")){
+                                    category="naprawa_urzadzen";
+                                } else if (temp.equals("sub20")|| temp.equals("sub21")|| temp.equals("sub22")|| temp.equals("sub23")){
+                                    category="remonty";
+                                }
+
+                                tempCategory = tempCategory + category + ", ";
+
+                                DatabaseReference addUser = addUserToDatabaseReference.child(category).child(subcategory).child(uid);
+
+                                addUser.child("name").setValue(name);
+                                addUser.child("number").setValue(number);
+                                addUser.child("desc").setValue(desc);
+                                addUser.child("address").setValue(address);
+                                addUser.child("email").setValue(email);
+                                addUser.child("user_image").setValue(image);
+                                addUser.child("uid").setValue(uid);
+                                addUser.child("service_state").setValue(service_state);
+                                addUser.child("rate").setValue("5.0f");
+                                addUser.child("category").setValue(deleteLastChar(filterCategory));
+
+
+                            }else if (dataSnapshot.child("categories").child(temp).child("state").getValue().toString()=="false"){
+                                String category = "";
+
+                                if(temp.equals("sub1") || temp.equals("sub2")){
+                                    category= "hydraulika";
+                                }else if (temp.equals("sub3") || temp.equals("sub4")){
+                                    category="elektryka";
+                                }else if (temp.equals("sub5") || temp.equals("sub6") || temp.equals("sub7")){
+                                    category="pomoc_domowa";
+                                } else if(temp.equals("sub8")|| temp.equals("sub9")|| temp.equals("sub10")|| temp.equals("sub11")){
+                                    category="opieka";
+                                } else if (temp.equals("sub12")){
+                                    category="korepetycje";
+                                } else if (temp.equals("sub13")|| temp.equals("sub14")|| temp.equals("sub15")){
+                                    category="ogrodnictwo";
+                                } else if (temp.equals("sub16")|| temp.equals("sub17")|| temp.equals("sub18")|| temp.equals("sub19")){
+                                    category="naprawa_urzadzen";
+                                } else if (temp.equals("sub20")|| temp.equals("sub21")|| temp.equals("sub22")|| temp.equals("sub23")){
+                                    category="remonty";
+                                }
+
+
+                                DatabaseReference deleteUser = addUserToDatabaseReference.child(category).child(subcategory);
+                                deleteUser.child(uid).removeValue();
+                            }
+
+                        }
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
+
+
+            }
+        });
     }
 
     @Override
@@ -84,6 +256,17 @@ public class ServiceUserProfile extends AppCompatActivity {
         super.onResume();
 
         userOldData();
+
+        userSubCategoriesChoice();
+
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        userSubCategoriesChoice();
     }
 
     private void descEdit() {
@@ -130,6 +313,10 @@ public class ServiceUserProfile extends AppCompatActivity {
         userDesc = (TextView)findViewById(R.id.userDesc);
         userDescChange = (Button)findViewById(R.id.editUserDesc);
 
+        //addToDatabase
+        addToDatabase = (Button)findViewById(R.id.addToDatabase);
+
+
     }
 
     private void userOldData(){
@@ -172,6 +359,7 @@ public class ServiceUserProfile extends AppCompatActivity {
 
     private void userSubCategoriesChoice()
     {
+
         editSubCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,6 +376,8 @@ public class ServiceUserProfile extends AppCompatActivity {
                 String temp2;
                 String desc;
                 String categories = "";
+                filterCategory = "";
+
 
                 List<String> category = new ArrayList<String>();
                 int position = 0;
@@ -229,7 +419,7 @@ public class ServiceUserProfile extends AppCompatActivity {
                     finallist.add(tempList);
                 }
 
-                String filterCategory = "";
+
                 for(int i = 0; i < finallist.size(); i++){
                     filterCategory = filterCategory +finallist.get(i)+ ", ";
                     Log.v("filter ", filterCategory);

@@ -1,12 +1,7 @@
 package com.example.verunex.helpmate;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -16,8 +11,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+/**
+ * Created by Verunex on 2017-01-05.
+ */
 
-public class UserProfileViewHolder extends RecyclerView.ViewHolder {
+public class User2ProfileViewHolder extends RecyclerView.ViewHolder {
 
     View mView;
     CheckBox favouriteBox;
@@ -25,7 +23,7 @@ public class UserProfileViewHolder extends RecyclerView.ViewHolder {
     ImageButton btn2;
     ImageButton btn3;
 
-    public UserProfileViewHolder(View itemView) {
+    public User2ProfileViewHolder(View itemView) {
         super(itemView);
 
         mView = itemView;
@@ -37,12 +35,18 @@ public class UserProfileViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-      public String setUser_id (String user_id){
-        return user_id;
+    public String setDesc (String desc){
+        return desc;
     }
-
-
-
+    public String setAddress (String address){
+        return address;
+    }
+    public String setUid(String uid){
+        return uid;
+    }
+    public String setServiceState (String service_state) {
+        return service_state;
+    }
     public void setName(String name){
         TextView user_name = (TextView) mView.findViewById(R.id.name);
         user_name.setText(name);
@@ -54,22 +58,17 @@ public class UserProfileViewHolder extends RecyclerView.ViewHolder {
     public String setEmail (String email) {return email;}
 
     public void setCategory(String category){
-            TextView user_category = (TextView) mView.findViewById(R.id.category);
-            user_category.setText(category);
+        TextView user_category = (TextView) mView.findViewById(R.id.category);
+        user_category.setText(category);
     }
 
-    public void setImage(Context ctx, String user_image){
-        ImageView user_imagee = (ImageView) mView.findViewById(R.id.image);
-        Picasso.with(ctx).load(user_image).transform(new Circle()).into(user_imagee);
+    public void setImage(Context ctx, String image){
+        ImageView user_img = (ImageView) mView.findViewById(R.id.image);
+        Picasso.with(ctx).load(image).transform(new Circle()).into(user_img);
     }
 
     public void setRate(String rate){
         RatingBar user_rate = (RatingBar) mView.findViewById(R.id.commentRatingBar);
         user_rate.setRating(Float.parseFloat(rate));
     }
-
-    //public String setDescription(String description){
-    //   return description;
-    //}
-
 }

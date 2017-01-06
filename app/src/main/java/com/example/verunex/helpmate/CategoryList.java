@@ -269,7 +269,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
         int id = item.getItemId();
 
         if (id == R.id.user_profile) {
-            Intent i = new Intent(this, UserProfileActivity.class);
+            Intent i = new Intent(this, EditUserProfile.class);
             startActivity(i);
 
         } else if (id == R.id.user_favorite) {
@@ -280,6 +280,12 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }else if (id == R.id.nav_userServices){
+            Intent intent = new Intent(getApplicationContext(), ServiceProviderPop.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_userProfileServices){
+            Intent intent = new Intent(getApplicationContext(), ServiceUserProfile.class);
             startActivity(intent);
         }
 

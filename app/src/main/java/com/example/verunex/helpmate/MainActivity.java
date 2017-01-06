@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.user_profile) {
-            Intent i = new Intent(this, UserProfileActivity.class);
+            Intent i = new Intent(this, EditUserProfile.class);
             startActivity(i);
 
         } else if (id == R.id.user_favorite) {

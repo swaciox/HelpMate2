@@ -158,6 +158,7 @@ public class SubCategoryPop extends Activity {
                     i.putExtra("Category", selected);
                     i.putExtra("Subcategory", temp);
                     startActivity(i);
+                    finish();
             }
         });
     }

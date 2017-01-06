@@ -15,7 +15,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="orConnectWith">zaloguj się przez</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="remind_password_email">Wpisz swój adres e-mail:</string>
+    <string name="remind_password_email">Wpisz poniżej adres e-mail podany przy rejestracji, na który zostanie wysłany link resetujący hasło.</string>
     <string name="remind_password_confirm">Zatwierdź</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -165,5 +165,9 @@
     <string name="info_pop">To jest podgląd Twojego profilu wykonawcy. Możesz edytować dowolne elementy zawierające informacje o Twoich usługach. Koniecznie wybierz usługi, które oferujesz oraz wypełnij pole <i>Kontakt</i>.\nPo kliknięciu przycisku <i>Zaktualizuj wprowadzone informacje</i>, dane widoczne dla użytkowników zostaną zaktualizowane. </string>
     <string name="user_services_list">Użytkownik nie dodał jeszcze żadnych usług.</string>
     <string name="user_services_description">Użytkownik nie dodał opisu.</string>
+    <string name="user_rate">Wystaw ocenę w skali od 1 do 5</string>
+    <string name="user_opinion">Napisz opinię o użytkowniku</string>
+    <string name="user_location">Zatwierdź lokalizację</string>
+
 
 </resources>

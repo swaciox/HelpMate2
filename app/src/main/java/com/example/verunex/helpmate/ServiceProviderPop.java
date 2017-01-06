@@ -46,14 +46,14 @@ public class ServiceProviderPop extends Activity{
         int width = mDisplayMetrics.widthPixels;
         int height = mDisplayMetrics.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.4));
+        getWindow().setLayout((int)(width*.8),(int)(height*.55));
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         String id_key = mFirebaseAuth.getCurrentUser().getUid();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
 
-        infoText.setText("Czy na pewno chcesz zostać wykonawcą?");
+        infoText.setText("Czy na pewno chcesz zostać wykonawcą? Pojawią się dodatkowe opcje w menu, konieczne będzie uzupełnienie profilu wykonawcy i wybranie oferowanych kategorii, aby inni użytkownicy mogli przeglądać Twój profil i kontaktować się z Tobą.");
 
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override

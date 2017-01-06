@@ -81,12 +81,12 @@ public class ContactPop extends Activity {
                 String userNumber = number.getText().toString();
 
                 if(userEmail.equals("")){
-                    Toast.makeText(getBaseContext(), "Wypełnij pole Email!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Wypełnij pole adres e-mail!", Toast.LENGTH_SHORT).show();
                 }else{
                     mDatabaseReference.child("email").setValue(userEmail);
                 }
                 if(userNumber.equals("")){
-                    Toast.makeText(getBaseContext(), "Wypełnij pole numer!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Wpisz swój numer!", Toast.LENGTH_SHORT).show();
                 }else{
                     mDatabaseReference.child("number").setValue(userNumber);
                 }

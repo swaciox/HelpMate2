@@ -35,6 +35,14 @@
         <item name="colorControlActivated">@color/colorButtonBackground</item>
     </style>
 
+    <style name="ColorLine" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+    </style>
+
 
     <style name="ListView" parent="Base.Widget.AppCompat.ListView.DropDown"></style>
 </resources>

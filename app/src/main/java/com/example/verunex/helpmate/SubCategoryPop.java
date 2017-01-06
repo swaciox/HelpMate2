@@ -48,9 +48,15 @@ public class SubCategoryPop extends Activity {
 
         categories = res.getStringArray(getRes);
 
-        if (categories.length <=4 && categories.length > 2)
+        if (categories.length <=4 && categories.length > 3)
         {
-            String length = "0."+categories.length+"2";
+            String length = "0.40";
+            float liczba = Float.parseFloat(length);
+            getWindow().setLayout((int) (width * .8), (int) (height * liczba));
+
+        } else if (categories.length <= 3 && categories.length > 2)
+        {
+            String length = "0.32";
             float liczba = Float.parseFloat(length);
             getWindow().setLayout((int) (width * .8), (int) (height * liczba));
 

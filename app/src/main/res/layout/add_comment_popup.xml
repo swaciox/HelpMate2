@@ -11,8 +11,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="10dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="1dp"
+                android:background="@color/colorMediumGrey"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_rate"
+                android:textSize="10dp"
+                android:textAllCaps="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:textColor="@color/colorTextGrey"/>
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="1dp"
+                android:background="@color/colorMediumGrey"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,26 +57,61 @@
             android:layout_marginTop="15dp"
             android:progressTint="@color/colorAccent"/>
 
-        <ScrollView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="5dp">
+
+            <View
+                android:layout_width="85dp"
+                android:layout_height="1dp"
+                android:background="@color/colorMediumGrey"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_opinion"
+                android:textSize="10dp"
+                android:textAllCaps="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:textColor="@color/colorTextGrey"/>
+
+            <View
+                android:layout_width="85dp"
+                android:layout_height="1dp"
+                android:background="@color/colorMediumGrey"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+        <FrameLayout
             android:layout_width="220dp"
             android:layout_height="180dp"
-            android:layout_gravity="center">
-            <EditText
-                android:layout_margin="5dp"
-                android:layout_width="220dp"
-                android:layout_height="180dp"
-                android:inputType="text"
-                android:minWidth="200dp"
-                android:minHeight="180dp"
-                android:hint="@string/add_comment"
-                android:gravity="top"
-                android:id="@+id/commentEditText"
-                android:textSize="20dp"
-                android:fontFamily="sans-serif"
-                android:layout_gravity="center_horizontal|center_vertical" />
+            android:background="@drawable/simple_frame"
+            android:layout_gravity="center"
+            >
+                <EditText
+                    android:layout_margin="5dp"
+                    android:layout_width="220dp"
+                    android:layout_height="180dp"
+                    android:inputType="textMultiLine"
+                    android:minWidth="200dp"
+                    android:minHeight="180dp"
+                    android:hint="@string/add_comment"
+                    android:gravity="top"
+                    android:id="@+id/commentEditText"
+                    android:textSize="20dp"
+                    android:fontFamily="sans-serif"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:backgroundTint="@color/colorAccent"/>
 
-        </ScrollView>
-
+        </FrameLayout>
 
         <Button
             android:layout_width="180dp"
@@ -55,7 +122,8 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/button_rounded_corners"
             android:layout_gravity="center"
-            android:textColor="@color/cardview_light_background"/>
+            android:textColor="@color/cardview_light_background"
+            android:textAllCaps="true"/>
 
     </LinearLayout>
 

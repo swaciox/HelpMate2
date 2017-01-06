@@ -30,7 +30,7 @@ public class ForgetPasswordPop extends Activity{
         int width = mDisplayMetrics.widthPixels;
         int height = mDisplayMetrics.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.3));
+        getWindow().setLayout((int)(width*.8),(int)(height*.4));
 
         //Firebase
         final FirebaseAuth auth = FirebaseAuth.getInstance();

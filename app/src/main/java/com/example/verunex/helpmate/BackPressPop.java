@@ -42,9 +42,9 @@ public class BackPressPop extends Activity{
             int width = mDisplayMetrics.widthPixels;
             int height = mDisplayMetrics.heightPixels;
 
-            getWindow().setLayout((int)(width*.8),(int)(height*.3));
+            getWindow().setLayout((int)(width*.8),(int)(height*.25));
             if(temp == 0 ) {
-                infoText.setText("Czy na pewno chcesz wrócić do głównego ekranu?");
+                infoText.setText("Czy na pewno chcesz wrócić do ekranu logowania?");
 
                 acceptButton.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -50,7 +50,7 @@ public class AddCommentPop extends Activity {
         int width = mDisplayMetrics.widthPixels;
         int height = mDisplayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width * .8), (int) (height * .5));
+        getWindow().setLayout((int) (width * .8), (int) (height * .6));
 
         mEditText = (EditText)findViewById(R.id.commentEditText);
         mButton = (Button)findViewById(R.id.addCommentPopup);

@@ -172,10 +172,15 @@
 
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:text="@string/user_image_edit"
                         android:layout_gravity="end"
-                        android:id="@+id/EditCategories" />
+                        android:id="@+id/EditCategories"
+                        android:textColor="@color/colorTextGrey"
+                        android:textSize="15dp"
+                        android:background="@drawable/ripple_effect"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp"/>
 
                 </LinearLayout>
 
@@ -263,10 +268,16 @@
 
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:text="@string/user_image_edit"
                         android:layout_gravity="end"
-                        android:id="@+id/editContactB" />
+                        android:id="@+id/editContactB"
+                        android:textSize="15dp"
+                        android:background="@drawable/ripple_effect"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:textColor="@color/colorTextGrey"
+                        />
 
                 </LinearLayout>
 
@@ -304,10 +315,16 @@
 
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:text="@string/user_image_edit"
                         android:layout_gravity="end"
-                        android:id="@+id/editUserDesc"/>
+                        android:id="@+id/editUserDesc"
+                        android:textSize="15dp"
+                        android:background="@drawable/ripple_effect"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:textColor="@color/colorTextGrey"
+                        />
 
                 </LinearLayout>
 
@@ -337,9 +354,15 @@
 
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:text="@string/user_image_edit"
-                        android:layout_gravity="end"/>
+                        android:layout_gravity="end"
+                        android:textSize="15dp"
+                        android:background="@drawable/ripple_effect"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:textColor="@color/colorTextGrey"
+                        />
 
                 </LinearLayout>
 

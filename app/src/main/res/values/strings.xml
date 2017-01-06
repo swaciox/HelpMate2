@@ -162,6 +162,8 @@
     ]]>
     </string>
     <string name="add_me">Zaktualizuj wprowadzone informacje</string>
-    <string name="info_pop">To jest podgląd Twojego profilu wykonawcy. Możesz edytować dowolne elementy zawierające informacje o Tobie i Twoich usługach. Koniecznie wybierz usługi, które oferujesz oraz wypełnij pole Kontakt. Po kliknięciu przycisku "Zaktualizuj wprowadzone informacje", dane widoczne dla użytkowników zostaną zaktualizowane. </string>
+    <string name="info_pop">To jest podgląd Twojego profilu wykonawcy. Możesz edytować dowolne elementy zawierające informacje o Twoich usługach. Koniecznie wybierz usługi, które oferujesz oraz wypełnij pole <i>Kontakt</i>.\nPo kliknięciu przycisku <i>Zaktualizuj wprowadzone informacje</i>, dane widoczne dla użytkowników zostaną zaktualizowane. </string>
+    <string name="user_services_list">Użytkownik nie dodał jeszcze żadnych usług.</string>
+    <string name="user_services_description">Użytkownik nie dodał opisu.</string>
 
 </resources>

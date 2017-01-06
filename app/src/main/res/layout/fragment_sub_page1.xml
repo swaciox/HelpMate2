@@ -9,32 +9,220 @@
         android:orientation="vertical"
         android:layout_margin="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="@string/description_user"
-            android:textSize="17dp"
-            android:id="@+id/description_single" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.2">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/stat_sys_phone_call"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="500600700"
-                android:textSize="22dp"
-                android:layout_marginTop="8dp"
-                android:id="@+id/phone_number"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/categoryUser"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp"
+                        android:background="@android:drawable/editbox_dropdown_light_frame"
+                        >
 
-        </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/user_category_all"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            />
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="2dip"
+                            android:background="@color/colorMediumGrey"
+                            android:layout_margin="1dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/user_services_list"
+                            android:id="@+id/userCategories"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/contactUser"
+                        android:layout_margin="5dp"
+                        android:background="@android:drawable/editbox_dropdown_light_frame">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/contact"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            />
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="2dip"
+                            android:background="@color/colorMediumGrey"
+                            android:layout_margin="1dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageButton
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/ic_call_color"
+                                android:id="@+id/phone_number"
+                                android:background="@color/cardview_light_background"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="777888999"
+                                android:textSize="16dp"
+                                android:layout_gravity="center"
+                                android:id="@+id/number" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageButton
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/ic_message"
+                                android:background="@color/cardview_light_background"
+                                android:id="@+id/message" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="777888999"
+                                android:textSize="16dp"
+                                android:layout_gravity="center"
+                                android:id="@+id/numberSms" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageButton
+                                android:src="@drawable/ic_mail_color"
+                                android:background="@color/cardview_light_background"
+                                android:id="@+id/email"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:layout_gravity="center"
+                                android:text="email@email.com"
+                                android:id="@+id/userEmail" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/description"
+                        android:layout_margin="5dp"
+                        android:background="@android:drawable/editbox_dropdown_light_frame">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/user_decription"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="10dp"
+                            />
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="2dip"
+                            android:background="@color/colorMediumGrey"
+                            android:layout_margin="1dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="@string/user_services_description"
+                            android:id="@+id/userDesc"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/locationUser"
+                        android:layout_margin="5dp"
+                        android:background="@android:drawable/editbox_dropdown_light_frame">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/location"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="10dp"
+                            />
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="2dip"
+                            android:background="@color/colorMediumGrey"
+                            android:layout_margin="1dp"/>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_margin="5dp">
+
+
+                        </FrameLayout>
+
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
 
     </LinearLayout>
 

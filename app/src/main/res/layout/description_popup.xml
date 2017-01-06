@@ -3,7 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background">
+    android:background="@color/cardview_light_background"
+    android:weightSum="5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="match_parent"
@@ -21,7 +28,6 @@
             android:background="@color/colorMediumGrey"
             android:layout_margin="1dp"/>
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -30,42 +36,37 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             />
+    </LinearLayout>
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:minHeight="150dp"
             android:maxHeight="200dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="150dp"
-                android:maxHeight="200dp"
-                android:textSize="18dp"
-                android:id="@+id/descriptionUser"
-                android:hint="Wpisz swój opis..."
-                android:inputType="textMultiLine"
-                android:backgroundTint="@color/colorAccent"
-                />
-
-
-        </LinearLayout>
+            android:layout_marginRight="10dp"
+            android:layout_weight="3">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18dp"
+            android:id="@+id/descriptionUser"
+            android:hint="Wpisz swój opis..."
+            android:inputType="textMultiLine"
+            android:backgroundTint="@color/colorAccent"
+            />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="10dp"
-
-        >
-
+        android:layout_weight="1">
         <Button
             android:text="@string/save"
             android:textColor="@color/cardview_light_background"

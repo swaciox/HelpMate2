@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -56,6 +57,10 @@ public class ServiceUserProfile extends AppCompatActivity {
     //
     String filterCategory = "";
 
+    //info
+    private ImageButton infoButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,8 @@ public class ServiceUserProfile extends AppCompatActivity {
 
         initControl();
 
+        infoButtonClick();
+
         userSubCategoriesChoice();
 
         contactEdit();
@@ -79,6 +86,17 @@ public class ServiceUserProfile extends AppCompatActivity {
         addUserToDatabase();
 
 
+
+    }
+
+    private void infoButtonClick() {
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), InfoPop.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void addUserToDatabase() {
@@ -315,6 +333,10 @@ public class ServiceUserProfile extends AppCompatActivity {
 
         //addToDatabase
         addToDatabase = (Button)findViewById(R.id.addToDatabase);
+
+
+        //info
+        infoButton = (ImageButton)findViewById(R.id.infoButton);
 
 
     }

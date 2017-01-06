@@ -17,4 +17,5 @@
     <color name="reallyLightGrey">#FFF5F5F5</color>
     <color name="colorTransparency">#00000000</color>
     <color name="colorTextGrey">#696969</color>
+    <color name="darkGrey">#3f3f3f</color>
 </resources>

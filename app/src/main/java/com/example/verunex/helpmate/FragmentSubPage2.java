@@ -43,6 +43,7 @@ public class FragmentSubPage2 extends Fragment {
     private Button addComment;
 
     String id_key;
+    String current_user;
 
 
     float temp = 0;
@@ -58,7 +59,7 @@ public class FragmentSubPage2 extends Fragment {
         //lub get activity
         mCommentList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
+        final String id_position = this.getArguments().getString("id_position");
 
         addComment = (Button)view.findViewById(R.id.addComment);
 
@@ -67,19 +68,25 @@ public class FragmentSubPage2 extends Fragment {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             addComment.setVisibility(View.INVISIBLE);
         }else {
-            id_key = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            current_user = FirebaseAuth.getInstance().getCurrentUser().getUid();
             addComment.setVisibility(View.VISIBLE);
-        }
-        final String id_position = this.getArguments().getString("id_position");
 
-        if(id_position.equals(id_key)){
-            addComment.setVisibility(View.INVISIBLE);
+
+
+            if(id_position.equals(current_user)){
+                addComment.setVisibility(View.INVISIBLE);
+            }
+
         }
+
+
 
         //retrieve data
 
         final String user_id = this.getArguments().getString("user_id");
         Log.v("frag2id_position",id_position);
+        Log.v("user_idddd",user_id);
+
 
         addComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +98,7 @@ public class FragmentSubPage2 extends Fragment {
             }
         });
 
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(id_key);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(id_position);
 
         FirebaseRecyclerAdapter<Comment, CommentViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(
                 Comment.class,
@@ -110,7 +117,7 @@ public class FragmentSubPage2 extends Fragment {
                 String rate = model.getRate();
                 String comment_id = model.getUser_id();
 
-                if (comment_id.equals(id_key)){
+                if (comment_id.equals(current_user)){
                     addComment.setVisibility(View.INVISIBLE);
                     viewHolder.mImageButton.setVisibility(View.VISIBLE);
                     viewHolder.mImageButton.setOnClickListener(new View.OnClickListener() {

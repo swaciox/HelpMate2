@@ -72,7 +72,7 @@ public class AddCommentPop extends Activity {
 
                 String desc = mEditText.getText().toString();
 
-                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(id_key).push();
+                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(id_postion).push();
 
                 final DatabaseReference comment = mDatabaseReference;
                 if(!desc.isEmpty()){

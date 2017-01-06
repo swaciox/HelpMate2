@@ -120,6 +120,43 @@
                 android:orientation="horizontal"
                 android:weightSum="1">
 
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layoutUserPhoneEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_weight="0.9"
+                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/userPhoneEdit"
+                        android:hint="@string/user_phone_edit" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="0.1"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -145,42 +182,23 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-            </RelativeLayout>
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_below="@id/layoutUserAddressEdit"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:id="@+id/map"
+                    tools:context=".MapsActivity"
+                    android:name="com.google.android.gms.maps.SupportMapFragment" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/layoutUserPhoneEdit"
-                    android:layout_width="match_parent"
+                <Button
+                    android:text="Button"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_weight="0.9"
-                        android:singleLine="true"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/userPhoneEdit"
-                        android:hint="@string/user_phone_edit" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@android:drawable/ic_menu_edit"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_weight="0.1"/>
+                    android:layout_below="@+id/layoutUserAddressEdit"
+                    android:layout_toEndOf="@+id/map"
+                    android:id="@+id/searchButton"
+                    android:onClick="onSearch" />
 
             </RelativeLayout>
 

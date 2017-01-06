@@ -63,15 +63,16 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        String id_key = mFirebaseAuth.getCurrentUser().getUid();
+        String id_key;
         //cureent_user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //Log.v ("Id_KeyCategory", cureent_user_id);
         //cureent_user_id = getIntent().getStringExtra("Id_key");
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             cureent_user_id = "null";
+            id_key = "null";
         }else {
             cureent_user_id = mFirebaseAuth.getCurrentUser().getUid();
-            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
+            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(cureent_user_id);
 
 
             mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -107,7 +108,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
             mNavigationView = (NavigationView) findViewById(R.id.nav_view);
 
-            checkserviceuser = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
+            checkserviceuser = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(cureent_user_id);
 
             checkserviceuser.addValueEventListener(new ValueEventListener() {
                 @Override

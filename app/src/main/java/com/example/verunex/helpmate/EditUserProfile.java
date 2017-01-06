@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -12,6 +13,8 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -29,10 +32,17 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appdatasearch.GetRecentContextCall;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.identity.intents.Address;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -50,10 +60,13 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 
-public class EditUserProfile extends Activity {
+public class EditUserProfile extends FragmentActivity implements OnMapReadyCallback {
 
     private TextView userChoice;
 
@@ -80,12 +93,20 @@ public class EditUserProfile extends Activity {
 
     private String TAG = "New ";
 
-    String rText="";
+    String rText = "";
+
+    private GoogleMap mMap;
+
+    private Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pop_user_profile);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         /*ListView mListView= (ListView) findViewById(R.id.categoriesListView);
         ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);
@@ -120,13 +141,17 @@ public class EditUserProfile extends Activity {
         imageEdit = (Button) findViewById(R.id.userImageEdit);
 
         //
-        user_address = (EditText)findViewById(R.id.userAddressEdit);
+        user_address = (EditText) findViewById(R.id.userAddressEdit);
 
         addrImageView = (ImageView) findViewById(R.id.addrImageView);
 
         mRequestQueue = Volley.newRequestQueue(this);
 
-        // MAPA
+        // Search
+
+
+
+        //Mapa
 
         addrImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,9 +181,9 @@ public class EditUserProfile extends Activity {
                 }
                 Location myLocation = locationManager.getLastKnownLocation(provider);
 
-                if(myLocation == null){
+                if (myLocation == null) {
                     user_address.setText("null");
-                }else {
+                } else {
                     //latitude of location
                     double myLatitude = myLocation.getLatitude();
 
@@ -168,9 +193,9 @@ public class EditUserProfile extends Activity {
                     String Latitude = String.valueOf(myLatitude);
                     String Longtitude = String.valueOf(myLongitude);
 
-                    Log.v ("Cordi", Latitude );
+                    Log.v("Cordi", Latitude);
 
-                    Log.v ("Cordi2", Longtitude );
+                    Log.v("Cordi2", Longtitude);
 
                     JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + Latitude + "," + Longtitude + "&key=AIzaSyBWbcjYmZ3OVyklVuQFZOzUDzQMitkaKwc", new Response.Listener<JSONObject>() {
                         @Override
@@ -214,12 +239,13 @@ public class EditUserProfile extends Activity {
 
 
                 String user_image_uri = dataSnapshot.child("user_image").getValue(String.class);
-                if(user_image_uri.isEmpty()){
+                if (user_image_uri.isEmpty()) {
 
-                }else{
+                } else {
                     Picasso.with(getBaseContext()).load(user_image_uri).transform(new Circle()).into(user_image);
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -247,6 +273,7 @@ public class EditUserProfile extends Activity {
             }
         });
     }
+
 
     private void startCreateProfile() {
 
@@ -278,7 +305,7 @@ public class EditUserProfile extends Activity {
             });
         }
         // testowo
-           finish();
+        finish();
     }
 
     @Override
@@ -304,10 +331,10 @@ public class EditUserProfile extends Activity {
 
             }
         }*/
-            if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
+        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
             CropImage.activity(imageUri)
                     .setGuidelines(CropImageView.Guidelines.ON)
-                    .setAspectRatio(1,1)
+                    .setAspectRatio(1, 1)
                     .setCropShape(CropImageView.CropShape.OVAL)
                     .start(this);
         }
@@ -316,12 +343,10 @@ public class EditUserProfile extends Activity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
 
-                mImageUri= result.getUri();
-              //  user_image.setImageURI(mImageUri);
+                mImageUri = result.getUri();
+                //  user_image.setImageURI(mImageUri);
 
                 Picasso.with(getBaseContext()).load(mImageUri).transform(new Circle()).into(user_image);
-
-
 
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
@@ -351,4 +376,51 @@ public class EditUserProfile extends Activity {
         startActivity(i);
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney, Australia, and move the camera.
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+    }
+
+    public void onSearch(View view) {
+
+        String location = user_address.getText().toString();
+
+        List<android.location.Address> addressList = null;
+
+        if (location != null || location != "") {
+
+            Geocoder geocoder = new Geocoder(this);
+            try {
+                addressList = geocoder.getFromLocationName(location, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            android.location.Address address = addressList.get(0);
+            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+            mMap.addMarker(new MarkerOptions().position(latLng).title("JA"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            mMap.setMinZoomPreference(15);
+
+
+        }
+    }
 }

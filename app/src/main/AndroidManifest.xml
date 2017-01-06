@@ -99,6 +99,7 @@
             android:label="Edycja profilu"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.PopTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"
             />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

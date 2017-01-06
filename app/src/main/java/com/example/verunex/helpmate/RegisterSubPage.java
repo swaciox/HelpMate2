@@ -101,10 +101,10 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
 
                                 String subCategory = randomC(random_category);
-                                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Offers2").child(random_category).child(subCategory);
-                                DatabaseReference curent_user = mDatabaseReference.push();
+                                //mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Offers2").child(random_category).child(subCategory);
+                                //DatabaseReference curent_user = mDatabaseReference.push();
 
-                                /*mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
+                                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
                                 DatabaseReference curent_user = mDatabaseReference;
                                 curent_user.child("name").setValue("");
                                 curent_user.child("address").setValue("");
@@ -122,11 +122,11 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                                     String desc = mRandomValues.subcategoriesDes(i-1);
                                     curent_user.child("categories").child(temp).child("description").setValue(desc);
 
-                                }*/
+                                }
 
 
 
-                                curent_user.child("user_id").setValue(id_key);
+                                /*curent_user.child("user_id").setValue(id_key);
                                 curent_user.child("email").setValue(email);
                                 curent_user.child("name").setValue(random_name);
                                 curent_user.child("category").setValue(random_category);
@@ -134,7 +134,7 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
                                 curent_user.child("image").setValue(random_image);
                                 curent_user.child("rate").setValue(random_rate);
                                 curent_user.child("description").setValue("Oferuję pełen zakres usług");
-
+                                */
                             mProgressDialog.dismiss();
 
                             Toast.makeText(getContext(), "Zarejestrowano!", Toast.LENGTH_SHORT).show();

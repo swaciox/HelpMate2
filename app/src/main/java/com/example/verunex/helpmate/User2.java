@@ -16,22 +16,33 @@ public class User2 {
     private String service_state;
     private String uid;
     private String user_image;
+    private String subcategory;
+
 
     public User2 (){
 
     }
 
-    public User2(String address, String category, String desc, String email, String name, String number, String rate, String service_state, String uid, String user_image) {
-        this.address = address;
-        this.category = category;
-        this.desc = desc;
-        this.email = email;
-        this.name = name;
-        this.number = number;
-        this.rate = rate;
-        this.service_state = service_state;
-        this.uid = uid;
+    public User2(String subcategory, String user_image, String uid, String service_state, String rate, String number, String name, String email, String desc, String category, String address) {
+        this.subcategory = subcategory;
         this.user_image = user_image;
+        this.uid = uid;
+        this.service_state = service_state;
+        this.rate = rate;
+        this.number = number;
+        this.name = name;
+        this.email = email;
+        this.desc = desc;
+        this.category = category;
+        this.address = address;
+    }
+
+    public String getSubcategory() {
+        return subcategory;
+    }
+
+    public void setSubcategory(String subcategory) {
+        this.subcategory = subcategory;
     }
 
     public String getAddress() {

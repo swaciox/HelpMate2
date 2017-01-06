@@ -35,6 +35,10 @@ public class User2ProfileViewHolder extends RecyclerView.ViewHolder {
 
     }
 
+    public String setSubcategory(String subcategory){
+        return subcategory;
+    }
+
     public String setDesc (String desc){
         return desc;
     }

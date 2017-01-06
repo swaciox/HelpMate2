@@ -29,6 +29,7 @@ public class SingleUserActivity extends AppCompatActivity {
 
     String id_position;
     String user_id;
+    String number, email, desc, subcategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,11 @@ public class SingleUserActivity extends AppCompatActivity {
         String user_number = getIntent().getExtras().getString("user_number");
         String image = getIntent().getExtras().getString("user_image");
         String rate = getIntent().getExtras().getString("user_rate");
+        number = getIntent().getExtras().getString("number");
+        email = getIntent().getExtras().getString("email");
+        desc = getIntent().getExtras().getString("desc");
+        subcategory = getIntent().getExtras().getString("subcategory");
+
 
         user_id = getIntent().getExtras().getString("user_id");
         id_position = getIntent().getExtras().getString("id_position");
@@ -110,6 +116,12 @@ public class SingleUserActivity extends AppCompatActivity {
             switch (position){
                 case 0:
                     FragmentSubPage1 fragmentSubPage1 = new FragmentSubPage1();
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("number", number);
+                    bundle2.putString("desc", desc );
+                    bundle2.putString("email", email);
+                    bundle2.putString("subcategory", subcategory);
+                    fragmentSubPage1.setArguments(bundle2);
                     return fragmentSubPage1;
                 case 1:
                     FragmentSubPage2 fragmentSubPage2 = new FragmentSubPage2();

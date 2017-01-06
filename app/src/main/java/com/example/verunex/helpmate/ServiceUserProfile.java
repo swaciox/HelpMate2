@@ -61,6 +61,8 @@ public class ServiceUserProfile extends AppCompatActivity {
     private ImageButton infoButton;
 
 
+    String categories = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,6 +216,7 @@ public class ServiceUserProfile extends AppCompatActivity {
                                 addUser.child("service_state").setValue(service_state);
                                 addUser.child("rate").setValue("5.0f");
                                 addUser.child("category").setValue(deleteLastChar(filterCategory));
+                                addUser.child("subcategory").setValue(categories);
 
 
                             }else if (dataSnapshot.child("categories").child(temp).child("state").getValue().toString()=="false"){
@@ -397,8 +400,8 @@ public class ServiceUserProfile extends AppCompatActivity {
                 String temp;
                 String temp2;
                 String desc;
-                String categories = "";
                 filterCategory = "";
+                categories = "";
 
 
                 List<String> category = new ArrayList<String>();
@@ -410,7 +413,7 @@ public class ServiceUserProfile extends AppCompatActivity {
                     temp2 = dataSnapshot.child("categories").child(temp).child("state").getValue().toString();
                     if(temp2.equals("true")){
                         desc = dataSnapshot.child("categories").child(temp).child("description").getValue().toString();
-                        categories = categories + "-" + desc+"\n";
+                        categories = categories + "- " + desc+"\n";
 
                         if(temp.equals("sub1") || temp.equals("sub2")){
                             category.add("Hydraulika");

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,58 +24,42 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class FragmentSubPage1 extends Fragment{
 
-    private ImageButton mImageButton;
-    private FirebaseAuth mFirebaseAuth;
-    private DatabaseReference mDatabaseReference;
-    private CheckBox checkBox;
-    String cureent_user_id;
+    private TextView desc, number, numberSms, email, userCategories;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.fragment_sub_page1, container, false);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        //cureent_user_id = mFirebaseAuth.getCurrentUser().getUid();
+        desc = (TextView)view.findViewById(R.id.userDesc);
+        number = (TextView)view.findViewById(R.id.number);
+        numberSms = (TextView)view.findViewById(R.id.numberSms);
+        email = (TextView)view.findViewById(R.id.userEmail);
+        userCategories = (TextView)view.findViewById(R.id.userCategories);
 
-        View rootView = inflater.inflate(R.layout.fragment_sub_page1, container, false);
+       // Bundle bundle = this.getArguments();
 
-       /* checkBox = (CheckBox)rootView.findViewById(R.id.checkBox2);
+        if(this.getArguments()!=null){
+            String numberString = this.getArguments().getString("number");
+            String emailString = this.getArguments().getString("email");
+            String descString = this.getArguments().getString("desc");
+            String subcategory = this.getArguments().getString("subcategory");
 
-        checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String user_from_list_id = "U4FXaHpWiIVJxfPgiAhwR2YxDnw1";
+            desc.setText(descString);
+            number.setText(numberString);
+            numberSms.setText(numberString);
+            email.setText(emailString);
+            userCategories.setText(subcategory);
 
-                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(cureent_user_id);
 
-                final DatabaseReference favorite = mDatabaseReference.child("favorite");
+        }
 
-                if(checkBox.isChecked()==true) {
-                    favorite.child(user_from_list_id).setValue(user_from_list_id);
-                    Toast.makeText(getContext(), "Dodano do ulubionych", Toast.LENGTH_SHORT).show();
-                }else{
-                    favorite.child(user_from_list_id).removeValue();
-                    Toast.makeText(getContext(), "Usunięto z ulubionych!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        */
 
-       // final String user_number = getArguments().getString("user_number");
 
-        /*mImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"));
-                if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(intent);
-            }
-
-        });*/
-
-        return rootView;
+        return view;
     }
+
+
 
 }

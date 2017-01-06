@@ -77,6 +77,9 @@ public class ServiceUserProfile extends AppCompatActivity {
 
         initControl();
 
+
+        userOldData();
+
         infoButtonClick();
 
         userSubCategoriesChoice();
@@ -286,6 +289,8 @@ public class ServiceUserProfile extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+
+        userOldData();
 
         userSubCategoriesChoice();
     }

@@ -272,6 +272,9 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
                 startCreateProfile();
             }
         });
+
+
+
     }
 
 
@@ -379,11 +382,35 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        LatLng poznan = new LatLng(52.414688, 16.930498);
+       // LatLng latLng = new LatLng(Double.parseDouble(getLatitude()), Double.parseDouble(getLongitude()));
 
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(poznan));
+        mMap.setMinZoomPreference(10);
+
+        /*
+        JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + address.getLatitude() + "," + address.getLongitude() + "&key=AIzaSyBWbcjYmZ3OVyklVuQFZOzUDzQMitkaKwc", new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    String address = response.getJSONArray("results").getJSONObject(0).getString("formatted_address");
+                    user_address.setText(address);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        mRequestQueue.add(request);
+
+*/
         // Add a marker in Sydney, Australia, and move the camera.
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -395,6 +422,7 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
             return;
         }
         mMap.setMyLocationEnabled(true);
+
     }
 
     public void onSearch(View view) {
@@ -420,6 +448,24 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.setMinZoomPreference(15);
 
+            JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + address.getLatitude() + "," + address.getLongitude() + "&key=AIzaSyBWbcjYmZ3OVyklVuQFZOzUDzQMitkaKwc", new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                    try {
+                        String address = response.getJSONArray("results").getJSONObject(0).getString("formatted_address");
+                        user_address.setText(address);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+            mRequestQueue.add(request);
 
         }
     }

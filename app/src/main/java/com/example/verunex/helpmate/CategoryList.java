@@ -47,6 +47,8 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
     private DatabaseReference liketest;
     private Query mQuery;
 
+    private DatabaseReference OldDataChange;
+
 
     private Spinner mSpinner;
 
@@ -73,6 +75,8 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
         }else {
             cureent_user_id = mFirebaseAuth.getCurrentUser().getUid();
             mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(cureent_user_id);
+
+
 
 
             mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -223,6 +227,9 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
         mUsersList = (RecyclerView) findViewById(R.id.users_row);
         mUsersList.setHasFixedSize(true);
         mUsersList.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+
+
+
     }
 
     @Override
@@ -327,6 +334,8 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
             @Override
             protected void populateViewHolder(final User2ProfileViewHolder viewHolder, final User2 model, final int position) {
                 final String category = model.getCategory();
+
+
 
                 //viewHolder.setAddress(model.getAddress());
                 viewHolder.setName(model.getName());

@@ -64,6 +64,15 @@ public class ServiceUserProfile extends AppCompatActivity {
     String categories = "";
 
 
+    // data
+    String name, number, image;
+
+    String tempCategory = "";
+    String id_key;
+
+    private DatabaseReference changeOldData;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,9 +80,11 @@ public class ServiceUserProfile extends AppCompatActivity {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        String id_key = mFirebaseAuth.getCurrentUser().getUid();
+       id_key = mFirebaseAuth.getCurrentUser().getUid();
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
+
+        changeOldData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
 
         initControl();
 
@@ -91,8 +102,9 @@ public class ServiceUserProfile extends AppCompatActivity {
         addUserToDatabase();
 
 
-
     }
+
+
 
     private void infoButtonClick() {
         infoButton.setOnClickListener(new View.OnClickListener() {
@@ -112,21 +124,24 @@ public class ServiceUserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+
+                mDatabaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
+
+
                         //data
-                        String name = dataSnapshot.child("name").getValue().toString();
-                        String number = dataSnapshot.child("number").getValue().toString();
+                        name = dataSnapshot.child("name").getValue().toString();
+                        number = dataSnapshot.child("number").getValue().toString();
                         String address = dataSnapshot.child("address").getValue().toString();
                         String desc = dataSnapshot.child("desc").getValue().toString();
                         String email = dataSnapshot.child("email").getValue().toString();
-                        String image = dataSnapshot.child("user_image").getValue().toString();
+                        image = dataSnapshot.child("user_image").getValue().toString();
                         String uid = dataSnapshot.child("uid").getValue().toString();
                         String service_state = dataSnapshot.child("service_state").getValue().toString();
 
-                        String tempCategory = "";
+                        tempCategory = "";
                         for(int i =1; i <=23; i++){
                             String temp = "sub" + i ;
 
@@ -208,6 +223,11 @@ public class ServiceUserProfile extends AppCompatActivity {
                                 tempCategory = tempCategory + category + ", ";
 
                                 DatabaseReference addUser = addUserToDatabaseReference.child(category).child(subcategory).child(uid);
+
+
+                               /* DatabaseReference deleteUser = addUserToDatabaseReference.child(category).child(subcategory);
+                                deleteUser.child(uid).removeValue();
+*/
 
                                 addUser.child("name").setValue(name);
                                 addUser.child("number").setValue(number);

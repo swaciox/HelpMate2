@@ -59,6 +59,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
     private DatabaseReference getSubcategories;
 
     private String email;
+    private String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -351,6 +352,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         email = dataSnapshot.child("email").getValue().toString();
+                        image = dataSnapshot.child("user_image").getValue().toString();
 
                     }
 
@@ -371,7 +373,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                 viewHolder.setRate(model.getRate());
                 //viewHolder.setUser_id(model.getUser_id());
                 viewHolder.setUid(model.getUid());
-                //viewHolder.setEmail(model.getEmail());
+                viewHolder.setEmail(model.getEmail());
                 //viewHolder.setDescription(model.getDescription());
 
 
@@ -432,7 +434,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                         singleuser.putExtra("subcategory", subcategory);
                         singleuser.putExtra("address", address);
 
-                        getSubcategories = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(user_id).child("categories");
+                        getSubcategories = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(cureent_user_id).child("categories");
                         getSubcategories.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -591,6 +593,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                                 favourite.child("address").setValue(address);
                                 favourite.child("service_state").setValue(service_state);
                                 favourite.child("desc").setValue(desc);
+                                favourite.child("subcategory").setValue(subcategory);
                                 Toast.makeText(getBaseContext(), "Dodano do ulubionych!", Toast.LENGTH_SHORT).show();
                             }else{
                                 viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_unlike);

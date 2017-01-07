@@ -561,14 +561,16 @@ public class ServiceUserProfile extends AppCompatActivity implements OnMapReadyC
                 e.printStackTrace();
             }
 
+            if(address.equals("")){
 
-            android.location.Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+            }else{
+                android.location.Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-            mMap.addMarker(new MarkerOptions().position(latLng));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.setMinZoomPreference(15);
-
+                mMap.addMarker(new MarkerOptions().position(latLng));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.setMinZoomPreference(15);
+            }
         }
     }
 }

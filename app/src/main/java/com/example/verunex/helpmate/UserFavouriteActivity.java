@@ -38,6 +38,13 @@ public class UserFavouriteActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
 
+    private String cureent_user_id;
+    private DatabaseReference getSubcategories;
+
+
+    private String email;
+    private String image;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +60,8 @@ public class UserFavouriteActivity extends AppCompatActivity {
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(id_key);
 
+        cureent_user_id = mFirebaseAuth.getCurrentUser().getUid();
+
         FirebaseRecyclerAdapter<User2, User2ProfileViewHolder> mFirebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User2, User2ProfileViewHolder>(
                 User2.class,
                 R.layout.users_list,
@@ -61,8 +70,26 @@ public class UserFavouriteActivity extends AppCompatActivity {
         ) {
             @Override
             protected void populateViewHolder(final User2ProfileViewHolder viewHolder, final User2 model, int position) {
+                final String category = model.getCategory();
 
-                //viewHolder.setAddress(model.getAddress());
+                String user_id_now = mFirebaseAuth.getCurrentUser().getUid();
+
+
+                DatabaseReference newData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(user_id_now);
+                newData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        email = dataSnapshot.child("email").getValue().toString();
+                        image = dataSnapshot.child("user_image").getValue().toString();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                viewHolder.setAddress(model.getAddress());
                 viewHolder.setName(model.getName());
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setNumber(model.getNumber());
@@ -78,7 +105,6 @@ public class UserFavouriteActivity extends AppCompatActivity {
                 final String email = model.getEmail();
                 final String number = model.getNumber();
                 final String name = model.getName();
-                final String category = model.getCategory();
                 final String image = model.getUser_image();
                 final String rate = model.getRate();
                 final String desc = model.getDesc();
@@ -87,6 +113,8 @@ public class UserFavouriteActivity extends AppCompatActivity {
 
 
                 final String id_position = getRef(position).getKey();
+                final String subcategory = model.getSubcategory();
+
 
                 final TextView user_name = (TextView) findViewById(R.id.name);
                 final TextView user_category = (TextView)findViewById(R.id.category);
@@ -114,13 +142,89 @@ public class UserFavouriteActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent singleuser = new Intent(getBaseContext(), SingleUserActivity.class);
+                        singleuser.putExtra("Id_key", cureent_user_id);
                         singleuser.putExtra("user_name", name);
                         singleuser.putExtra("user_category", category);
                         singleuser.putExtra("user_image", image);
                         singleuser.putExtra("user_rate", rate);
                         singleuser.putExtra("id_position", id_position);
-                        singleuser.putExtra("user_description", desc);
                         singleuser.putExtra("user_id", user_id);
+                        singleuser.putExtra("number", number);
+                        singleuser.putExtra("desc", desc);
+                        singleuser.putExtra("email", email);
+                        singleuser.putExtra("subcategory", subcategory);
+                        singleuser.putExtra("address", address);
+
+                        getSubcategories = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(cureent_user_id).child("categories");
+                        getSubcategories.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(int i =1; i <=23; i++) {
+                                    String temp = "sub" + i;
+
+                                    String item = dataSnapshot.child(temp).child("description").getValue().toString();
+
+                                    String subcategory = "";
+                                    if (item.equals("naprawa wycieków")) {
+                                        subcategory = "naprawa_wyciekow";
+                                    } else if (item.equals("wymiana armatury")) {
+                                        subcategory = "wymiana_armatury";
+                                    } else if (item.equals("instalacje elektryczne")) {
+                                        subcategory = "instalacje_elektryczne";
+                                    } else if (item.equals("naprawa awaryjna")) {
+                                        subcategory = "naprawa_awaryjna";
+                                    } else if (item.equals("sprzątanie")) {
+                                        subcategory = "sprzatanie";
+                                    } else if (item.equals("prasowanie")) {
+                                        subcategory = "prasowanie";
+                                    } else if (item.equals("mycie okien")) {
+                                        subcategory = "mycie_okien";
+                                    } else if (item.equals("opieka do dzieci")) {
+                                        subcategory = "opieka_do_dzieci";
+                                    } else if (item.equals("opieka do osób starszych")) {
+                                        subcategory = "opieka_do_osob_starszych";
+                                    } else if (item.equals("opieka dzieci i osób niepełnosprawnych")) {
+                                        subcategory = "opieka_dzieci_i_osob_niepelnosprawnych";
+                                    } else if (item.equals("wyprowadzanie zwierząt")) {
+                                        subcategory = "wyprowadzanie_zwierzat";
+                                    } else if (item.equals("korepetycje")) {
+                                        subcategory = "korepetycje";
+                                    } else if (item.equals("koszenie trawy")) {
+                                        subcategory = "koszenie_trawy";
+                                    } else if (item.equals("prace porządkowe")) {
+                                        subcategory = "prace_porzadkowe";
+                                    } else if (item.equals("pielęgnacja ogrodu")) {
+                                        subcategory = "pielegnacja_ogrodu";
+                                    } else if (item.equals("naprawa drobnego AGD")) {
+                                        subcategory = "naprawa_drobnego_AGD";
+                                    } else if (item.equals("naprawa AGD")) {
+                                        subcategory = "naprawa_AGD";
+                                    } else if (item.equals("naprawa RTV")) {
+                                        subcategory = "naprawa_RTV";
+                                    } else if (item.equals("naprawa komputerów/laptopów")) {
+                                        subcategory = "naprawa_komputerow_laptopow";
+                                    } else if (item.equals("malowanie")) {
+                                        subcategory = "malowanie";
+                                    } else if (item.equals("tapetowanie")) {
+                                        subcategory = "tapetowanie";
+                                    } else if (item.equals("kładzenie kafelek")) {
+                                        subcategory = "kladzenie_kafelek";
+                                    } else if (item.equals("kładzenie paneli podłogowych")) {
+                                        subcategory = "kladzenie_paneli_podlogowych";
+                                    }
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                        //singleuser.putExtra("user_description", description);
+
                         startActivity(singleuser);
 
                         Bundle bundle = new Bundle();

@@ -77,7 +77,12 @@ public class SingleUserActivity extends AppCompatActivity {
         mImageView = (ImageView)findViewById(R.id.user_image);
         mDescription = (TextView)findViewById(R.id.description);
 
-        Picasso.with(getBaseContext()).load(image).transform(new Circle()).into(mImageView);
+        if(image.equals("")){
+            Picasso.with(getBaseContext()).load("https://firebasestorage.googleapis.com/v0/b/helpmate-b2e14.appspot.com/o/users_image%2Fperson.png?alt=media&token=643855bc-4dd4-4a92-8830-880da677ce7f").transform(new Circle()).into(mImageView);
+
+        }else {
+            Picasso.with(getBaseContext()).load(image).transform(new Circle()).into(mImageView);
+        }
         mUserName.setText(user_name);
         mUserCategory.setText(user_category);
         //mDescription.setText(user_description);

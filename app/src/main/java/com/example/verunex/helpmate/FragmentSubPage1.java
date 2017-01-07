@@ -23,6 +23,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,7 +85,15 @@ public class FragmentSubPage1 extends Fragment implements OnMapReadyCallback{
             String subcategory = this.getArguments().getString("subcategory");
             address = this.getArguments().getString("address");
 
-            desc.setText(descString);
+            if(desc.equals("")){
+                LinearLayout layout = (LinearLayout) getView().findViewById(R.id.description);
+                ViewGroup.LayoutParams params = layout.getLayoutParams();
+                params.height = 0;
+                layout.setLayoutParams(params);
+            }else{
+                desc.setText(descString);
+            }
+
             number.setText(numberString);
             numberSms.setText(numberString);
             email.setText(emailString);
@@ -146,13 +156,21 @@ public class FragmentSubPage1 extends Fragment implements OnMapReadyCallback{
                 e.printStackTrace();
             }
 
+            if(address.equals("")){
+                LinearLayout layout = (LinearLayout) getView().findViewById(R.id.locationUser);
+                ViewGroup.LayoutParams params = layout.getLayoutParams();
+                    params.height = 0;
+                    layout.setLayoutParams(params);
 
-            android.location.Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+            }else{
+                android.location.Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-            googleMap.addMarker(new MarkerOptions().position(latLng));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            googleMap.setMinZoomPreference(15);
+                googleMap.addMarker(new MarkerOptions().position(latLng));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                googleMap.setMinZoomPreference(15);
+            }
+
 
         }
 

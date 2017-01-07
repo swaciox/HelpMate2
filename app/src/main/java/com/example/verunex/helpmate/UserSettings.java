@@ -39,6 +39,7 @@ public class UserSettings extends AppCompatActivity {
         setContentView(R.layout.activity_user_settings);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         emailEditText = (EditText)findViewById(R.id.userChangeEmail);
         buttonChangeEmail = (Button)findViewById(R.id.userChangeEmailButton);
@@ -47,9 +48,9 @@ public class UserSettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!emailEditText.getText().toString().isEmpty()){
+
                     final String newEmail = emailEditText.getText().toString().trim();
 
-                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     final String id = user.getUid();
 
                     user.updateEmail(newEmail)
@@ -69,7 +70,7 @@ public class UserSettings extends AppCompatActivity {
                                                             mDatabaseReference.setValue(newEmail);
 
                                                             FirebaseAuth.getInstance().signOut();
-                                                            Intent i = new Intent(getBaseContext(), LoginActivity.class);
+                                                            Intent i = new Intent(getBaseContext(), SplashScreenActivity.class);
                                                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                             startActivity(i);
                                                         }
@@ -79,7 +80,7 @@ public class UserSettings extends AppCompatActivity {
                                 }
                             });
                 }else{
-                    Toast.makeText(getBaseContext(), "Pole email jest puste!", Toast.LENGTH_SHORT);
+                    Toast.makeText(getBaseContext(), "Pole email jest puste!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

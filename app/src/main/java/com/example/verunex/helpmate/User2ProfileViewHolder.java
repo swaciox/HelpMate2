@@ -23,6 +23,7 @@ public class User2ProfileViewHolder extends RecyclerView.ViewHolder {
     ImageButton btn2;
     ImageButton btn3;
 
+
     public User2ProfileViewHolder(View itemView) {
         super(itemView);
 
@@ -68,7 +69,15 @@ public class User2ProfileViewHolder extends RecyclerView.ViewHolder {
 
     public void setImage(Context ctx, String image){
         ImageView user_img = (ImageView) mView.findViewById(R.id.image);
-        Picasso.with(ctx).load(image).transform(new Circle()).into(user_img);
+
+        if(image.equals("")){
+            Picasso.with(ctx).load("https://firebasestorage.googleapis.com/v0/b/helpmate-b2e14.appspot.com/o/users_image%2Fperson.png?alt=media&token=643855bc-4dd4-4a92-8830-880da677ce7f").transform(new Circle()).into(user_img);
+        }else {
+            Picasso.with(ctx).load(image).transform(new Circle()).into(user_img);
+
+        }
+
+
     }
 
     public void setRate(String rate){

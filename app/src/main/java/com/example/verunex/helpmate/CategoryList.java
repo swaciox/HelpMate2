@@ -58,6 +58,8 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
     private DatabaseReference getSubcategories;
 
+    private String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -341,6 +343,23 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
             protected void populateViewHolder(final User2ProfileViewHolder viewHolder, final User2 model, final int position) {
                 final String category = model.getCategory();
 
+                String user_id_now = mFirebaseAuth.getCurrentUser().getUid();
+
+
+                DatabaseReference newData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(user_id_now);
+                newData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        email = dataSnapshot.child("email").getValue().toString();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
 
                 viewHolder.setAddress(model.getAddress());
@@ -352,13 +371,14 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                 viewHolder.setRate(model.getRate());
                 //viewHolder.setUser_id(model.getUser_id());
                 viewHolder.setUid(model.getUid());
-                viewHolder.setEmail(model.getEmail());
+                //viewHolder.setEmail(model.getEmail());
                 //viewHolder.setDescription(model.getDescription());
+
 
                 final String subcategory = model.getSubcategory();
                 final String service_state = model.getService_state();
-                final String email = model.getEmail();
-                Log.v ("email", email);
+                //final String email = model.getEmail();
+                //Log.v ("email", email);
                 final String number = model.getNumber();
                 Log.v ("number", number);
                 final String name = model.getName();

@@ -49,7 +49,7 @@ public class UserSettings extends AppCompatActivity {
                     final String newEmail = emailEditText.getText().toString().trim();
 
                     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    final String id = user.getUid();
+                   // final String id = user.getUid();
 
                     user.updateEmail(newEmail)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -57,7 +57,21 @@ public class UserSettings extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getBaseContext(),"Zmieniono adres email! Na "+newEmail, Toast.LENGTH_SHORT).show();
-                                        user.sendEmailVerification();
+
+                                        final FirebaseUser userNew = FirebaseAuth.getInstance().getCurrentUser();
+                                         String id = userNew.getUid();
+
+                                        userNew.sendEmailVerification()
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+
+                                                        }
+                                                    }
+                                                });
+
+
 
                                         DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id).child("email");
                                         mDatabaseReference.setValue(newEmail);

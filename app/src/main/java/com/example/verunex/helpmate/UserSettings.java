@@ -36,7 +36,7 @@ public class UserSettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!emailEditText.getText().toString().isEmpty()){
-                    String newEmail = emailEditText.getText().toString().trim();
+                    final String newEmail = emailEditText.getText().toString().trim();
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -45,14 +45,11 @@ public class UserSettings extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                       // Toast.makeText()
+                                        Toast.makeText(getBaseContext(),"Zmieniono adres email! Na "+newEmail, Toast.LENGTH_SHORT).show();
 
                                     }
                                 }
                             });
-
-
-
                 }
             }
         });

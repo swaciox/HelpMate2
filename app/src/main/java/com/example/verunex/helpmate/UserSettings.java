@@ -13,14 +13,24 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserSettings extends AppCompatActivity {
+
+    private FirebaseAuth firebaseAuth;
 
     //email
     private EditText emailEditText;
     private Button buttonChangeEmail;
 
-    private FirebaseAuth firebaseAuth;
+    //password
+    private EditText passwordEditText;
+    private Button buttonChangePassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +48,8 @@ public class UserSettings extends AppCompatActivity {
                 if(!emailEditText.getText().toString().isEmpty()){
                     final String newEmail = emailEditText.getText().toString().trim();
 
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    final String id = user.getUid();
 
                     user.updateEmail(newEmail)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -46,13 +57,47 @@ public class UserSettings extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getBaseContext(),"Zmieniono adres email! Na "+newEmail, Toast.LENGTH_SHORT).show();
+                                        user.sendEmailVerification();
 
+                                        DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id).child("email");
+                                        mDatabaseReference.setValue(newEmail);
                                     }
                                 }
                             });
+                }else{
+                    Toast.makeText(getBaseContext(), "Pole email jest puste!", Toast.LENGTH_SHORT);
                 }
             }
         });
+
+        passwordEditText = (EditText)findViewById(R.id.userChangePassword);
+        buttonChangePassword = (Button)findViewById(R.id.userChangePasswordButton);
+
+        buttonChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(!emailEditText.getText().toString().isEmpty()) {
+                    final String newPassword = passwordEditText.getText().toString().trim();
+
+                    user.updatePassword(newPassword)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getBaseContext(), "Hasło zmieniono pomyślnie!", Toast.LENGTH_SHORT);
+                                    }
+                                }
+                            });
+                }else{
+                    Toast.makeText(getBaseContext(), "Pole hasło jest puste!", Toast.LENGTH_SHORT);
+                }
+            }
+        });
+
+
+
 
 
 

@@ -168,6 +168,14 @@
     <string name="user_rate">Wystaw ocenę w skali od 1 do 5</string>
     <string name="user_opinion">Napisz opinię o użytkowniku</string>
     <string name="user_location">Zatwierdź lokalizację</string>
+    <string name="user_settings_delete">Usuń konto</string>
+    <string name="user_settings_email">Zmień adres e-mail</string>
+    <string name="user_settings_password">Zmień hasło</string>
+    <string name="user_setting_delete_button">Usuń konto</string>
+    <string name="user_settings_edit">Zatwierdź</string>
+    <string name="user_setting_password_info">Poniżej wpisz swoje nowe hasło</string>
+    <string name="user_setting_email_info">Poniżej wpisz swój nowy adres e-mail</string>
+    <string name="user_setting_delete_info">Usunięcie konta jest nieodwracalne</string>
     <string name="title_activity_category_tabeed_test">CategoryTabeedTest</string>
 
 

@@ -5,15 +5,22 @@
     android:id="@+id/activity_splash_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_splash"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.example.verunex.helpmate.SplashScreenActivity"
-
     >
+
     <RelativeLayout
+        android:background="@drawable/background_splash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="65dp"
         >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="65dp"
+            >
+
 
         <ImageView
         android:layout_width="wrap_content"
@@ -79,7 +86,7 @@
             android:layout_marginTop="325dp"
             android:backgroundTint="@color/colorAccent"/>
 
-
+        </RelativeLayout>
 
     </RelativeLayout>
 

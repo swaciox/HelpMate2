@@ -1,20 +1,28 @@
 package com.example.verunex.helpmate;
 
+import android.*;
+import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +39,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appdatasearch.GetRecentContextCall;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.identity.intents.Address;
 import com.google.android.gms.location.LocationListener;
@@ -66,7 +78,7 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class EditUserProfile extends FragmentActivity implements OnMapReadyCallback {
+public class EditUserProfile extends AppCompatActivity implements OnMapReadyCallback {
 
     private TextView userChoice;
 
@@ -89,8 +101,6 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
 
     private RequestQueue mRequestQueue;
 
-    private LocationManager locationManager;
-
     private String TAG = "New ";
 
     String rText = "";
@@ -98,6 +108,18 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
     private GoogleMap mMap;
 
     private Button searchButton;
+
+    //location
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+
+    private BroadcastReceiver broadcastReceiver;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,28 +130,6 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        /*ListView mListView= (ListView) findViewById(R.id.categoriesListView);
-        ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);
-        mListView.setAdapter(listAdapter);
-        */
-
-       /* PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
-                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
-
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-                Log.i(TAG, "Place: " + place.getName());
-            }
-
-            @Override
-            public void onError(Status status) {
-                // TODO: Handle the error.
-                Log.i(TAG, "An error occurred: " + status);
-            }
-        });
-*/
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         String id = mFirebaseAuth.getCurrentUser().getUid();
@@ -151,6 +151,7 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
 
 
 
+
         //Mapa
 
         addrImageView.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +170,7 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
                 String provider = locationManager.getBestProvider(criteria, true);
 
                 // Get Current Location
-                if (ActivityCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+               /* if (ActivityCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     // here to request the missing permissions, and then overriding
@@ -216,7 +217,7 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
                     });
                     mRequestQueue.add(request);
                 }
-
+*/
             }
         });
 
@@ -274,7 +275,9 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
         });
 
 
-
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
@@ -360,16 +363,22 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-
-    }
 
     @Override
     protected void onStart() {
-        super.onStart();
+        super.onStart();// ATTENTION: This was auto-generated to implement the App Indexing API.
+// See https://g.co/AppIndexing/AndroidStudio for more information.
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        client.connect();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+
     }
 
     @Override
@@ -383,10 +392,11 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLng poznan = new LatLng(52.414688, 16.930498);
-       // LatLng latLng = new LatLng(Double.parseDouble(getLatitude()), Double.parseDouble(getLongitude()));
+        // LatLng latLng = new LatLng(Double.parseDouble(getLatitude()), Double.parseDouble(getLongitude()));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(poznan));
         mMap.setMinZoomPreference(10);
+
 
         /*
         JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + address.getLatitude() + "," + address.getLongitude() + "&key=AIzaSyBWbcjYmZ3OVyklVuQFZOzUDzQMitkaKwc", new Response.Listener<JSONObject>() {
@@ -411,7 +421,7 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
 */
         // Add a marker in Sydney, Australia, and move the camera.
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -421,11 +431,23 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        mMap.setMyLocationEnabled(true);
+
+        mMap.setMyLocationEnabled(false);
+
+
+        mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+
+                return false;
+            }
+        });
 
     }
 
     public void onSearch(View view) {
+
+        mMap.clear();
 
         String location = user_address.getText().toString();
 
@@ -444,7 +466,7 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
             android.location.Address address = addressList.get(0);
             LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-            mMap.addMarker(new MarkerOptions().position(latLng).title("JA"));
+            mMap.addMarker(new MarkerOptions().position(latLng));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.setMinZoomPreference(15);
 
@@ -468,5 +490,31 @@ public class EditUserProfile extends FragmentActivity implements OnMapReadyCallb
             mRequestQueue.add(request);
 
         }
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("EditUserProfile Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 }

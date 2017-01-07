@@ -7,18 +7,28 @@ public class Comment {
     private String user_image;
     private String rate;
     private String user_id;
+    private String date;
 
     public Comment (){
 
 
     }
 
-    public Comment(String desc, String name, String user_image, String rate, String user_id) {
+    public Comment(String desc, String name, String user_image, String rate, String user_id,String date) {
         this.desc = desc;
         this.name = name;
         this.user_image = user_image;
         this.rate = rate;
         this.user_id = user_id;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getUser_id() {

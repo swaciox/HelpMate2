@@ -24,6 +24,11 @@ public class CommentViewHolder extends RecyclerView.ViewHolder{
         mImageButton = (ImageButton) mView.findViewById(R.id.imageButtonExit);
     }
 
+    public void setDate (String date){
+        TextView comment_date = (TextView) mView.findViewById(R.id.commentDate);
+        comment_date.setText(date);
+    }
+
     public void setDesc (String desc){
         TextView comment_description = (TextView) mView.findViewById(R.id.commentDesc);
         comment_description.setText(desc);

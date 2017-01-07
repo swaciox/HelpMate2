@@ -29,7 +29,9 @@ public class SingleUserActivity extends AppCompatActivity {
 
     String id_position;
     String user_id;
-    String number, email, desc, subcategory;
+    String number, email, desc, subcategory, address;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,9 @@ public class SingleUserActivity extends AppCompatActivity {
         email = getIntent().getExtras().getString("email");
         desc = getIntent().getExtras().getString("desc");
         subcategory = getIntent().getExtras().getString("subcategory");
+        address = getIntent().getExtras().getString("address");
 
+        setTitle(user_name);
 
         user_id = getIntent().getExtras().getString("user_id");
         id_position = getIntent().getExtras().getString("id_position");
@@ -65,7 +69,7 @@ public class SingleUserActivity extends AppCompatActivity {
 
 
         RatingBar user_rate = (RatingBar) findViewById(R.id.commentRatingBar);
-//        user_rate.setRating(Float.parseFloat(rate));
+        user_rate.setRating(Float.parseFloat(rate));
 
         mUserName = (TextView)findViewById(R.id.user_name);
 
@@ -121,6 +125,7 @@ public class SingleUserActivity extends AppCompatActivity {
                     bundle2.putString("desc", desc );
                     bundle2.putString("email", email);
                     bundle2.putString("subcategory", subcategory);
+                    bundle2.putString("address", address);
                     fragmentSubPage1.setArguments(bundle2);
                     return fragmentSubPage1;
                 case 1:

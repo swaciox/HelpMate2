@@ -295,6 +295,9 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
         } else if (id == R.id.nav_userProfileServices){
             Intent intent = new Intent(getApplicationContext(), ServiceUserProfile.class);
             startActivity(intent);
+        }else if (id == R.id.nav_userComment){
+            Intent intent = new Intent(getApplicationContext(), MyCommentServiceUser.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -337,7 +340,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-                //viewHolder.setAddress(model.getAddress());
+                viewHolder.setAddress(model.getAddress());
                 viewHolder.setName(model.getName());
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setNumber(model.getNumber());
@@ -404,6 +407,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                         singleuser.putExtra("desc", desc);
                         singleuser.putExtra("email", email);
                         singleuser.putExtra("subcategory", subcategory);
+                        singleuser.putExtra("address", address);
 
                         getSubcategories = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(user_id).child("categories");
                         getSubcategories.addValueEventListener(new ValueEventListener() {

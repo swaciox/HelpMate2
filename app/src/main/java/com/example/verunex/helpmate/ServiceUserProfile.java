@@ -1,9 +1,13 @@
 package com.example.verunex.helpmate;
 
+import android.*;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
+import android.location.Geocoder;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +18,16 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,13 +36,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ServiceUserProfile extends AppCompatActivity {
+public class ServiceUserProfile extends AppCompatActivity implements OnMapReadyCallback {
 
     private ImageView userImage;
     private TextView userName, userCategory;
@@ -66,11 +84,17 @@ public class ServiceUserProfile extends AppCompatActivity {
 
     // data
     String name, number, image;
+    String address;
 
     String tempCategory = "";
     String id_key;
 
     private DatabaseReference changeOldData;
+
+
+    private GoogleMap mMap;
+    private RequestQueue mRequestQueue;
+
 
 
     @Override
@@ -80,11 +104,12 @@ public class ServiceUserProfile extends AppCompatActivity {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-       id_key = mFirebaseAuth.getCurrentUser().getUid();
+        id_key = mFirebaseAuth.getCurrentUser().getUid();
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
 
         changeOldData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
+
 
         initControl();
 
@@ -100,6 +125,7 @@ public class ServiceUserProfile extends AppCompatActivity {
         descEdit();
 
         addUserToDatabase();
+
 
 
     }
@@ -130,11 +156,10 @@ public class ServiceUserProfile extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-
                         //data
                         name = dataSnapshot.child("name").getValue().toString();
                         number = dataSnapshot.child("number").getValue().toString();
-                        String address = dataSnapshot.child("address").getValue().toString();
+                        address = dataSnapshot.child("address").getValue().toString();
                         String desc = dataSnapshot.child("desc").getValue().toString();
                         String email = dataSnapshot.child("email").getValue().toString();
                         image = dataSnapshot.child("user_image").getValue().toString();
@@ -142,25 +167,25 @@ public class ServiceUserProfile extends AppCompatActivity {
                         String service_state = dataSnapshot.child("service_state").getValue().toString();
 
                         tempCategory = "";
-                        for(int i =1; i <=23; i++){
-                            String temp = "sub" + i ;
+                        for (int i = 1; i <= 23; i++) {
+                            String temp = "sub" + i;
 
                             String item = dataSnapshot.child("categories").child(temp).child("description").getValue().toString();
 
-                            String subcategory="";
-                            if (item.equals("naprawa wycieków")){
+                            String subcategory = "";
+                            if (item.equals("naprawa wycieków")) {
                                 subcategory = "naprawa_wyciekow";
                             } else if (item.equals("wymiana armatury")) {
                                 subcategory = "wymiana_armatury";
-                            } else if (item.equals("instalacje elektryczne")){
+                            } else if (item.equals("instalacje elektryczne")) {
                                 subcategory = "instalacje_elektryczne";
-                            } else if (item.equals("naprawa awaryjna")){
+                            } else if (item.equals("naprawa awaryjna")) {
                                 subcategory = "naprawa_awaryjna";
-                            } else if (item.equals("sprzątanie")){
+                            } else if (item.equals("sprzątanie")) {
                                 subcategory = "sprzatanie";
-                            } else if (item.equals("prasowanie")){
+                            } else if (item.equals("prasowanie")) {
                                 subcategory = "prasowanie";
-                            } else if (item.equals("mycie okien")){
+                            } else if (item.equals("mycie okien")) {
                                 subcategory = "mycie_okien";
                             } else if (item.equals("opieka do dzieci")) {
                                 subcategory = "opieka_do_dzieci";
@@ -197,27 +222,27 @@ public class ServiceUserProfile extends AppCompatActivity {
                             }
 
 
-                            if(dataSnapshot.child("categories").child(temp).child("state").getValue().toString()=="true"){
-                                Log.v ("Bylem tu", " Ld");
+                            if (dataSnapshot.child("categories").child(temp).child("state").getValue().toString() == "true") {
+                                Log.v("Bylem tu", " Ld");
 
                                 String category = "";
 
-                                if(temp.equals("sub1") || temp.equals("sub2")){
-                                    category= "hydraulika";
-                                }else if (temp.equals("sub3") || temp.equals("sub4")){
-                                    category="elektryka";
-                                }else if (temp.equals("sub5") || temp.equals("sub6") || temp.equals("sub7")){
-                                    category="pomoc_domowa";
-                                } else if(temp.equals("sub8")|| temp.equals("sub9")|| temp.equals("sub10")|| temp.equals("sub11")){
-                                    category="opieka";
-                                } else if (temp.equals("sub12")){
-                                    category="korepetycje";
-                                } else if (temp.equals("sub13")|| temp.equals("sub14")|| temp.equals("sub15")){
-                                    category="ogrodnictwo";
-                                } else if (temp.equals("sub16")|| temp.equals("sub17")|| temp.equals("sub18")|| temp.equals("sub19")){
-                                    category="naprawa_urzadzen";
-                                } else if (temp.equals("sub20")|| temp.equals("sub21")|| temp.equals("sub22")|| temp.equals("sub23")){
-                                    category="remonty";
+                                if (temp.equals("sub1") || temp.equals("sub2")) {
+                                    category = "hydraulika";
+                                } else if (temp.equals("sub3") || temp.equals("sub4")) {
+                                    category = "elektryka";
+                                } else if (temp.equals("sub5") || temp.equals("sub6") || temp.equals("sub7")) {
+                                    category = "pomoc_domowa";
+                                } else if (temp.equals("sub8") || temp.equals("sub9") || temp.equals("sub10") || temp.equals("sub11")) {
+                                    category = "opieka";
+                                } else if (temp.equals("sub12")) {
+                                    category = "korepetycje";
+                                } else if (temp.equals("sub13") || temp.equals("sub14") || temp.equals("sub15")) {
+                                    category = "ogrodnictwo";
+                                } else if (temp.equals("sub16") || temp.equals("sub17") || temp.equals("sub18") || temp.equals("sub19")) {
+                                    category = "naprawa_urzadzen";
+                                } else if (temp.equals("sub20") || temp.equals("sub21") || temp.equals("sub22") || temp.equals("sub23")) {
+                                    category = "remonty";
                                 }
 
                                 tempCategory = tempCategory + category + ", ";
@@ -242,25 +267,25 @@ public class ServiceUserProfile extends AppCompatActivity {
                                 addUser.child("subcategory").setValue(categories);
 
 
-                            }else if (dataSnapshot.child("categories").child(temp).child("state").getValue().toString()=="false"){
+                            } else if (dataSnapshot.child("categories").child(temp).child("state").getValue().toString() == "false") {
                                 String category = "";
 
-                                if(temp.equals("sub1") || temp.equals("sub2")){
-                                    category= "hydraulika";
-                                }else if (temp.equals("sub3") || temp.equals("sub4")){
-                                    category="elektryka";
-                                }else if (temp.equals("sub5") || temp.equals("sub6") || temp.equals("sub7")){
-                                    category="pomoc_domowa";
-                                } else if(temp.equals("sub8")|| temp.equals("sub9")|| temp.equals("sub10")|| temp.equals("sub11")){
-                                    category="opieka";
-                                } else if (temp.equals("sub12")){
-                                    category="korepetycje";
-                                } else if (temp.equals("sub13")|| temp.equals("sub14")|| temp.equals("sub15")){
-                                    category="ogrodnictwo";
-                                } else if (temp.equals("sub16")|| temp.equals("sub17")|| temp.equals("sub18")|| temp.equals("sub19")){
-                                    category="naprawa_urzadzen";
-                                } else if (temp.equals("sub20")|| temp.equals("sub21")|| temp.equals("sub22")|| temp.equals("sub23")){
-                                    category="remonty";
+                                if (temp.equals("sub1") || temp.equals("sub2")) {
+                                    category = "hydraulika";
+                                } else if (temp.equals("sub3") || temp.equals("sub4")) {
+                                    category = "elektryka";
+                                } else if (temp.equals("sub5") || temp.equals("sub6") || temp.equals("sub7")) {
+                                    category = "pomoc_domowa";
+                                } else if (temp.equals("sub8") || temp.equals("sub9") || temp.equals("sub10") || temp.equals("sub11")) {
+                                    category = "opieka";
+                                } else if (temp.equals("sub12")) {
+                                    category = "korepetycje";
+                                } else if (temp.equals("sub13") || temp.equals("sub14") || temp.equals("sub15")) {
+                                    category = "ogrodnictwo";
+                                } else if (temp.equals("sub16") || temp.equals("sub17") || temp.equals("sub18") || temp.equals("sub19")) {
+                                    category = "naprawa_urzadzen";
+                                } else if (temp.equals("sub20") || temp.equals("sub21") || temp.equals("sub22") || temp.equals("sub23")) {
+                                    category = "remonty";
                                 }
 
 
@@ -269,7 +294,6 @@ public class ServiceUserProfile extends AppCompatActivity {
                             }
 
                         }
-
 
 
                     }
@@ -281,18 +305,22 @@ public class ServiceUserProfile extends AppCompatActivity {
                 });
 
 
-
-
-
             }
         });
     }
+
+
 
     @Override
     protected void onStart() {
         super.onStart();
 
         userOldData();
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
     }
 
     @Override
@@ -338,7 +366,7 @@ public class ServiceUserProfile extends AppCompatActivity {
 
     }
 
-    private void initControl(){
+    private void initControl() {
 
         //userOldData
         userImage = (ImageView) findViewById(R.id.user_image);
@@ -346,30 +374,30 @@ public class ServiceUserProfile extends AppCompatActivity {
         userCategory = (TextView) findViewById(R.id.user_category);
 
         //categories
-        userSubCategories = (TextView)findViewById(R.id.userCategories);
-        editSubCategories = (Button)findViewById(R.id.EditCategories);
+        userSubCategories = (TextView) findViewById(R.id.userCategories);
+        editSubCategories = (Button) findViewById(R.id.EditCategories);
 
         //contact
-        userNumber = (TextView)findViewById(R.id.number);
-        userNumberCell = (TextView)findViewById(R.id.numberSms);
-        userEmail = (TextView)findViewById(R.id.userEmail);
-        editContact = (Button)findViewById(R.id.editContactB);
+        userNumber = (TextView) findViewById(R.id.number);
+        userNumberCell = (TextView) findViewById(R.id.numberSms);
+        userEmail = (TextView) findViewById(R.id.userEmail);
+        editContact = (Button) findViewById(R.id.editContactB);
 
         //description
-        userDesc = (TextView)findViewById(R.id.userDesc);
-        userDescChange = (Button)findViewById(R.id.editUserDesc);
+        userDesc = (TextView) findViewById(R.id.userDesc);
+        userDescChange = (Button) findViewById(R.id.editUserDesc);
 
         //addToDatabase
-        addToDatabase = (Button)findViewById(R.id.addToDatabase);
+        addToDatabase = (Button) findViewById(R.id.addToDatabase);
 
 
         //info
-        infoButton = (ImageButton)findViewById(R.id.infoButton);
+        infoButton = (ImageButton) findViewById(R.id.infoButton);
 
 
     }
 
-    private void userOldData(){
+    private void userOldData() {
 
         DatabaseReference userData = mDatabaseReference;
 
@@ -380,10 +408,10 @@ public class ServiceUserProfile extends AppCompatActivity {
                 userName.setText(name);
 
                 String user_image_uri = dataSnapshot.child("user_image").getValue().toString();
-                if(user_image_uri.isEmpty()){
+                if (user_image_uri.isEmpty()) {
                     userImage.setImageResource(R.drawable.person);
-                }else{
-                    Log.v ("user_image uri",user_image_uri);
+                } else {
+                    Log.v("user_image uri", user_image_uri);
                     Picasso.with(getBaseContext()).load(user_image_uri).transform(new Circle()).into(userImage);
                 }
 
@@ -398,6 +426,9 @@ public class ServiceUserProfile extends AppCompatActivity {
                 //desc
                 String desc = dataSnapshot.child("desc").getValue().toString();
                 userDesc.setText(desc);
+
+                //S
+                address = dataSnapshot.child("address").getValue().toString();
             }
 
             @Override
@@ -407,8 +438,7 @@ public class ServiceUserProfile extends AppCompatActivity {
         });
     }
 
-    private void userSubCategoriesChoice()
-    {
+    private void userSubCategoriesChoice() {
 
         editSubCategories.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -432,29 +462,29 @@ public class ServiceUserProfile extends AppCompatActivity {
                 List<String> category = new ArrayList<String>();
                 int position = 0;
 
-                for (int i = 1; i <=23; i++){
-                    temp = "sub"+i;
+                for (int i = 1; i <= 23; i++) {
+                    temp = "sub" + i;
 
                     temp2 = dataSnapshot.child("categories").child(temp).child("state").getValue().toString();
-                    if(temp2.equals("true")){
+                    if (temp2.equals("true")) {
                         desc = dataSnapshot.child("categories").child(temp).child("description").getValue().toString();
-                        categories = categories + "- " + desc+"\n";
+                        categories = categories + "- " + desc + "\n";
 
-                        if(temp.equals("sub1") || temp.equals("sub2")){
+                        if (temp.equals("sub1") || temp.equals("sub2")) {
                             category.add("Hydraulika");
-                        }else if (temp.equals("sub3") || temp.equals("sub4")){
+                        } else if (temp.equals("sub3") || temp.equals("sub4")) {
                             category.add("Elektryka");
-                        }else if (temp.equals("sub5") || temp.equals("sub6") || temp.equals("sub7")){
+                        } else if (temp.equals("sub5") || temp.equals("sub6") || temp.equals("sub7")) {
                             category.add("Pomoc domowa");
-                        } else if(temp.equals("sub8")|| temp.equals("sub9")|| temp.equals("sub10")|| temp.equals("sub11")){
+                        } else if (temp.equals("sub8") || temp.equals("sub9") || temp.equals("sub10") || temp.equals("sub11")) {
                             category.add("Opieka");
-                        } else if (temp.equals("sub12")){
+                        } else if (temp.equals("sub12")) {
                             category.add("Korepetycje");
-                        } else if (temp.equals("sub13")|| temp.equals("sub14")|| temp.equals("sub15")){
+                        } else if (temp.equals("sub13") || temp.equals("sub14") || temp.equals("sub15")) {
                             category.add("Ogrodnictwo");
-                        } else if (temp.equals("sub16")|| temp.equals("sub17")|| temp.equals("sub18")|| temp.equals("sub19")){
+                        } else if (temp.equals("sub16") || temp.equals("sub17") || temp.equals("sub18") || temp.equals("sub19")) {
                             category.add("Naprawa urządzeń");
-                        } else if (temp.equals("sub20")|| temp.equals("sub21")|| temp.equals("sub22")|| temp.equals("sub23")){
+                        } else if (temp.equals("sub20") || temp.equals("sub21") || temp.equals("sub22") || temp.equals("sub23")) {
                             category.add("Remonty");
                         }
                     }
@@ -464,14 +494,14 @@ public class ServiceUserProfile extends AppCompatActivity {
 
                 //usuniecie duplikatow
                 Set<String> mySet = new HashSet<String>(category);
-                for(String tempList : mySet ){
-                    Log.v ("templist", tempList);
+                for (String tempList : mySet) {
+                    Log.v("templist", tempList);
                     finallist.add(tempList);
                 }
 
 
-                for(int i = 0; i < finallist.size(); i++){
-                    filterCategory = filterCategory +finallist.get(i)+ ", ";
+                for (int i = 0; i < finallist.size(); i++) {
+                    filterCategory = filterCategory + finallist.get(i) + ", ";
                     Log.v("filter ", filterCategory);
                 }
 
@@ -487,12 +517,58 @@ public class ServiceUserProfile extends AppCompatActivity {
         });
     }
 
-    private String deleteLastChar(String s ){
+    private String deleteLastChar(String s) {
 
         String temp = "";
-        if (!s.isEmpty()){
-            temp = s.substring(0,s.length()-2);
+        if (!s.isEmpty()) {
+            temp = s.substring(0, s.length() - 2);
         }
         return temp;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        LatLng poznan = new LatLng(52.414688, 16.930498);
+        // LatLng latLng = new LatLng(Double.parseDouble(getLatitude()), Double.parseDouble(getLongitude()));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(poznan));
+        mMap.setMinZoomPreference(10);
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+        mMap.setMyLocationEnabled(false);
+
+        String location = address;
+
+        List<android.location.Address> addressList = null;
+
+        if (location != null || location != "") {
+
+            Geocoder geocoder = new Geocoder(this);
+            try {
+                addressList = geocoder.getFromLocationName(location, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            android.location.Address address = addressList.get(0);
+            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+            mMap.addMarker(new MarkerOptions().position(latLng));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            mMap.setMinZoomPreference(15);
+
+        }
     }
 }

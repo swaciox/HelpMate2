@@ -113,6 +113,7 @@ public class FragmentSubPage2 extends Fragment {
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setUserImage(getActivity(),model.getUser_image());
                 viewHolder.setRate(model.getRate());
+                viewHolder.setDate(model.getDate());
 
                 String rate = model.getRate();
                 String comment_id = model.getUser_id();

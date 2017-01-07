@@ -2,7 +2,11 @@ package com.example.verunex.helpmate;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Calendar;
 
 public class AddCommentPop extends Activity {
 
@@ -36,6 +42,7 @@ public class AddCommentPop extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_comment_popup);
+
 
         final String id_postion = getIntent().getExtras().getString("id_position");
         final String user_id = getIntent().getExtras().getString("user_id");
@@ -65,6 +72,7 @@ public class AddCommentPop extends Activity {
         });
 
         mButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
 
@@ -78,6 +86,33 @@ public class AddCommentPop extends Activity {
                 if(!desc.isEmpty()){
                     comment.child("desc").setValue(desc);
                     comment.child("user_id").setValue(id_key);
+
+
+                    Calendar c = Calendar.getInstance();
+                    int mYear = c.get(Calendar.YEAR);
+                    int mMonth = c.get(Calendar.MONTH)+1;
+                    int mDay = c.get(Calendar.DAY_OF_MONTH);
+                    int minute = c.get(Calendar.MINUTE);
+                    int hour = c.get(Calendar.HOUR);
+
+                    String tempDay;
+                    String tempMonth;
+
+                    if (mDay <10){
+                        tempDay = "0"+mDay;
+                    }else{
+                        tempDay = ""+ mDay;
+
+                    }
+
+                    if (mMonth <10){
+                        tempMonth = "0"+mMonth;
+                    }else{
+                        tempMonth =""+ mMonth;
+                    }
+
+                    String date = mYear+"."+tempMonth+"."+tempDay;
+                    comment.child("date").setValue(date);
 
                     // rate convert
                     String convertValue = "" + Float.toString(value);

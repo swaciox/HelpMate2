@@ -271,6 +271,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_userProfileServices){
             Intent intent = new Intent(getApplicationContext(), ServiceUserProfile.class);
             startActivity(intent);
+        }else if (id == R.id.nav_userComment){
+            Intent intent = new Intent(getApplicationContext(), MyCommentServiceUser.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

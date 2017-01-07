@@ -1,5 +1,6 @@
 package com.example.verunex.helpmate;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -32,14 +33,16 @@ public class UserSettings extends AppCompatActivity {
     private EditText passwordEditText;
     private Button buttonChangePassword;
 
+    private ProgressDialog mProgressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
 
-        firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         emailEditText = (EditText)findViewById(R.id.userChangeEmail);
         buttonChangeEmail = (Button)findViewById(R.id.userChangeEmailButton);
@@ -48,18 +51,17 @@ public class UserSettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!emailEditText.getText().toString().isEmpty()){
-
                     final String newEmail = emailEditText.getText().toString().trim();
 
+                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     final String id = user.getUid();
+
 
                     user.updateEmail(newEmail)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(getBaseContext(),"Zmieniono adres email! Na "+newEmail+" wysłano link aktywacyjny", Toast.LENGTH_SHORT).show();
-
 
                                         user.sendEmailVerification()
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -69,6 +71,9 @@ public class UserSettings extends AppCompatActivity {
                                                             DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id).child("email");
                                                             mDatabaseReference.setValue(newEmail);
 
+
+                                                            Toast.makeText(getBaseContext(),"Zmieniono adres email! Na "+newEmail+" wysłano link aktywacyjny", Toast.LENGTH_SHORT).show();
+
                                                             FirebaseAuth.getInstance().signOut();
                                                             Intent i = new Intent(getBaseContext(), SplashScreenActivity.class);
                                                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -76,6 +81,8 @@ public class UserSettings extends AppCompatActivity {
                                                         }
                                                     }
                                                 });
+                                    }else{
+
                                     }
                                 }
                             });
@@ -92,21 +99,23 @@ public class UserSettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if(!emailEditText.getText().toString().isEmpty()) {
+                if(!passwordEditText.getText().toString().isEmpty()) {
                     final String newPassword = passwordEditText.getText().toString().trim();
+                    Log.v("newPassword", newPassword);
 
                     user.updatePassword(newPassword)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(getBaseContext(), "Hasło zmieniono pomyślnie!", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getBaseContext(), "Hasło zostało zmienione!", Toast.LENGTH_SHORT).show();
+                                    }else{
                                     }
                                 }
                             });
                 }else{
-                    Toast.makeText(getBaseContext(), "Pole hasło jest puste!", Toast.LENGTH_SHORT);
+
+                    Toast.makeText(getBaseContext(), "Pole hasło jest puste!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -120,6 +120,8 @@ public class EditUserProfile extends AppCompatActivity implements OnMapReadyCall
      */
     private GoogleApiClient client;
 
+    Uri imageUri2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -318,26 +320,11 @@ public class EditUserProfile extends AppCompatActivity implements OnMapReadyCall
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Uri imageUri = data.getData();
 
-        //String allChoice = "";
+        Uri imageUri = Uri.parse("");
 
-        /*if (requestCode == 3) {
-            if (resultCode == 2) {
-                String dataCheckboxTexts[] = data.getStringArrayExtra("dataCheckBoxTexts");
-                for(int i = 0; i<6; i++){
-                        if(!Objects.equals(dataCheckboxTexts[i], "null")){
-                            String temp = "- " + dataCheckboxTexts[i] +"\n";
-                            allChoice = allChoice + temp;
-                        }
-
-                }
-
-                userChoice.setText(allChoice);
-
-            }
-        }*/
         if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
+            imageUri =data.getData();
             CropImage.activity(imageUri)
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .setAspectRatio(1, 1)
@@ -357,6 +344,7 @@ public class EditUserProfile extends AppCompatActivity implements OnMapReadyCall
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
+
             }
 
 
@@ -462,34 +450,38 @@ public class EditUserProfile extends AppCompatActivity implements OnMapReadyCall
                 e.printStackTrace();
             }
 
+            if(addressList!=null){
+                android.location.Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-            android.location.Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(latLng));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.setMinZoomPreference(15);
 
-            mMap.addMarker(new MarkerOptions().position(latLng));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.setMinZoomPreference(15);
+                JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + address.getLatitude() + "," + address.getLongitude() + "&key=AIzaSyBWbcjYmZ3OVyklVuQFZOzUDzQMitkaKwc", new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
-            JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + address.getLatitude() + "," + address.getLongitude() + "&key=AIzaSyBWbcjYmZ3OVyklVuQFZOzUDzQMitkaKwc", new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-
-                    try {
-                        String address = response.getJSONArray("results").getJSONObject(0).getString("formatted_address");
-                        user_address.setText(address);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        try {
+                            String address = response.getJSONArray("results").getJSONObject(0).getString("formatted_address");
+                            user_address.setText(address);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-                }
-            });
-            mRequestQueue.add(request);
+                    }
+                });
+                mRequestQueue.add(request);
 
+            }else{
+                Toast.makeText(getBaseContext(), "Niepoprawny adres!", Toast.LENGTH_SHORT).show();
+            }
         }
+
     }
 
     /**

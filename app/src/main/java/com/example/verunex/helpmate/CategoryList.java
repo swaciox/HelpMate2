@@ -344,23 +344,31 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
             protected void populateViewHolder(final User2ProfileViewHolder viewHolder, final User2 model, final int position) {
                 final String category = model.getCategory();
 
-                String user_id_now = mFirebaseAuth.getCurrentUser().getUid();
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                    String user_id_now = mFirebaseAuth.getCurrentUser().getUid();
 
 
-                DatabaseReference newData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(user_id_now);
-                newData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        email = dataSnapshot.child("email").getValue().toString();
-                        image = dataSnapshot.child("user_image").getValue().toString();
+                    DatabaseReference newData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(user_id_now);
+                    newData.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            email = dataSnapshot.child("email").getValue().toString();
+                            image = dataSnapshot.child("user_image").getValue().toString();
 
-                    }
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
+                }
+
+
+
+
+
+
 
 
 
@@ -434,7 +442,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                         singleuser.putExtra("subcategory", subcategory);
                         singleuser.putExtra("address", address);
 
-                        getSubcategories = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(cureent_user_id).child("categories");
+                        getSubcategories = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_position).child("categories");
                         getSubcategories.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -530,6 +538,12 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 */
                     }
                 });
+
+                if(number.equals("")){
+                    viewHolder.btn.setVisibility(View.INVISIBLE);
+                    viewHolder.btn2.setVisibility(View.INVISIBLE);
+                }
+
                 viewHolder.btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -563,6 +577,8 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                         startActivity(Intent.createChooser(intent, ""));
                     }
                 });
+
+
 
                 if (!cureent_user_id.equals("null")){
 

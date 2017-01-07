@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +40,9 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
     //Firebase
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
+    String tempo="false";
 
+    Boolean check;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,7 +98,7 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
                         checkUser();
                     }else{
                         mProgressDialog.dismiss();
-                        Toast.makeText(getContext(), "Problem z logowaniem", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Podane konto nie istnieje!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -106,33 +109,39 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
     }
 
     private void checkUser(){
+        final String id = mFirebaseAuth.getCurrentUser().getUid();
 
-        final String user_id = mFirebaseAuth.getCurrentUser().getUid();
 
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(user_id)){
-                    if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()/*==null*/){
-                        Intent i = new Intent(getContext(), MainActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(i);
-
-                        mProgressDialog.dismiss();
-                    }else{
-                        mProgressDialog.dismiss();
-                        Toast.makeText(getContext(), "Zweryfikuj adres email!" , Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(getContext(), "Podany użytkownik nie istnieje!", Toast.LENGTH_SHORT).show();
-                    mProgressDialog.dismiss();
-                }
+                check = dataSnapshot.hasChild(id);
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
+
+        if(check=false){
+            mProgressDialog.dismiss();
+            Toast.makeText(getContext(),"Podane konto nie istnieje!", Toast.LENGTH_SHORT ).show();
+        }else {
+            if(mFirebaseAuth.getCurrentUser().isEmailVerified()){
+                mProgressDialog.dismiss();
+                Intent i = new Intent(getContext(),MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+
+
+
+            }else{
+                mProgressDialog.dismiss();
+                Toast.makeText(getContext(),"Zweryfukuj adres email!", Toast.LENGTH_SHORT ).show();
+            }
+        }
+
 
     }
 

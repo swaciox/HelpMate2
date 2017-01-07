@@ -85,11 +85,8 @@ public class ContactPop extends Activity {
                 }else{
                     mDatabaseReference.child("email").setValue(userEmail);
                 }
-                if(userNumber.equals("")){
-                    Toast.makeText(getBaseContext(), "Wpisz swój numer!", Toast.LENGTH_SHORT).show();
-                }else{
-                    mDatabaseReference.child("number").setValue(userNumber);
-                }
+                mDatabaseReference.child("number").setValue(userNumber);
+
                 finish();
             }
         });

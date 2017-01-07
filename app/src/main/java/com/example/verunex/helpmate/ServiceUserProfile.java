@@ -304,7 +304,7 @@ public class ServiceUserProfile extends AppCompatActivity implements OnMapReadyC
                     }
                 });
 
-
+                finish();
             }
         });
     }

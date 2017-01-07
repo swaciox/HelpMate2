@@ -126,7 +126,7 @@
                             <ImageButton
                                 android:src="@drawable/ic_mail_color"
                                 android:background="@color/cardview_light_background"
-                                android:id="@+id/email"
+                                android:id="@+id/emailButton"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp" />
 

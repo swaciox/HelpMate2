@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -55,6 +56,7 @@ public class FragmentSubPage1 extends Fragment implements OnMapReadyCallback{
     private GoogleMap mMap;
     String address;
 
+    private ImageButton phone, message, emailButton;
     //private SupportMapFragment map;
 
 
@@ -76,14 +78,55 @@ public class FragmentSubPage1 extends Fragment implements OnMapReadyCallback{
         email = (TextView) view.findViewById(R.id.userEmail);
         userCategories = (TextView) view.findViewById(R.id.userCategories);
 
+        //
+        phone = (ImageButton)view.findViewById(R.id.phone_number);
+        message = (ImageButton)view.findViewById(R.id.message);
+        emailButton = (ImageButton)view.findViewById(R.id.emailButton);
+
         // Bundle bundle = this.getArguments();
 
         if (this.getArguments() != null) {
-            String numberString = this.getArguments().getString("number");
-            String emailString = this.getArguments().getString("email");
+            final String numberString = this.getArguments().getString("number");
+            final String emailString = this.getArguments().getString("email");
             String descString = this.getArguments().getString("desc");
             String subcategory = this.getArguments().getString("subcategory");
             address = this.getArguments().getString("address");
+
+            phone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + numberString));
+                    if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    startActivity(intent);
+                }
+            });
+
+            message.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+
+                    smsIntent.setType("vnd.android-dir/mms-sms");
+                    smsIntent.putExtra("address", numberString);
+                    smsIntent.putExtra("sms_body","Witam pisze z serwisu HelpMate!\n");
+                    startActivity(smsIntent);
+                }
+            });
+
+            emailButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("plain/text");
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[] { emailString });
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Zapytanie HelpMate");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Witam pisze z portalu HelpMate");
+                    startActivity(Intent.createChooser(intent, ""));
+                }
+            });
+
 
             if(desc.equals("")){
                 LinearLayout layout = (LinearLayout) getView().findViewById(R.id.description);

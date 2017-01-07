@@ -70,6 +70,8 @@ public class ServiceProviderPop extends Activity{
                     user.child("categories").child(temp).child("description").setValue(desc);
                 }
 
+                Toast.makeText(getBaseContext(), "Zostały dodane nowe opcje do menu!", Toast.LENGTH_LONG).show();
+
                 finish();
             }
         });

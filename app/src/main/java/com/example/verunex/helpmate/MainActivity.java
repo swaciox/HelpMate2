@@ -1,11 +1,17 @@
 package com.example.verunex.helpmate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,6 +27,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +40,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -44,6 +57,7 @@ public class MainActivity extends AppCompatActivity
     String choice = "false";
     String useraftersession;
     private FirebaseUser mFirebaseUser;
+    private RequestQueue mRequestQueue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,18 +69,20 @@ public class MainActivity extends AppCompatActivity
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             id_cur = "null";
-        }else {
+        } else {
             mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
             id_cur = mFirebaseAuth.getCurrentUser().getUid();
         }
-        Log.v ("Id_MainActivity", id_cur);
+        Log.v("Id_MainActivity", id_cur);
+
+        lastlocation();
 
 
         String checkS = choice;
-        Log.v ("Wartosc check ", checkS);
+        Log.v("Wartosc check ", checkS);
 
-        if (!id_cur.equals("null")){
+        if (!id_cur.equals("null")) {
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -84,12 +100,12 @@ public class MainActivity extends AppCompatActivity
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     choice = dataSnapshot.child("service_state").getValue().toString();
 
-                    Log.v ("Wartosc choice ", choice);
+                    Log.v("Wartosc choice ", choice);
 
-                    if(choice.equals("true")){
+                    if (choice.equals("true")) {
                         mNavigationView.getMenu().findItem(R.id.nav_userServices).setVisible(false);
                         mNavigationView.getMenu().findItem(R.id.group_item_profile_services).setVisible(true);
-                    }else{
+                    } else {
                         mNavigationView.getMenu().findItem(R.id.nav_userServices).setVisible(true);
                         mNavigationView.getMenu().findItem(R.id.group_item_profile_services).setVisible(false);
                     }
@@ -106,16 +122,16 @@ public class MainActivity extends AppCompatActivity
 
             View header = mNavigationView.getHeaderView(0);
 
-            mName = (TextView)header.findViewById(R.id.nav_name);
-            mImageView = (ImageView)header.findViewById(R.id.imageuser);
-        }else{
+            mName = (TextView) header.findViewById(R.id.nav_name);
+            mImageView = (ImageView) header.findViewById(R.id.imageuser);
+        } else {
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
         }
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
 
-        }else{
+        } else {
             String id_key = FirebaseAuth.getInstance().getCurrentUser().getUid();
             mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
 
@@ -127,9 +143,9 @@ public class MainActivity extends AppCompatActivity
                     mName.setText(name);
 
                     String user_image_uri = dataSnapshot.child("user_image").getValue(String.class);
-                    if(user_image_uri.isEmpty()){
+                    if (user_image_uri.isEmpty()) {
 
-                    }else{
+                    } else {
                         Picasso.with(getBaseContext()).load(user_image_uri).transform(new Circle()).into(mImageView);
                     }
                 }
@@ -141,6 +157,68 @@ public class MainActivity extends AppCompatActivity
             });
 
         }
+
+    }
+
+    private void lastlocation() {
+        // Get LocationManager object
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        // Create a criteria object to retrieve provider
+        Criteria criteria = new Criteria();
+
+        // Get the name of the best provider
+        String provider = locationManager.getBestProvider(criteria, true);
+
+        // Get Current Location
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location myLocation = locationManager.getLastKnownLocation(provider);
+
+                if (myLocation == null) {
+                    //user_address.setText("null");
+                } else {
+                    //latitude of location
+                    double myLatitude = myLocation.getLatitude();
+
+                    //longitude og location
+                    double myLongitude = myLocation.getLongitude();
+
+                    String Latitude = String.valueOf(myLatitude);
+                    String Longtitude = String.valueOf(myLongitude);
+
+                    Log.v("Cordi", Latitude);
+
+                    Log.v("Cordi2", Longtitude);
+
+                    JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + Latitude + "," + Longtitude + "&key=AIzaSyBWbcjYmZ3OVyklVuQFZOzUDzQMitkaKwc", new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                String address = response.getJSONArray("results").getJSONObject(0).getString("formatted_address");
+                                //user_address.setText(address);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    });
+                    mRequestQueue.add(request);
+                }
 
     }
 

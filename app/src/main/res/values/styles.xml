@@ -16,7 +16,7 @@
     <style name="AppTheme.PopTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
-        <item name ="android:windowBackground">@color/colorTransparency</item>
+        <item name="android:windowBackground">@color/colorTransparency</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:colorForeground">#fff</item>
     </style>

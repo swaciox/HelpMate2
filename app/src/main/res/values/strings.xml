@@ -168,6 +168,7 @@
     <string name="user_rate">Wystaw ocenę w skali od 1 do 5</string>
     <string name="user_opinion">Napisz opinię o użytkowniku</string>
     <string name="user_location">Zatwierdź lokalizację</string>
+    <string name="title_activity_category_tabeed_test">CategoryTabeedTest</string>
 
 
 </resources>

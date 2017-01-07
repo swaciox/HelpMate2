@@ -113,13 +113,16 @@ public class LoginSubPage extends Fragment implements View.OnClickListener{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(user_id)){
-                    Intent i = new Intent(getContext(), MainActivity.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i);
+                    if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()/*==null*/){
+                        Intent i = new Intent(getContext(), MainActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
 
-                    mProgressDialog.dismiss();
-
-                    //Toast.makeText(getContext(), user_id , Toast.LENGTH_SHORT).show();
+                        mProgressDialog.dismiss();
+                    }else{
+                        mProgressDialog.dismiss();
+                        Toast.makeText(getContext(), "Zweryfikuj adres email!" , Toast.LENGTH_SHORT).show();
+                    }
                 }else{
                     Toast.makeText(getContext(), "Podany użytkownik nie istnieje!", Toast.LENGTH_SHORT).show();
                     mProgressDialog.dismiss();

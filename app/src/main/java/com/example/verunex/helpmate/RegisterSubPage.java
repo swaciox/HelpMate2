@@ -124,6 +124,8 @@ public class RegisterSubPage extends Fragment implements View.OnClickListener{
 
                                 }
 
+                                FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
+
 
 
                                 /*curent_user.child("user_id").setValue(id_key);

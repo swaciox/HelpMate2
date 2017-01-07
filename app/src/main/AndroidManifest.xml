@@ -142,6 +142,7 @@
             android:name=".MyCommentServiceUser"
             android:label="Otrzymane Komentarze"
             android:screenOrientation="portrait" />
+        <activity android:name=".UserSettings"></activity>
     </application>
 
 </manifest>

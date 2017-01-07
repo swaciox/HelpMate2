@@ -298,6 +298,9 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
         }else if (id == R.id.nav_userComment){
             Intent intent = new Intent(getApplicationContext(), MyCommentServiceUser.class);
             startActivity(intent);
+        }else if (id == R.id.user_settings){
+            Intent intent = new Intent(getApplicationContext(), UserSettings.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

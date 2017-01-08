@@ -54,6 +54,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class CategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
@@ -82,8 +84,11 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
     private String email;
     private String image;
 
-    Double myLastA;
-    Double myLastB;
+    Double myLastA=0.0;
+    Double myLastB=0.0;
+
+    String temp;
+    String temp2;
 
     private RequestQueue mRequestQueue;
 
@@ -102,6 +107,20 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         String id_key;
+
+
+
+        String category = getIntent().getStringExtra("Category");
+        String subcategory = getIntent().getStringExtra("Subcategory");
+        myLastA = Double.valueOf(getIntent().getStringExtra("myLastA"));
+        myLastB = Double.valueOf(getIntent().getStringExtra("myLastB"));
+
+        temp =getIntent().getStringExtra("myLastA");
+        temp2=getIntent().getStringExtra("myLastB");
+
+        Log.v("myLastA ", String.valueOf(myLastA));
+        Log.v("myLastB ", String.valueOf(myLastB));
+
         //cureent_user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //Log.v ("Id_KeyCategory", cureent_user_id);
         //cureent_user_id = getIntent().getStringExtra("Id_key");
@@ -194,11 +213,6 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
         mSpinner.setOnItemSelectedListener(this);
 
-
-        String category = getIntent().getStringExtra("Category");
-        String subcategory = getIntent().getStringExtra("Subcategory");
-        myLastA = Double.valueOf(getIntent().getStringExtra("myLastA"));
-        myLastB = Double.valueOf(getIntent().getStringExtra("myLastB"));
 
         Log.v("Kategoria ", category);
         Log.v("Sybkategori ", subcategory);
@@ -331,6 +345,13 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
         } else if (id == R.id.user_favorite) {
             Intent i = new Intent(this, UserFavouriteActivity.class);
+            if(temp.equals("0.0") && myLastB.equals("0.0")){
+                i.putExtra("myLastA", "0.0");
+                i.putExtra("myLastB", "0.0");
+            }else{
+                i.putExtra("myLastA", temp);
+                i.putExtra("myLastB", temp2);
+            }
             startActivity(i);
 
         } else if (id == R.id.nav_logout) {
@@ -411,6 +432,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                 }
 
                 String addressTest = model.getAddress();
+                Log.v("address value", addressTest);
 
                 List<android.location.Address> addressList = null;
 
@@ -424,7 +446,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                         e.printStackTrace();
                     }
 
-                    if (addressList != null) {
+                    if (addressList != null || addressList.size()==0) {
                         android.location.Address address = addressList.get(0);
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
@@ -446,11 +468,19 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
                             distance = currentLoc.distanceTo(loc1);
 
-                            String filterDistance = String.valueOf(distance/1000);
-                            filterDistance = filterDistance.substring(0, filterDistance.length()-4);
-                            String readyDistance = filterDistance+" km";
 
-                            viewHolder.distance.setText(filterDistance);
+                            String filterDistance = String.valueOf(distance/1000);
+                            //filterDistance = filterDistance.substring(0, filterDistance.length()-4);
+
+                            Double toBeTruncated = new Double(distance/1000);
+
+                            Double truncatedDouble = BigDecimal.valueOf(toBeTruncated)
+                                    .setScale(2, RoundingMode.HALF_UP)
+                                    .doubleValue();
+
+                            String readyDistance = truncatedDouble +" km od Ciebie";
+
+                            viewHolder.distance.setText(readyDistance);
                         }
 
                         Log.v("Distance", String.valueOf(distance));
@@ -468,7 +498,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                 viewHolder.setImage(getApplicationContext(), model.getUser_image());
                 viewHolder.setRate(model.getRate());
                 //viewHolder.setUser_id(model.getUser_id());
-                viewHolder.setUid(model.getUid());
+                viewHolder.setUser_id(model.getUser_id());
                 viewHolder.setEmail(model.getEmail());
                 //viewHolder.setDescription(model.getDescription());
 
@@ -486,7 +516,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                 final String image = model.getUser_image();
                 final String rate = model.getRate();
                 final String desc = model.getDesc();
-                final String user_id = model.getUid();
+                final String user_id = model.getUser_id();
                 final String address = model.getAddress();
 
 
@@ -500,7 +530,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                 liketest.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child(cureent_user_id).hasChild(model.getUid())) {
+                        if (dataSnapshot.child(cureent_user_id).hasChild(model.getUser_id())) {
                             viewHolder.favouriteBox.setChecked(true);
                             viewHolder.favouriteBox.setButtonDrawable(R.drawable.ic_like);
                         } else {
@@ -677,7 +707,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                             final String key = getRef(position).getKey();
 
 
-                            String model1 = model.getUid();
+                            String model1 = model.getUser_id();
 
                             mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(cureent_user_id).child(model1);
 
@@ -693,7 +723,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                                 favourite.child("email").setValue(email);
                                 favourite.child("name").setValue(name);
                                 favourite.child("number").setValue(number);
-                                favourite.child("uid").setValue(user_id);
+                                favourite.child("user_id").setValue(user_id);
                                 favourite.child("address").setValue(address);
                                 favourite.child("service_state").setValue(service_state);
                                 favourite.child("desc").setValue(desc);

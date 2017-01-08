@@ -166,6 +166,7 @@ public class SubCategoryPop extends Activity {
                     i.putExtra("Category", selected);
                     i.putExtra("Subcategory", temp);
                     i.putExtra("myLastA", myLastA);
+                    Log.v("myLastA",myLastA);
                     i.putExtra("myLastB", myLastB);
                     startActivity(i);
                     finish();

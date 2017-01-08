@@ -2,6 +2,9 @@ package com.example.verunex.helpmate;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +32,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
 
 public class UserFavouriteActivity extends AppCompatActivity {
 
@@ -45,6 +54,10 @@ public class UserFavouriteActivity extends AppCompatActivity {
     private String email;
     private String image;
 
+    Double myLastA;
+    Double myLastB;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +70,9 @@ public class UserFavouriteActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         final String id_key = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myLastA = Double.valueOf(getIntent().getStringExtra("myLastA"));
+        Log.v("myLastAfavourite", String.valueOf(myLastA));
+        myLastB = Double.valueOf(getIntent().getStringExtra("myLastB"));
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("UserFavourite").child(id_key);
 
@@ -89,6 +105,63 @@ public class UserFavouriteActivity extends AppCompatActivity {
 
                     }
                 });
+
+                String addressTest = model.getAddress();
+
+                List<Address> addressList = null;
+
+                Float distance = null;
+                if (addressTest != null || addressTest != "") {
+
+                    Geocoder geocoder = new Geocoder(getBaseContext());
+                    try {
+                        addressList = geocoder.getFromLocationName(addressTest, 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (addressList != null) {
+                        android.location.Address address = addressList.get(0);
+                        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+                        LatLng latLngMy = new LatLng(myLastA, myLastB);
+
+
+                        Location loc1 = new Location("Marker");
+                        loc1.setLatitude(address.getLatitude());
+                        loc1.setLongitude(address.getLongitude());
+
+                        if(myLastA.equals(0.0) && myLastB.equals(0.0)){
+
+                            viewHolder.distance.setVisibility(View.INVISIBLE);
+
+                        }else{
+                            Location currentLoc = new Location("Current");
+                            currentLoc.setLatitude(myLastA);
+                            currentLoc.setLongitude(myLastB);
+
+                            distance = currentLoc.distanceTo(loc1);
+
+                            String filterDistance = String.valueOf(distance/1000);
+                            //filterDistance = filterDistance.substring(0, filterDistance.length()-4);
+
+                            Double toBeTruncated = new Double(distance/1000);
+
+                            Double truncatedDouble = BigDecimal.valueOf(toBeTruncated)
+                                    .setScale(2, RoundingMode.HALF_UP)
+                                    .doubleValue();
+
+                            String readyDistance = truncatedDouble +" km od Ciebie";
+
+                            viewHolder.distance.setText(readyDistance);
+                        }
+
+                        Log.v("Distance", String.valueOf(distance));
+                    }
+
+
+                }
+
                 viewHolder.setAddress(model.getAddress());
                 viewHolder.setName(model.getName());
                 viewHolder.setCategory(model.getCategory());
@@ -97,7 +170,7 @@ public class UserFavouriteActivity extends AppCompatActivity {
                 viewHolder.setImage(getApplicationContext(),model.getUser_image());
                 viewHolder.setRate(model.getRate());
                 //viewHolder.setUser_id(model.getUser_id());
-                viewHolder.setUid(model.getUid());
+                viewHolder.setUser_id(model.getUser_id());
                 viewHolder.setEmail(model.getEmail());
                 //viewHolder.setDescription(model.getDescription());
 
@@ -108,7 +181,7 @@ public class UserFavouriteActivity extends AppCompatActivity {
                 final String image = model.getUser_image();
                 final String rate = model.getRate();
                 final String desc = model.getDesc();
-                final String user_id = model.getUid();
+                final String user_id = model.getUser_id();
                 final String address = model.getAddress();
 
 

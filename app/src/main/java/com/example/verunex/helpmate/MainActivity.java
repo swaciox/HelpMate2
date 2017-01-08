@@ -381,6 +381,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.user_favorite) {
             Intent i = new Intent(this, UserFavouriteActivity.class);
+            if(!myLastA.equals("0.0")&& !myLastB.equals("0.0")){
+                i.putExtra("myLastA", myLastA);
+                i.putExtra("myLastB", myLastB);
+            }else{
+                i.putExtra("myLastA", "0.0");
+                i.putExtra("myLastB", "0.0");
+            }
             startActivity(i);
 
         } else if (id == R.id.nav_logout) {
@@ -416,8 +423,8 @@ public class MainActivity extends AppCompatActivity
             i.putExtra("myLastA", myLastA);
             i.putExtra("myLastB", myLastB);
         }else{
-            i.putExtra("myLastA", "false");
-            i.putExtra("myLastB", "false");
+            i.putExtra("myLastA", "0.0");
+            i.putExtra("myLastB", "0.0");
         }
 
 

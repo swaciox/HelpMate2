@@ -6,6 +6,7 @@ package com.example.verunex.helpmate;
 
 public class User2 {
 
+    private String user_id;
     private String address;
     private String category;
     private String desc;
@@ -14,7 +15,6 @@ public class User2 {
     private String number;
     private String rate;
     private String service_state;
-    private String uid;
     private String user_image;
     private String subcategory;
 
@@ -23,18 +23,26 @@ public class User2 {
 
     }
 
-    public User2(String subcategory, String user_image, String uid, String service_state, String rate, String number, String name, String email, String desc, String category, String address) {
-        this.subcategory = subcategory;
-        this.user_image = user_image;
-        this.uid = uid;
-        this.service_state = service_state;
-        this.rate = rate;
-        this.number = number;
-        this.name = name;
-        this.email = email;
-        this.desc = desc;
-        this.category = category;
+    public User2(String user_id, String address, String category, String desc, String email, String name, String number, String rate, String service_state, String user_image, String subcategory) {
+        this.user_id = user_id;
         this.address = address;
+        this.category = category;
+        this.desc = desc;
+        this.email = email;
+        this.name = name;
+        this.number = number;
+        this.rate = rate;
+        this.service_state = service_state;
+        this.user_image = user_image;
+        this.subcategory = subcategory;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getSubcategory() {
@@ -109,13 +117,7 @@ public class User2 {
         this.service_state = service_state;
     }
 
-    public String getUid() {
-        return uid;
-    }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 
     public String getUser_image() {
         return user_image;

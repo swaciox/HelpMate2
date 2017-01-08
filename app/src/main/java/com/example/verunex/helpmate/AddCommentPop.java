@@ -67,7 +67,9 @@ public class AddCommentPop extends Activity {
         mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
                 value = rating;
+                Log.v("value", String.valueOf(value));
             }
         });
 
@@ -115,19 +117,21 @@ public class AddCommentPop extends Activity {
                     comment.child("date").setValue(date);
 
                     // rate convert
-                    String convertValue = "" + Float.toString(value);
+                    String convertValue = "" + value+"f";
                     comment.child("rate").setValue(convertValue);
 
 
                     UserData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
-                    final String[] name = {"Użytkownik"};
-                    final String[] user_image = {"https://firebasestorage.googleapis.com/v0/b/helpmate-b2e14.appspot.com/o/users_image%2Fperson.png?alt=media&token=643855bc-4dd4-4a92-8830-880da677ce7f"};
 
-                    UserData.addValueEventListener(new ValueEventListener() {
+
+
+                    UserData.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            name[0] = dataSnapshot.child("name").getValue(String.class);
-                            user_image[0] = dataSnapshot.child("user_image").getValue(String.class);
+                           String name =dataSnapshot.child("name").getValue(String.class);
+                            String user_image =dataSnapshot.child("user_image").getValue(String.class);
+                            comment.child("name").setValue(name);
+                            comment.child("user_image").setValue(user_image);
                         }
 
                         @Override
@@ -135,8 +139,7 @@ public class AddCommentPop extends Activity {
 
                         }
                     });
-                    comment.child("name").setValue(name[0]);
-                    comment.child("user_image").setValue(user_image[0]);
+
                 }else{
                     Toast.makeText(getBaseContext(),"Wypełnij pole komentarza!", Toast.LENGTH_SHORT).show();
                 }

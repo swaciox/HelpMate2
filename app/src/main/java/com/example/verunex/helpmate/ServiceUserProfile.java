@@ -163,7 +163,7 @@ public class ServiceUserProfile extends AppCompatActivity implements OnMapReadyC
                         String desc = dataSnapshot.child("desc").getValue().toString();
                         String email = dataSnapshot.child("email").getValue().toString();
                         image = dataSnapshot.child("user_image").getValue().toString();
-                        String uid = dataSnapshot.child("uid").getValue().toString();
+                        String uid = dataSnapshot.child("user_id").getValue().toString();
                         String service_state = dataSnapshot.child("service_state").getValue().toString();
 
                         tempCategory = "";
@@ -236,7 +236,7 @@ public class ServiceUserProfile extends AppCompatActivity implements OnMapReadyC
                                 } else if (temp.equals("sub8") || temp.equals("sub9") || temp.equals("sub10") || temp.equals("sub11")) {
                                     category = "opieka";
                                 } else if (temp.equals("sub12")) {
-                                    category = "korepetycje";
+                                    category = "pomoc_naukowa";
                                 } else if (temp.equals("sub13") || temp.equals("sub14") || temp.equals("sub15")) {
                                     category = "ogrodnictwo";
                                 } else if (temp.equals("sub16") || temp.equals("sub17") || temp.equals("sub18") || temp.equals("sub19")) {
@@ -260,7 +260,7 @@ public class ServiceUserProfile extends AppCompatActivity implements OnMapReadyC
                                 addUser.child("address").setValue(address);
                                 addUser.child("email").setValue(email);
                                 addUser.child("user_image").setValue(image);
-                                addUser.child("uid").setValue(uid);
+                                addUser.child("user_id").setValue(uid);
                                 addUser.child("service_state").setValue(service_state);
                                 addUser.child("rate").setValue("5.0f");
                                 addUser.child("category").setValue(deleteLastChar(filterCategory));

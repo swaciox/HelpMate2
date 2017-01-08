@@ -42,15 +42,17 @@ public class User2ProfileViewHolder extends RecyclerView.ViewHolder {
         return subcategory;
     }
 
+    public String setUser_id(String user_id){
+        return user_id;
+    }
+
     public String setDesc (String desc){
         return desc;
     }
     public String setAddress (String address){
         return address;
     }
-    public String setUid(String uid){
-        return uid;
-    }
+
     public String setServiceState (String service_state) {
         return service_state;
     }

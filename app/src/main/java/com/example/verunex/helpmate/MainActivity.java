@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity
     private FirebaseUser mFirebaseUser;
     private RequestQueue mRequestQueue;
     String myLastKnowLocation;
-    String myLastA;
-    String myLastB;
+    String myLastA="0.0";
+    String myLastB="0.0";
 
     private BroadcastReceiver broadcastReceiver;
 

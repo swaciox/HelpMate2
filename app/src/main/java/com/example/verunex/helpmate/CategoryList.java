@@ -435,12 +435,23 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                         loc1.setLatitude(address.getLatitude());
                         loc1.setLongitude(address.getLongitude());
 
-                        Location currentLoc = new Location("Current");
-                        currentLoc.setLatitude(myLastA);
-                        currentLoc.setLongitude(myLastB);
+                        if(myLastA.equals(0.0) && myLastB.equals(0.0)){
 
-                        distance = currentLoc.distanceTo(loc1);
+                            viewHolder.distance.setVisibility(View.INVISIBLE);
 
+                        }else{
+                            Location currentLoc = new Location("Current");
+                            currentLoc.setLatitude(myLastA);
+                            currentLoc.setLongitude(myLastB);
+
+                            distance = currentLoc.distanceTo(loc1);
+
+                            String filterDistance = String.valueOf(distance/1000);
+                            filterDistance = filterDistance.substring(0, filterDistance.length()-4);
+                            String readyDistance = filterDistance+" km";
+
+                            viewHolder.distance.setText(filterDistance);
+                        }
 
                         Log.v("Distance", String.valueOf(distance));
                     }
@@ -461,9 +472,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                 viewHolder.setEmail(model.getEmail());
                 //viewHolder.setDescription(model.getDescription());
 
-                String filterDistance = String.valueOf(distance/1000) + " km";
 
-                viewHolder.distance.setText(filterDistance);
 
 
                 final String subcategory = model.getSubcategory();

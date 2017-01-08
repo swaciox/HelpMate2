@@ -104,21 +104,7 @@ public class FragmentSubPage2 extends Fragment {
         newData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_position);
         final DatabaseReference user = newData;
 
-        user.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("name").getValue().toString();
-                mDatabaseReference.child("name").setValue(name);
 
-                String user_image = dataSnapshot.child("user_image").getValue().toString();
-                mDatabaseReference.child("user_image").setValue(user_image);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         FirebaseRecyclerAdapter<Comment, CommentViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(
                 Comment.class,
@@ -128,7 +114,23 @@ public class FragmentSubPage2 extends Fragment {
 
         ) {
             @Override
-            protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, final int position) {
+            protected void populateViewHolder(CommentViewHolder viewHolder, final Comment model, final int position) {
+                final String model1 = String.valueOf(model);
+                user.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String name = dataSnapshot.child("name").getValue().toString();
+                        mDatabaseReference.child(model1).child("name").setValue(name);
+
+                        String user_image = dataSnapshot.child("user_image").getValue().toString();
+                        mDatabaseReference.child(model1).child("user_image").setValue(user_image);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 viewHolder.setName(model.getName());
                 viewHolder.setDesc(model.getDesc());

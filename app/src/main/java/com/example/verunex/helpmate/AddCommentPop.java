@@ -120,7 +120,7 @@ public class AddCommentPop extends Activity {
 
 
                     UserData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
-                    final String[] name = {""};
+                    final String[] name = {"Użytkownik"};
                     final String[] user_image = {"https://firebasestorage.googleapis.com/v0/b/helpmate-b2e14.appspot.com/o/users_image%2Fperson.png?alt=media&token=4b1a210e-b333-40fe-b155-6973f3e9d00e"};
 
                     UserData.addValueEventListener(new ValueEventListener() {

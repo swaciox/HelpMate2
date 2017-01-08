@@ -37,6 +37,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity
     private FirebaseUser mFirebaseUser;
     private RequestQueue mRequestQueue;
     String myLastKnowLocation;
+    String myLastA;
+    String myLastB;
 
     private BroadcastReceiver broadcastReceiver;
 
@@ -86,6 +89,8 @@ public class MainActivity extends AppCompatActivity
         Log.v("Id_MainActivity", id_cur);
 
         lastlocation();
+
+        //getLocation();
 
 
         String checkS = choice;
@@ -169,6 +174,35 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+   /* public LatLng getLocation() {
+        // Get the location manager
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String bestProvider = locationManager.getBestProvider(criteria, false);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            //return TODO;
+        }
+        Location location = locationManager.getLastKnownLocation(bestProvider);
+        Double lat,lon;
+        try {
+            lat = location.getLatitude ();
+            lon = location.getLongitude ();
+            Log.v("Checka ", "a "+lat+" b"+lon);
+            return new LatLng(lat, lon);
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+            return null;
+        }
+    }*/
+
     private void lastlocation() {
 
 
@@ -248,8 +282,12 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onReceive(Context context, Intent intent) {
 
-                    myLastKnowLocation = (String) intent.getExtras().get("coordinates");
-                    Log.v ("LOL", myLastKnowLocation);
+                    String a="" +intent.getExtras().get("b");
+                    String b = ""+intent.getExtras().get("a");
+                    Log.v("Location", a+","+b);
+                    myLastA = a;
+                    myLastB = b;
+
 
                 }
             };
@@ -262,6 +300,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
+
+        Intent i = new Intent(getApplicationContext(),GPS_Service.class);
+        stopService(i);
 
     }
 
@@ -371,7 +412,14 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v) {
 
         Intent i = new Intent(this, SubCategoryPop.class);
-        i.putExtra("myLastKnowLocation", myLastKnowLocation);
+        if(!myLastA.equals("")&& !myLastB.equals("")){
+            i.putExtra("myLastA", myLastA);
+            i.putExtra("myLastB", myLastB);
+        }else{
+            i.putExtra("myLastA", "false");
+            i.putExtra("myLastB", "false");
+        }
+
 
         switch (v.getId()) {
             case R.id.hydraulika:

@@ -116,7 +116,7 @@ public class FragmentSubPage2 extends Fragment {
             @Override
             protected void populateViewHolder(CommentViewHolder viewHolder, final Comment model, final int position) {
                 final String model1 = String.valueOf(model);
-                user.addValueEventListener(new ValueEventListener() {
+               /* user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String name = dataSnapshot.child("name").getValue().toString();
@@ -130,7 +130,7 @@ public class FragmentSubPage2 extends Fragment {
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
-                });
+                });*/
 
                 viewHolder.setName(model.getName());
                 viewHolder.setDesc(model.getDesc());

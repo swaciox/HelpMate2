@@ -22,6 +22,7 @@ public class User2ProfileViewHolder extends RecyclerView.ViewHolder {
     ImageButton btn;
     ImageButton btn2;
     ImageButton btn3;
+    TextView distance;
 
 
     public User2ProfileViewHolder(View itemView) {
@@ -29,6 +30,7 @@ public class User2ProfileViewHolder extends RecyclerView.ViewHolder {
 
         mView = itemView;
 
+        distance = (TextView)mView.findViewById(R.id.distance);
         btn3 = (ImageButton)mView.findViewById(R.id.email);
         btn2 = (ImageButton)mView.findViewById(R.id.message);
         btn = (ImageButton)mView.findViewById(R.id.call);

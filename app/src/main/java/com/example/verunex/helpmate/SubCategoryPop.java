@@ -40,8 +40,9 @@ public class SubCategoryPop extends Activity {
         int height = mDisplayMetrics.heightPixels;
 
         final String selected = getIntent().getStringExtra("Selected");
-        final String myLastKnowLocation = getIntent().getStringExtra("myLastKnowLocation");
-        Log.v ("location ", myLastKnowLocation);
+        final String myLastA = getIntent().getStringExtra("myLastA");
+        final String myLastB = getIntent().getStringExtra("myLastB");
+
 
         Resources res = getResources();
 
@@ -164,7 +165,8 @@ public class SubCategoryPop extends Activity {
                     Intent i = new Intent(getApplicationContext(), CategoryList.class);
                     i.putExtra("Category", selected);
                     i.putExtra("Subcategory", temp);
-                    i.putExtra("myLastKnowLocation", myLastKnowLocation);
+                    i.putExtra("myLastA", myLastA);
+                    i.putExtra("myLastB", myLastB);
                     startActivity(i);
                     finish();
             }

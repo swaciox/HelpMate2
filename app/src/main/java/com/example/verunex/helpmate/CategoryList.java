@@ -501,7 +501,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
                 viewHolder.setRate(model.getRate());
                 //viewHolder.setUser_id(model.getUser_id());
                 viewHolder.setUser_id(model.getUser_id());
-                viewHolder.setEmail(model.getEmail());
+                //viewHolder.setEmail(model.getEmail());
                 //viewHolder.setDescription(model.getDescription());
 
 
@@ -509,10 +509,11 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
                 final String subcategory = model.getSubcategory();
                 final String service_state = model.getService_state();
-                //final String email = model.getEmail();
+                final String email = model.getEmail();
                 //Log.v ("email", email);
                 final String number = model.getNumber();
-                Log.v("number", number);
+
+               // Log.v("number", number);
                 final String name = model.getName();
                 //final String category = model.getCategory();
                 final String image = model.getUser_image();

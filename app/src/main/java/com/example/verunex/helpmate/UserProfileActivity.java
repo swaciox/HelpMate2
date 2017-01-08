@@ -89,6 +89,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 }else{
                     Picasso.with(getBaseContext()).load(user_image_uri).transform(new Circle()).into(user_image);
                 }
+
             }
 
             @Override

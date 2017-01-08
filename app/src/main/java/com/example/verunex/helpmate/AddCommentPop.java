@@ -120,18 +120,14 @@ public class AddCommentPop extends Activity {
 
 
                     UserData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_key);
+                    final String[] name = {""};
+                    final String[] user_image = {"https://firebasestorage.googleapis.com/v0/b/helpmate-b2e14.appspot.com/o/users_image%2Fperson.png?alt=media&token=4b1a210e-b333-40fe-b155-6973f3e9d00e"};
 
                     UserData.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            String name = dataSnapshot.child("name").getValue(String.class);
-                            String user_image = dataSnapshot.child("user_image").getValue(String.class);
-                            if (user_image.isEmpty()){
-                                user_image = "https://firebasestorage.googleapis.com/v0/b/helpmate-b2e14.appspot.com/o/users_image%2Fperson.png?alt=media&token=4b1a210e-b333-40fe-b155-6973f3e9d00e";
-                            }
-                            comment.child("name").setValue(name);
-                            comment.child("user_image").setValue(user_image);
-
+                            name[0] = dataSnapshot.child("name").getValue(String.class);
+                            user_image[0] = dataSnapshot.child("user_image").getValue(String.class);
                         }
 
                         @Override
@@ -139,6 +135,8 @@ public class AddCommentPop extends Activity {
 
                         }
                     });
+                    comment.child("name").setValue(name[0]);
+                    comment.child("user_image").setValue(user_image[0]);
                 }else{
                     Toast.makeText(getBaseContext(),"Wypełnij pole komentarza!", Toast.LENGTH_SHORT).show();
                 }

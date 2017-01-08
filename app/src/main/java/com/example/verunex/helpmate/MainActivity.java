@@ -1,17 +1,22 @@
 package com.example.verunex.helpmate;
 
+import android.*;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -58,6 +63,10 @@ public class MainActivity extends AppCompatActivity
     String useraftersession;
     private FirebaseUser mFirebaseUser;
     private RequestQueue mRequestQueue;
+    String myLastKnowLocation;
+
+    private BroadcastReceiver broadcastReceiver;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -161,68 +170,41 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void lastlocation() {
-        // Get LocationManager object
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        // Create a criteria object to retrieve provider
-        Criteria criteria = new Criteria();
 
-        // Get the name of the best provider
-        String provider = locationManager.getBestProvider(criteria, true);
+        //if(!runtime_permissions()){
+            Intent i =new Intent(getApplicationContext(),GPS_Service.class);
+            startService(i);
+        //}
 
-        // Get Current Location
-
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Location myLocation = locationManager.getLastKnownLocation(provider);
-
-                if (myLocation == null) {
-                    //user_address.setText("null");
-                } else {
-                    //latitude of location
-                    double myLatitude = myLocation.getLatitude();
-
-                    //longitude og location
-                    double myLongitude = myLocation.getLongitude();
-
-                    String Latitude = String.valueOf(myLatitude);
-                    String Longtitude = String.valueOf(myLongitude);
-
-                    Log.v("Cordi", Latitude);
-
-                    Log.v("Cordi2", Longtitude);
-
-                    JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + Latitude + "," + Longtitude + "&key=AIzaSyBWbcjYmZ3OVyklVuQFZOzUDzQMitkaKwc", new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-                            try {
-                                String address = response.getJSONArray("results").getJSONObject(0).getString("formatted_address");
-                                //user_address.setText(address);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                        }
-                    });
-                    mRequestQueue.add(request);
-                }
 
     }
+    private boolean runtime_permissions() {
+        if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+
+            requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION},100);
+
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                Intent i =new Intent(getApplicationContext(),GPS_Service.class);
+                startService(i);
+            } else {
+                runtime_permissions();
+            }
+        }
+    }
+
+
+        @Override
     protected void onStart() {
         super.onStart();
 
@@ -261,9 +243,27 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
+        if(broadcastReceiver == null){
+            broadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+
+                    myLastKnowLocation = (String) intent.getExtras().get("coordinates");
+                    Log.v ("LOL", myLastKnowLocation);
+
+                }
+            };
+        }
+        registerReceiver(broadcastReceiver,new IntentFilter("location_update"));
+
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
 
     public void initControl (){
         ImageButton bHydraulika = (ImageButton) findViewById(R.id.hydraulika);
@@ -371,7 +371,7 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v) {
 
         Intent i = new Intent(this, SubCategoryPop.class);
-        //i.putExtra("Id_key", id_cur);
+        i.putExtra("myLastKnowLocation", myLastKnowLocation);
 
         switch (v.getId()) {
             case R.id.hydraulika:

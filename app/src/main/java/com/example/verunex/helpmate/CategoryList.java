@@ -165,6 +165,8 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
         String category = getIntent().getStringExtra("Category");
         String subcategory = getIntent().getStringExtra("Subcategory");
+        String myLastKnowLocation =  getIntent().getStringExtra("myLastKnowLocation");
+        Log.v("location categorylist", myLastKnowLocation);
         Log.v("Kategoria ", category);
         Log.v("Sybkategori ", subcategory);
 

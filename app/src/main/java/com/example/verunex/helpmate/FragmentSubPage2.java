@@ -34,6 +34,7 @@ public class FragmentSubPage2 extends Fragment {
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
+    private DatabaseReference newData;
 
     private DatabaseReference checkUser;
 
@@ -100,6 +101,25 @@ public class FragmentSubPage2 extends Fragment {
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Comment").child(id_position);
 
+        newData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(id_position);
+        final DatabaseReference user = newData;
+
+        user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.child("name").getValue().toString();
+                mDatabaseReference.child("name").setValue(name);
+
+                String user_image = dataSnapshot.child("user_image").getValue().toString();
+                mDatabaseReference.child("user_image").setValue(user_image);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         FirebaseRecyclerAdapter<Comment, CommentViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(
                 Comment.class,
                 R.layout.comment_row,
@@ -109,6 +129,7 @@ public class FragmentSubPage2 extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, final int position) {
+
                 viewHolder.setName(model.getName());
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setUserImage(getActivity(),model.getUser_image());

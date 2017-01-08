@@ -83,6 +83,7 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
     private String email;
     private String image;
+    private String number;
 
     Double myLastA=0.0;
     Double myLastB=0.0;
@@ -416,10 +417,11 @@ public class CategoryList extends AppCompatActivity implements AdapterView.OnIte
 
 
                     DatabaseReference newData = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(user_id_now);
-                    newData.addValueEventListener(new ValueEventListener() {
+                    newData.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             email = dataSnapshot.child("email").getValue().toString();
+                            number = dataSnapshot.child("number").getValue().toString();
                             image = dataSnapshot.child("user_image").getValue().toString();
 
                         }
